@@ -1,8 +1,7 @@
-/* НАЧАЛО МЕНЯТЕЛЬ ТЕМЫ */
 .theme-toggle {
     position: fixed;
-    top: 20px;
-    right: 20px;
+    top: 1.587vw;
+    right: 1.587vw;
     z-index: 1000;
 }
 .theme-toggle input {
@@ -13,10 +12,10 @@
 }
 .slider {
     display: block;
-    width: 109px;
-    height: 46px;
+    width: 5.2vw;
+    height: 2.07vw;
     background-color: #4d7ec8;
-    border-radius: 46px;
+    border-radius: 2.07vw;
     cursor: pointer;
     position: relative;
     transition: background-color 0.7s;
@@ -24,43 +23,44 @@
 .slider::before {
     content: "";
     position: absolute;
-    width: 36px;
-    height: 36px;
-    left: 5px;
-    bottom: 5px;
+    width: 1.6215vw;
+    height: 1.6215vw;
+    left: 0.224vw;
+    bottom: 0.224vw;
     background-color: white;
     border-radius: 50%;
-    transition: 0.3s;
+    transition: 1.5s;
 }
-.theme-toggle input:checked+.slider::before {
-    transform: translateX(63px);
+.theme-toggle input:checked + .slider::before {
+    transform: translateX(3.129vw);
 }
 .slider i {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 20px;
+    font-size: 0.897vw;
     transition: opacity 1.0s ease;
 }
 .slider .fa-moon {
-    left: 12px;
+    left: 0.53475vw;
     color: #eeeeee;
     opacity: 0;
 }
 .slider .fa-sun {
-    right: 12px;
+    right: 0.53475vw;
     color: #f39c12;
     opacity: 1;
 }
-.theme-toggle input:checked+.slider {
+.theme-toggle input:checked + .slider {
     background-color: #00030e;
 }
-.theme-toggle input:checked+.slider .fa-moon {
+.theme-toggle input:checked + .slider .fa-moon {
     opacity: 1;
 }
-.theme-toggle input:checked+.slider .fa-sun {
+.theme-toggle input:checked + .slider .fa-sun {
     opacity: 0;
 }
+
 body.dark {
     background-color: #1a1d2b;
     color: #cbd5e6;
@@ -75,111 +75,152 @@ body.light {
 }
 .content {
     text-align: center;
-    margin: 60px;
+    margin: 1.56vw;
 }
-/* КОНЕЦ МЕНЯТЕЛЬ ТЕМЫ */
+/* КОНЕЦ ПЕРЕКЛЮЧАТЕЛЬ ТЕМЫ */
 
-/* НАЧАЛО HLTV НАДПИСЬ (адаптив) */
+
+
+
+
+/* НАЧАЛО ЛОГОТИП HLTV */
 .hltv {
     position: fixed;
-    top: 25px;
-    left: 25px;
+    top: 0.65vw;
+    left: 1.65vw;
     display: flex;
     align-items: center;
-    gap: 11px;
+    gap: 0.286vw;
     z-index: 1001;
 }
 .hltv-img {
-    width: 80px;
+    width: 4.58vw;
     height: auto;
     display: block;
 }
 .hltv span {
     font-family: inherit;
-    font-size: 78px;
+    font-size: 4.58vw;
     font-weight: bold;
     color: white;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     white-space: nowrap;
+    transform: translateY(-0.23vw);
 }
-/* КОНЕЦ HLTV НАДПИСЬ */
+/* КОНЕЦ ЛОГОТИП HLTV */
 
-/* НАЧАЛО Main: второй параграф (Doctors) — адаптив */
+
+
+
+
+/* НАЧАЛО ПЕРВЫЙ ПАРАГРАФ – ИГРОКИ */
+.roster {
+    text-align: center;
+    margin-top: 5.6vw;
+    margin-bottom: 1.04vw;
+}
+.players {
+    display: flex;
+    justify-content: center;
+    gap: 1.08vw;
+    margin-top: 0.78vw;
+    flex-wrap: wrap;
+}
+
+.players-line{
+    width: calc(100%-2vw);
+    max-width: 48.67vw;
+    height: 0.25vw;
+    background-color: #093f4274;
+
+    margin: 0.6vw auto 0 auto;
+}
+
+
+.player-card {
+    text-align: center;
+    width: 7.925vw;
+}
+.avatar {
+    width: 6.5vw;
+    height: 6.5vw;
+    border-radius: 5%;
+    transition: transform 0.2s;
+    object-fit: cover;
+}
+.avatar:hover {
+    transform: scale(1.066);
+}
+.nickname {
+    margin-top: 0.052vw;
+    font-weight: bold;
+    font-size: 0.9 vw;
+}
+/* КОНЕЦ ПЕРВЫЙ ПАРАГРАФ */
+
+
+
+/* НАЧАЛО ВТОРОЙ ПАРАГРАФ – DOCTORS */
 .team-doctors {
     display: flex;
-    align-items: center;
-    gap: 20px;
-    margin-top: 800px;
-    margin-bottom: 40px;
-    margin-left: 400px;
-    max-width: calc(100% - 400px);
+    gap: 0.72vw;
+    margin-top: 5vh;
+    margin-bottom: 1.04vw;
+    margin-left: 25.88vw;
+    max-width: calc(100% - 10.42vw);
 }
 .team-logo {
-    width: 100px;
+    width: 4.6vw;
     height: auto;
-    max-height: 100px;
+    max-height: 4.6vw;
 }
 .team-name {
-    font-size: 64px;
+    font-size: 1.87vw;
     font-weight: 900;
-    letter-spacing: 4px;
+    letter-spacing: 0.104vw;
+    transform: translateY(-0.50vw);
 }
-/* КОНЕЦ Main: второй параграф */
 
-/* НАЧАЛО Main: первый параграф (игроки) — без адаптива, только px */
+.russia {
+    display: flex;
+    gap: 0.5vw;
+}
 
-/* КОНЕЦ Main: первый параграф */
+.russia-text {
+    font-size: 1.2vw;
+    font-weight: bold;
+    letter-spacing: 0.05vw;
+    transform: translateY(0.03vw);
+}
 
-/* ===== УБИРАЕМ ГОРИЗОНТАЛЬНУЮ ПРОКРУТКУ ===== */
+.flag-img {
+    width: 1.9vw;
+    height: auto;
+    max-height: 1.5vw;
+    display: inline-block;
+    transform: translateY(0.18vw);
+}
+/* КОНЕЦ ВТОРОЙ ПАРАГРАФ */
+
+
+/* НАЧАЛО ТРЕТИЙ ПАРАГРАФ – DOCTORS */
+.player-age {
+    display: block; 
+    margin-top: -1.0vw; 
+    margin-left: 25.88vw;
+    font-size: 1vw;
+}
+/* КОНЕЦ ТРЕТИЙ ПАРАГРАФ – DOCTORS */
+
+
+
+
+
+/* ЗАПРЕТ ГОРИЗОНТАЛЬНОЙ ПРОКРУТКИ */
 html, body {
     overflow-x: hidden;
     width: 100%;
     max-width: 100%;
     margin: 0;
     padding: 0;
-}
-
-/* ===== АДАПТИВНОЕ МАСШТАБИРОВАНИЕ ТОЛЬКО ДЛЯ HLTV И DOCTORS ===== */
-/* HLTV логотип — масштабирование */
-.hltv {
-    top: 0.65vw;
-    left: 0.65vw;
-    gap: 0.286vw;
-}
-.hltv-img {
-    width: 4.08vw;
-}
-.hltv span {
-    font-size: 4.03vw;
-}
-
-/* Блок Doctors — масштабирование */
-.team-doctors {
-    margin-left: 10.42vw;
-    margin-top: 29.89vh;
-    margin-bottom: 1.04vw;
-    gap: 0.52vw;
-    max-width: calc(100% - 10.42vw);
-}
-.team-logo {
-    width: 2.60vw;
-    max-height: 2.60vw;
-}
-.team-name {
-    font-size: 1.67vw;
-    letter-spacing: 0.104vw;
-}
-
-/* Для очень маленьких экранов (ширина менее 600px) */
-@media (max-width: 600px) {
-    .hltv span {
-        font-size: 4vw;
-    }
-    .team-doctors {
-        margin-left: 5vw;
-        max-width: calc(100% - 5vw);
-    }
-    .team-name {
-        font-size: 4vw;
-    }
 }
