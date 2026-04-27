@@ -149,10 +149,10 @@ body.light {
     object-fit: cover;
 }
 .avatar:hover {
-    transform: scale(1.066);
+    transform: scale(1.08);
 }
 .nickname {
-    margin-top: 0.052vw;
+    margin-top: 0.067vw;
     font-weight: bold;
     font-size: 0.9 vw;
 }
@@ -207,6 +207,13 @@ body.light {
 .player-age {
     display: block; 
     margin-top: -1.0vw; 
+    margin-left: 25.88vw;
+    font-size: 1vw;
+}
+
+.coach {
+    display: block; 
+    margin-top: 1.0vw; 
     margin-left: 25.88vw;
     font-size: 1vw;
 }
