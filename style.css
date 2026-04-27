@@ -1,29 +1,16 @@
 /* НАЧАЛО МЕНЯТЕЛЬ ТЕМЫ */
-
 .theme-toggle {
     position: fixed;
     top: 20px;
     right: 20px;
     z-index: 1000;
 }
-
-.theme-toggle input {
-    opacity: 0;
-
-.theme-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 1000;
-}
-
 .theme-toggle input {
     opacity: 0;
     width: 0;
     height: 0;
     position: absolute;
 }
-
 .slider {
     display: block;
     width: 109px;
@@ -34,7 +21,6 @@
     position: relative;
     transition: background-color 0.7s;
 }
-
 .slider::before {
     content: "";
     position: absolute;
@@ -46,11 +32,9 @@
     border-radius: 50%;
     transition: 0.3s;
 }
-
 .theme-toggle input:checked+.slider::before {
     transform: translateX(63px);
 }
-
 .slider i {
     position: absolute;
     top: 50%;
@@ -58,229 +42,58 @@
     font-size: 20px;
     transition: opacity 1.0s ease;
 }
-
 .slider .fa-moon {
     left: 12px;
     color: #eeeeee;
     opacity: 0;
 }
-
 .slider .fa-sun {
     right: 12px;
     color: #f39c12;
     opacity: 1;
 }
-
 .theme-toggle input:checked+.slider {
     background-color: #00030e;
 }
-
 .theme-toggle input:checked+.slider .fa-moon {
     opacity: 1;
 }
-
 .theme-toggle input:checked+.slider .fa-sun {
     opacity: 0;
 }
-
 body.dark {
     background-color: #1a1d2b;
     color: #cbd5e6;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     transition: background-color 0.7s, color 0.7s;
 }
-
 body.light {
     background-color: #8ecafb;
     color: #2c3e50;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     transition: background-color 0.7s, color 0.7s;
 }
-
 .content {
     text-align: center;
     margin: 60px;
 }
-
 /* КОНЕЦ МЕНЯТЕЛЬ ТЕМЫ */
 
-/* НАЧАЛО HLTV НАДПИСЬ */
-
+/* НАЧАЛО HLTV НАДПИСЬ (исправлено позиционирование) */
 .hltv {
-    position: fixed;            /* Фиксируем логотип в левом верхнем углу */
-    top: 25px;
-    left: 25px;
-    display: flex;
-    align-items: center;
-    gap: 11px;                 /* расстояние между картинкой и текстом */
-    z-index: 1001;
-}
-
-.hltv-img {
-    width: clamp(50px, 8vw, 100px); /* Минимум 50px, на 4K до 100px, пропорционально экрану */
-    height: auto;                    /* высота пропорциональна ширине */
-    display: block;
-}
-
-.hltv span {
-    font-family: inherit;
-    font-size: clamp(32px, 5vw, 78px); /* На ноутбуке ~32-40px, на 4K до 78px */
-    font-weight: bold;
-    color: white;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-    white-space: nowrap;
-}
-
-/* КОНЕЦ HLTV НАДПИСЬ */
-
-/* НАЧАЛО Main: второй параграф (Doctors) */
-
-.team-doctors {
-    display: flex;
-    position: relative;
-    align-items: center;
-    left: 33vw;                  /* Сдвиг на 33% от ширины окна — ровно 1/3 экрана */
-    gap: 20px;
-    margin-top: 25vh;            /* Отступ сверху — 25% от высоты окна (хорошо выглядит и на 4K, и на ноутбуке) */
-    margin-bottom: 40px;
-}
-
-/* Для маленьких экранов (ноутбуки, планшеты) уменьшаем отступ сверху */
-@media (max-width: 1366px) {
-    .team-doctors {
-        margin-top: 15vh;
-    }
-}
-
-@media (max-width: 768px) {
-    .team-doctors {
-        margin-top: 10vh;
-        left: 10vw;              /* На телефонах сдвиг меньше, чтобы блок не уезжал за край */
-        flex-direction: column;  /* Логотип и текст в столбик, если мало места */
-        align-items: center;
-    }
-}
-
-.team-logo {
-    width: clamp(80px, 10vw, 144px); /* Ширина логотипа подстраивается: минимум 80px, на 4K до 144px */
-    height: auto;
-    max-height: 144px;
-}
-
-.team-name {
-    font-size: clamp(32px, 4vw, 64px); /* Размер шрифта от 32px до 64px в зависимости от экрана */
-    font-weight: 900;
-    letter-spacing: 4px;
-}
-
-/* КОНЕЦ Main: второй параграф */
-    width: 0;
-    height: 0;
-    position: absolute;
-}
-
-.slider {
-    display: block;
-    width: 109px;
-    height: 46px;
-    background-color: #4d7ec8;
-    border-radius: 46px;
-    cursor: pointer;
-    position: relative;
-    transition: background-color 0.7s;
-}
-
-.slider::before {
-    content: "";
-    position: absolute;
-    width: 36px;
-    height: 36px;
-    left: 5px;
-    bottom: 5px;
-    background-color: white;
-    border-radius: 50%;
-    transition: 0.3s;
-}
-
-.theme-toggle input:checked+.slider::before {
-    transform: translateX(63px);
-}
-
-.slider i {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 20px;
-    transition: opacity 1.0s ease;
-}
-
-.slider .fa-moon {
-    left: 12px;
-    color: #eeeeee;
-    opacity: 0;
-}
-
-.slider .fa-sun {
-    right: 12px;
-    color: #f39c12;
-    opacity: 1;
-}
-
-.theme-toggle input:checked+.slider {
-    background-color: #00030e;
-}
-
-.theme-toggle input:checked+.slider .fa-moon {
-    opacity: 1;
-}
-
-.theme-toggle input:checked+.slider .fa-sun {
-    opacity: 0;
-}
-
-body.dark {
-    background-color: #1a1d2b;
-    color: #cbd5e6;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    transition: background-color 0.7s, color 0.7s;
-}
-
-body.light {
-    background-color: #8ecafb;
-    color: #2c3e50;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    transition: background-color 0.7s, color 0.7s;
-}
-
-.content {
-    text-align: center;
-    margin: 60px;
-}
-
-/* КОНЕЦ МЕНЯТЕЛЬ ТЕМЫ */
-
-
-
-/* НАЧАЛО HLTV НАДПИСЬ */
-
-.hltv {
+    position: fixed;        /* Фиксируем, чтобы не создавать горизонтальную прокрутку */
     top: 25px;
     left: 25px;
     display: flex;
     align-items: center;
     gap: 11px;
-    /* расстояние между картинкой и текстом */
     z-index: 1001;
 }
-
 .hltv-img {
     width: 80px;
-    /* принудительно уменьшаем ширину */
     height: auto;
-    /* высота пропорциональна ширине */
     display: block;
 }
-
 .hltv span {
     font-family: inherit;
     font-size: 78px;
@@ -289,35 +102,143 @@ body.light {
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     white-space: nowrap;
 }
-
 /* КОНЕЦ HLTV НАДПИСЬ */
 
-
-
- /* НАЧАЛО Main: второй параграф */
-
+/* НАЧАЛО Main: второй параграф (Doctors) - изменён способ позиционирования без вылезания */
 .team-doctors {
     display: flex;
-    position: relative;
     align-items: center;
-    left: 400px;
     gap: 20px;
     margin-top: 300px;
-    margin-bottom: 40px;    
+    margin-bottom: 40px;
+    margin-left: 400px;   /* Вместо left используем margin-left, не создаёт прокрутку */
+    max-width: calc(100% - 400px); /* Чтобы не вылезало за правый край */
 }
-
 .team-logo {
     width: 100px;
     height: auto;
     max-height: 100px;
 }
-
 .team-name {
     font-size: 64px;
     font-weight: 900;
     letter-spacing: 4px;
 }
-
 /* КОНЕЦ Main: второй параграф */
 
-/* НАЧАЛО Main: первый параграф */
+/* НАЧАЛО Main: первый параграф (игроки) */
+.roster {
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 20px;
+}
+.players {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 20px;
+}
+.player-card {
+    text-align: center;
+    width: 120px;
+}
+.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #ffaa00;
+    transition: transform 0.2s;
+}
+.avatar:hover {
+    transform: scale(1.05);
+}
+.nickname {
+    margin-top: 8px;
+    font-weight: bold;
+    font-size: 16px;
+}
+/* КОНЕЦ Main: первый параграф */
+
+/* ===== УБИРАЕМ ГОРИЗОНТАЛЬНУЮ ПРОКРУТКУ ===== */
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* ===== МАСШТАБИРОВАНИЕ ПОД ЛЮБОЕ РАЗРЕШЕНИЕ (на основе 4K) ===== */
+/* Приводим px к vw/vh, но с учётом ограничений, чтобы не создавать прокрутку */
+
+/* HLTV логотип (фиксированный) */
+.hltv {
+    top: 0.65vw;
+    left: 0.65vw;
+    gap: 0.286vw;
+}
+.hltv-img {
+    width: 2.08vw;
+}
+.hltv span {
+    font-size: 2.03vw;
+}
+
+/* Блок Doctors (второй параграф) */
+.team-doctors {
+    margin-left: 10.42vw;   /* 400px в vw */
+    margin-top: 13.89vh;    /* 300px в vh */
+    margin-bottom: 1.04vw;
+    gap: 0.52vw;
+    max-width: calc(100% - 10.42vw); /* Защита от вылезания */
+}
+.team-logo {
+    width: 2.60vw;
+    max-height: 2.60vw;
+}
+.team-name {
+    font-size: 1.67vw;
+    letter-spacing: 0.104vw;
+}
+
+/* Блок игроков */
+.roster {
+    margin-top: 2.60vw;
+    margin-bottom: 0.52vw;
+}
+.players {
+    gap: 0.78vw;
+    margin-top: 0.52vw;
+}
+.player-card {
+    width: 3.125vw;
+}
+.avatar {
+    width: 2.60vw;
+    height: 2.60vw;
+    border-width: 0.078vw;
+}
+.nickname {
+    margin-top: 0.208vw;
+    font-size: 0.417vw;
+}
+
+/* Для очень маленьких экранов (ширина менее 600px) */
+@media (max-width: 600px) {
+    .hltv span {
+        font-size: 4vw;
+    }
+    .team-doctors {
+        margin-left: 5vw;
+        max-width: calc(100% - 5vw);
+    }
+    .team-name {
+        font-size: 4vw;
+    }
+    .avatar {
+        width: 12vw;
+        height: 12vw;
+    }
+}
