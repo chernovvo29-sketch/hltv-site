@@ -109,7 +109,7 @@ body.light {
     display: flex;
     align-items: center;
     gap: 20px;
-    margin-top: 300px;
+    margin-top: 800px;
     margin-bottom: 40px;
     margin-left: 400px;
     max-width: calc(100% - 400px);
@@ -127,38 +127,7 @@ body.light {
 /* КОНЕЦ Main: второй параграф */
 
 /* НАЧАЛО Main: первый параграф (игроки) — без адаптива, только px */
-.roster {
-    text-align: center;
-    margin-top: 100px;
-    margin-bottom: 20px;
-}
-.players {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 30px;
-    margin-top: 20px;
-}
-.player-card {
-    text-align: center;
-    width: 120px;
-}
-.avatar {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #ffaa00;
-    transition: transform 0.2s;
-}
-.avatar:hover {
-    transform: scale(1.05);
-}
-.nickname {
-    margin-top: 8px;
-    font-weight: bold;
-    font-size: 16px;
-}
+
 /* КОНЕЦ Main: первый параграф */
 
 /* ===== УБИРАЕМ ГОРИЗОНТАЛЬНУЮ ПРОКРУТКУ ===== */
@@ -178,16 +147,16 @@ html, body {
     gap: 0.286vw;
 }
 .hltv-img {
-    width: 2.08vw;
+    width: 4.08vw;
 }
 .hltv span {
-    font-size: 2.03vw;
+    font-size: 4.03vw;
 }
 
 /* Блок Doctors — масштабирование */
 .team-doctors {
     margin-left: 10.42vw;
-    margin-top: 13.89vh;
+    margin-top: 29.89vh;
     margin-bottom: 1.04vw;
     gap: 0.52vw;
     max-width: calc(100% - 10.42vw);
