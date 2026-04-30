@@ -71,7 +71,7 @@ body.dark {
 }
 body.light {
     background-color: #8ecafb;
-    color: #2c3e50;
+    color: #cbd5e6;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     transition: background-color 0.7s, color 0.7s;
 }

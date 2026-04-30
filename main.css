@@ -32,7 +32,7 @@
 /* НАЧАЛО ПЕРВЫЙ ПАРАГРАФ – ИГРОКИ */
 .roster {
     text-align: center;
-    margin-top: 5.6vw;
+    margin-top: 1.6vw;
     margin-bottom: 1.04vw;
 }
 .players {
@@ -81,9 +81,9 @@
 .team-doctors {
     display: flex;
     gap: 0.72vw;
-    margin-top: 5vh;
+    margin-top: 0vh;
     margin-bottom: 1.04vw;
-    margin-left: 25.88vw;
+    margin-left: 5.88vw;
     max-width: calc(100% - 10.42vw);
 }
 .team-logo {
@@ -127,14 +127,14 @@
 .player-age {
     display: block; 
     margin-top: -1.0vw; 
-    margin-left: 25.88vw;
+    margin-left: 5.88vw;
     font-size: 1vw;
 }
 
 .coach {
     display: block; 
     margin-top: 1.0vw; 
-    margin-left: 25.88vw;
+    margin-left: 5.88vw;
     font-size: 1vw;
 }
 /* КОНЕЦ ТРЕТИЙ ПАРАГРАФ – DOCTORS */
@@ -158,8 +158,8 @@ html, body {
 .tabs {
     flex-wrap: wrap;
     display: flex;
-    margin-top: 4.0vw;
-    margin-left: 25.88vw;
+    margin-top: 2.0vw;
+    margin-left: 5.88vw;
     gap: 0vw;
 }
 
@@ -175,7 +175,6 @@ html, body {
 
 .tab-btn.active {
     background-color: #bed2e6;
-    font-weight: bold;    
 }
 
 .tab-btn:hover {
@@ -184,12 +183,29 @@ html, body {
 }
 
 .tab-btn:not(:last-child)::after {
-    content: "";                /* Пустое содержимое, чтобы полоска появилась */
-    position: absolute;         /* Позиционируем относительно кнопки */
-    right: 0;                   /* Прижимаем к правому краю кнопки */
-    top: 0%;                   /* Отступ сверху 15% от высоты кнопки */
-    height: 100%;                /* Высота полоски — 70% от высоты кнопки */
-    width: 0.0267vw;                 /* Толщина 1 пиксель */
-    background-color: white;    /* Белый цвет */
-    opacity: 0.7;               /* Полупрозрачная (можно убрать, если нужна яркая) */
+    content: "";                
+    position: absolute;        
+    right: 0;                   
+    top: 0%;                   
+    height: 100%;                
+    width: 0.0267vw;                
+    background-color: white;   
+    opacity: 0.7;               
+}
+
+/* Карточка — только фон, тень и рамка, без сдвига содержимого */
+.card {
+    background-color: #2d3246;   
+    margin-left: 20.48vw;           
+    max-width: 70vw;  
+    width: 66.7vw;                
+    margin-top: 2.67vh;                   
+    margin-bottom: 2vh;                
+    padding-bottom: 1vh; 
+    padding-top: 3vh;  
+}
+
+.card-roster {
+    margin-top: 9.67vh;  
+
 }
