@@ -145,7 +145,6 @@ body.light {
     height: 6.5vw;
     border-radius: 5%;
     transition: transform 0.2s;
-    object-fit: cover;
 }
 .avatar:hover {
     transform: scale(1.08);
