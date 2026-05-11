@@ -156,21 +156,28 @@ html, body {
 /* НАЧАЛО ПЛАШКИ */
 
 .tabs {
-    flex-wrap: wrap;
     display: flex;
+    flex-wrap: wrap;
     margin-top: 0.5vw;
     margin-left: 5.88vw;
-    gap: 0vw;
+    gap: 0;
+    padding-bottom: 0.5vh;
 }
 
 .tab-btn {
-    position: relative; 
+    position: relative;
     background-color: #77828e;
     border: none;
+    border-right: 0.015vw solid white;
     padding: 0.57vw 1.3vw;
     font-size: 1.039vw;
     cursor: pointer;
-    transition: 0.2s;   
+    transition: 0.2s;
+    margin: 0;               /* убираем отступы */
+}
+
+.tab-btn:last-child {
+    border-right: none;
 }
 
 .tab-btn.active {
@@ -182,16 +189,6 @@ html, body {
     
 }
 
-.tab-btn:not(:last-child)::after {
-    content: "";                
-    position: absolute;        
-    right: 0;                   
-    top: 0%;                   
-    height: 100%;                
-    width: 0.0267vw;                
-    background-color: white;   
-    opacity: 0.7;               
-}
 
 /* Карточка — только фон, тень и рамка, без сдвига содержимого */
 .card {
