@@ -31,3 +31,44 @@ if (savedTheme) {
 toggle.addEventListener('change', function () {
     setTheme(toggle.checked);
 });
+
+// ===== ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК (без перезагрузки страницы) =====
+// Находим все кнопки вкладок и все блоки с контентом
+const tabBtns = document.querySelectorAll('.tab-btn');
+const tabContents = document.querySelectorAll('.tab-content');
+
+// Функция, которая показывает выбранную вкладку
+function switchTab(tabId) {
+    // Скрыть все блоки контента
+    tabContents.forEach(content => {
+        content.classList.remove('active');
+    });
+    // Убрать активный класс со всех кнопок
+    tabBtns.forEach(btn => {
+        btn.classList.remove('active');
+    });
+    // Показать выбранный блок контента
+    const activeContent = document.getElementById(tabId);
+    if (activeContent) {
+        activeContent.classList.add('active');
+    }
+    // Подсветить нажатую кнопку
+    const activeBtn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
+    if (activeBtn) {
+        activeBtn.classList.add('active');
+    }
+}
+
+// Навесить обработчики кликов на каждую кнопку
+tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const tabId = btn.getAttribute('data-tab');
+        switchTab(tabId);
+    });
+});
+
+switchTab('info');
+
+
+
+
