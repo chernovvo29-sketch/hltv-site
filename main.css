@@ -262,7 +262,159 @@ html, body {
     opacity: 0.8;
 }
 
+#achievements {
+    width: 100%;
+    box-sizing: border-box;
+    margin-left: 6vw;
+    margin-top: 2vw;
+}
+
+/* Строка заголовков */
+.achievements-header {
+    display: flex;
+    gap: 6.7vw;
+    padding: 0.8vw 1.5vw;
+    margin-top: 1vw;
+    margin-bottom: 0.5vh;
+    font-weight: bold;
+    font-size: 1.1vw;
+    color: #aaa;
+}
+
+
+/* Строка достижения */
+.achievement-item {
+    display: flex;
+    gap: 2vw;
+    margin-bottom: 1vh;
+    width: 100%;
+}
+
+.achievement-placement {
+    font-size: 1.2vw;
+    margin-left: 3vw;
+    font-weight: bold;
+    color: #888;
+}
+
+.achievement-tournament {
+    font-size: 1.2vw;
+    font-weight: normal;
+    margin-left: 3.5vw;
+    flex: 1;
+}
 
 
 
 
+
+#roster {
+    margin-left: 5vw;
+    margin-top: 6vh;
+    margin-bottom: 6.7vh;
+    margin-right: 6.67vw;
+}
+
+.roster-header, .roster-row {
+    display: flex;
+    align-items: center;
+    margin-left: 2vw;
+    padding-right: 2vw;
+}
+
+
+
+/* Ширина колонок через flex (настраивай) */
+.col-player { flex: 1.3; display: flex; align-items: center; gap: 1vw; }
+.col-time   { flex: 1.0; }
+.col-maps   { flex: 1.0; }
+.col-rating { flex: 0.9; }
+
+/* Заголовки */
+.roster-header {
+    font-weight: bold;
+    font-size: 1.1vw;
+    color: #aaa;
+    margin-bottom: 4.67vh;
+}
+
+.roster-row .col-time {
+    margin-left: 2vw;   /* меняй -2vw на нужное значение */
+}
+
+/* Строки */
+.roster-row {
+    margin-bottom: 1.8vh;
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 0.67vw 1.1vw;
+    border-radius: 1vw;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+}
+
+/* Контейнер для аватарки и флага */
+.avatar-wrapper {
+    position: relative;
+    width: 3.5vw;
+    height: 3.5vw;
+    display: inline-block;
+}
+.roster-avatar {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.2s ease; 
+}
+
+
+.roster-avatar:hover {
+    transform: scale(1.1);             /* увеличение на 10% при наведении */
+}
+
+.player-flag {
+    position: absolute;
+    bottom: 1.2vw;
+    right: -2.1vw;
+    width: 1.47vw;
+    height: auto;
+}
+
+/* Никнейм */
+.player-nick {
+    font-size: 1.1vw;
+    margin-left: 1.7vw;
+
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.col-maps {
+    margin-left: 1vw;   /* вправо */
+    /* или margin-right: 2vw; */
+}
+
+.roster-header {
+    display: grid;
+    grid-template-columns: 1.3fr 1.0fr 1.0fr 0.9fr;  /* те же пропорции, что у flex */
+    gap: 0;
+    align-items: center;
+    margin-left: 2vw;
+    width: 100%;
+}
+
+.roster-header .col-maps {
+    margin-left: -2.5vw;   /* сдвиг только у этого заголовка */
+}
+
+.roster-header .col-time {
+    margin-left: -1.5vw;   /* сдвиг только у этого заголовка */
+}
+
+.roster-header .col-player {
+    margin-left: 5vw;   /* сдвиг только у этого заголовка */
+}
+
+
+.roster-header .col-rating {
+    margin-left: -2.5vw;   /* сдвиг только у рейтинга */
+}
