@@ -42,7 +42,7 @@ TempRating = (BaseRating + SurvivalBonus) * MatchFactor
 MK_per_round = (2k + 3k + 4k + 5k) / Rounds
 Impact = 0.31*(KPR/0.70) + 0.08*K_D + 0.15*(APR/0.25) + 0.09*((1-DPR)/0.30) + 0.29*(ADR/85) + 0.025*(HS%/50) + 0.10*(MK_per_round/0.35)
 SwingComponent = max(-0.3, min(0.45, round_swing / 18))
-RawRating = 0.625 * Impact + 0.375 * SwingComponent
+RawRating = 0.65 * Impact + 0.5 * SwingComponent
 SurvivalBonus = 0.003 * Δ (только для победителей)
 MatchFactor = победители: (1 + 0.005 * Δ), проигравшие: (1 - 0.005 * Δ)
 TempRating = (RawRating + SurvivalBonus) * MatchFactor
@@ -61,6 +61,10 @@ TempRating = (RawRating + SurvivalBonus) * MatchFactor
 - Пример: `37_DBV_26.05.25.json`
 - **Всё строчными буквами, пробелы заменять на `_`, специальные символы удалять.**
 - Это имя будет использоваться при сохранении JSON.
+
+### ЗАМЕЧАНИЕ
+возможно показателя round swing в таблице не будет. а будет показатель RWS. тогда я скину тебе отдельно таблицу с показателем round swing.
+а на RWS тупо не обращай внимания.
 
 ### 7. Выходной JSON (только JSON, без пояснений)
 
@@ -121,3 +125,5 @@ json
   ],
   "playersOpponent": [...]
 }
+
+### скинь файл чтобы я его мог сразу скачать в формате .json а не только скопировать. 

@@ -1,0 +1,126 @@
+{
+  "version": "Full",
+  "date": "18.02.26",
+  "opponent": "Dol Blues Vanus",
+  "map": "Nuke",
+  "teamDoctorsScore": 13,
+  "teamOpponentScore": 6,
+  "scoreCtDoctors": 9,
+  "scoreTDoctors": 4,
+  "lostCtDoctors": 3,
+  "lostTDoctors": 3,
+  "playersDoctors": [
+    {
+      "nick": "lightwork",
+      "kills": 23,
+      "deaths": 10,
+      "assists": 4,
+      "adr": 118.6,
+      "hs_percent": 39.1,
+      "multikills": {"2k": 3, "3k": 2, "4k": 1, "5k": 0},
+      "round_swing": 7.02,
+      "rating": 1.89
+    },
+    {
+      "nick": "_map1ks_",
+      "kills": 15,
+      "deaths": 13,
+      "assists": 7,
+      "adr": 96.4,
+      "hs_percent": 66.7,
+      "multikills": {"2k": 2, "3k": 2, "4k": 0, "5k": 0},
+      "round_swing": 4.35,
+      "rating": 1.45
+    },
+    {
+      "nick": "d1amp0",
+      "kills": 13,
+      "deaths": 10,
+      "assists": 2,
+      "adr": 72.5,
+      "hs_percent": 53.8,
+      "multikills": {"2k": 3, "3k": 0, "4k": 0, "5k": 0},
+      "round_swing": 3.26,
+      "rating": 1.15
+    },
+    {
+      "nick": "fortyfortea1",
+      "kills": 17,
+      "deaths": 10,
+      "assists": 6,
+      "adr": 99.7,
+      "hs_percent": 35.3,
+      "multikills": {"2k": 3, "3k": 1, "4k": 0, "5k": 0},
+      "round_swing": 2.75,
+      "rating": 1.50
+    },
+    {
+      "nick": "fak_zhresko",
+      "kills": 12,
+      "deaths": 9,
+      "assists": 2,
+      "adr": 60.6,
+      "hs_percent": 50.0,
+      "multikills": {"2k": 1, "3k": 1, "4k": 0, "5k": 0},
+      "round_swing": -1.71,
+      "rating": 0.90
+    }
+  ],
+  "playersOpponent": [
+    {
+      "nick": "rekorrf",
+      "kills": 14,
+      "deaths": 16,
+      "assists": 4,
+      "adr": 74.1,
+      "hs_percent": 42.9,
+      "multikills": {"2k": 3, "3k": 0, "4k": 0, "5k": 0},
+      "round_swing": -1.38,
+      "rating": 0.84
+    },
+    {
+      "nick": "AmGach",
+      "kills": 11,
+      "deaths": 16,
+      "assists": 4,
+      "adr": 78.3,
+      "hs_percent": 45.5,
+      "multikills": {"2k": 2, "3k": 0, "4k": 0, "5k": 0},
+      "round_swing": -1.40,
+      "rating": 0.75
+    },
+    {
+      "nick": "_Eryt_",
+      "kills": 9,
+      "deaths": 15,
+      "assists": 5,
+      "adr": 56.2,
+      "hs_percent": 33.3,
+      "multikills": {"2k": 2, "3k": 1, "4k": 0, "5k": 0},
+      "round_swing": -3.06,
+      "rating": 0.63
+    },
+    {
+      "nick": "Sirniki239",
+      "kills": 11,
+      "deaths": 16,
+      "assists": 3,
+      "adr": 67.7,
+      "hs_percent": 27.3,
+      "multikills": {"2k": 1, "3k": 1, "4k": 0, "5k": 0},
+      "round_swing": -3.71,
+      "rating": 0.60
+    },
+    {
+      "nick": "Guderian191",
+      "kills": 6,
+      "deaths": 17,
+      "assists": 3,
+      "adr": 40.4,
+      "hs_percent": 33.3,
+      "multikills": {"2k": 1, "3k": 0, "4k": 0, "5k": 0},
+      "round_swing": -6.10,
+      "rating": 0.28
+    }
+  ]
+}
