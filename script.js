@@ -71,7 +71,7 @@ switchTab('info');
 
 function updateAverageAge() {
     const baseDate = new Date(2026, 4, 12);   // было Data → Date, baseData → baseDate
-    const baseAge = 18.7;
+    const baseAge = 18.6;
     const today = new Date();
     const diffYears = (today - baseDate) / (1000 * 60 * 60 * 24 * 365.25);
     let currentAge = baseAge + diffYears;     // убрал лишний знак =

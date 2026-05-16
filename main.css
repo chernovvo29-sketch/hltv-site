@@ -267,6 +267,7 @@ html, body {
     box-sizing: border-box;
     margin-left: 6vw;
     margin-top: 2vw;
+    margin-bottom: 2vw;
 }
 
 /* Строка заголовков */
@@ -407,7 +408,7 @@ html, body {
 }
 
 .roster-header .col-time {
-    margin-left: -1.5vw;   /* сдвиг только у этого заголовка */
+    margin-left: -1.1vw;   /* сдвиг только у этого заголовка */
 }
 
 .roster-header .col-player {
