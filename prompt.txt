@@ -2,6 +2,12 @@
 
 ### 1. Определи команду Doctors
 - Игрок `fortyfortea1` или `Dew1erMode` — член команды Doctors. Его команда = Doctors, другая = соперник.
+- **Приведение ников**: если в данных встречаются следующие варианты, заменяй их на канонические имена:
+  - `_map1ks_` → `map1ks`
+  - `fak_zhresko` → `dark_sasi`
+  - `d1amp0` → `D1amp0`
+  - `Iightwork` (с двумя i) → `lightwork`
+  - `fortyfortea1` → `Dew1erMode` (ник в JSON должен быть `Dew1erMode`)
 
 ### 2. Определи версию
 - **Full** — на скриншоте есть ADR, мультикиллы (2K,3K,4K,5K) и **Round Swing** (готовое значение, RWS игнорируй).
@@ -9,15 +15,17 @@
 
 ### 3. Извлеки общие данные
 - `date` (день.месяц.год) — из скриншота
-- `opponent` (название команды соперника)
-- `map`
+- `tournament` — название турнира (я укажу отдельно, вставь его значение)
+- `threat` — тип рейтинга: `"Ordinary"` или `"Elite"` (я укажу отдельно)
+- `opponent` (название команды соперника) (я укажу отдельно)
+- `map` (я укажу отдельно)
 - `teamDoctorsScore`, `teamOpponentScore`
-- `scoreCtDoctors`, `scoreTDoctors`, `lostCtDoctors`, `lostTDoctors` (если нет — вычисли по стороне, в которой играли Doctors)
+- `scoreCtDoctors`, `scoreTDoctors`, `lostCtDoctors`, `lostTDoctors` (если нет — вычисли по стороне, в которой играли Doctors) 
 
-**Важно:** Я отдельно укажу тебе, за какую сторону (CT или T) начала играть команда Doctors. В скриншоте обычно в правом верхнем углу пишут First Half: Second Half: так как игра до 13 матчей а одна половина максимум 12. то если допов нету то ты догадаешься скок раундом мы взяли/отдали за кт сторону и т сторону.
+**Важно:** Я отдельно укажу тебе, за какую сторону (CT или T) начала играть команда Doctors. В скриншоте обычно в правом верхнем углу пишут First Half: Second Half: так как игра до 13 раундов, а одна половина максимум 12. Если допов нет, то ты догадаешься, сколько раундов мы взяли/отдали за CT и T сторону.
 
 ### 4. Для каждого игрока (все 10) извлеки:
-- `nick`
+- `nick` (с применением правил приведения из п.1)
 - `kills`, `deaths`, `assists`
 - Для **Full**: `adr`, `hs_percent`, `multikills` в формате `{"2k": число, "3k": число, "4k": число, "5k": число}`, `round_swing` (прямое значение со скриншота, может быть отрицательным)
 - Для **Lite**: все дополнительные поля (`adr`, `hs_percent`, `multikills`, `round_swing`) игнорируй (ставь null)
@@ -63,8 +71,7 @@ TempRating = (RawRating + SurvivalBonus) * MatchFactor
 - Это имя будет использоваться при сохранении JSON.
 
 ### ЗАМЕЧАНИЕ
-возможно показателя round swing в таблице не будет. а будет показатель RWS. тогда я скину тебе отдельно таблицу с показателем round swing.
-а на RWS тупо не обращай внимания.
+Возможно, показателя round_swing в таблице не будет, а будет показатель RWS. Тогда я скину тебе отдельно таблицу с показателем round_swing, а на RWS не обращай внимания. Если round_swing отсутствует, используй null (тогда для Full версии рейтинг будет рассчитан только на основе Impact, но лучше иметь round_swing).
 
 ### 7. Выходной JSON (только JSON, без пояснений)
 
@@ -73,6 +80,8 @@ TempRating = (RawRating + SurvivalBonus) * MatchFactor
 {
   "version": "Full",
   "date": "26.05.25",
+  "tournament": "Friendly Cybersport",
+  "threat": "Ordinary",
   "opponent": "DBV",
   "map": "Mirage",
   "teamDoctorsScore": 13,
@@ -83,7 +92,7 @@ TempRating = (RawRating + SurvivalBonus) * MatchFactor
   "lostTDoctors": null,
   "playersDoctors": [
     {
-      "nick": "fortyfortea1",
+      "nick": "Dew1erMode",
       "kills": 15,
       "deaths": 15,
       "assists": 4,
@@ -102,6 +111,8 @@ json
 {
   "version": "Lite",
   "date": "26.05.25",
+  "tournament": "Friendly Cybersport",
+  "threat": "Ordinary",
   "opponent": "DBV",
   "map": "Mirage",
   "teamDoctorsScore": 13,
@@ -112,7 +123,7 @@ json
   "lostTDoctors": null,
   "playersDoctors": [
     {
-      "nick": "fortyfortea1",
+      "nick": "Dew1erMode",
       "kills": 15,
       "deaths": 15,
       "assists": 4,
@@ -125,5 +136,4 @@ json
   ],
   "playersOpponent": [...]
 }
-
-### скинь файл чтобы я его мог сразу скачать в формате .json а не только скопировать. 
+Теперь приступай. Верни только JSON, соответствующий всем расчётам.
