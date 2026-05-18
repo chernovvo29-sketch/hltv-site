@@ -47,7 +47,7 @@
     width: calc(100%-2vw);
     max-width: 48.67vw;
     height: 0.25vw;
-    background-color: #093f4274;
+    background-color:  #3f5670;
     margin: 0.6vw auto 0 auto;
 }
 
@@ -343,7 +343,7 @@ html, body {
     margin-left: 2vw;   /* меняй -2vw на нужное значение */
 }
 
-.col-time, .col-maps, .col-rating {
+.col-time, .col-maps, .col-rating, .col-player  {
     font-size: 1.29vw;   /* поменяй значение по вкусу (например, 1.2vw) */
     font-weight: normal; /* можно задать жирность */
     text-align: center;   /* если нужно центрирование */
@@ -418,7 +418,7 @@ html, body {
 }
 
 .roster-header .col-player {
-    margin-left: 6vw;   /* сдвиг только у этого заголовка */
+    margin-left: 5.5vw;   /* сдвиг только у этого заголовка */
 }
 
 
@@ -495,7 +495,7 @@ html, body {
     border-left: none;                                      /* убираем левую */
     border-right: none;                                     /* убираем правую */
     background-color: rgba(255, 255, 255, 0.05);
-    width: 45.5vw;
+    width: 46.0vw;
     margin-bottom: 3vh;   
 }
 
@@ -508,7 +508,7 @@ html, body {
     margin-right: auto;
     width: 45.5vw;
     margin-bottom: 2vh;
-    transition: background-color 0.2s;   /* ДОБАВИТЬ эту строчку */
+    transition: background-color 0.8s;   /* ДОБАВИТЬ эту строчку */
 }
 
 .match-item:hover {
