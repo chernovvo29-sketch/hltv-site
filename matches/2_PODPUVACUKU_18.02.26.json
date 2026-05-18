@@ -1,7 +1,7 @@
 {
   "version": "Full",
   "date": "18.02.26",
-  "opponent": "team_kaktus0512",
+  "opponent": "PODPUVACUKU",
   "map": "Inferno",
   "tournament": "Friendly Cybersport 2026",
   "teamDoctorsScore": 13,
@@ -10,6 +10,7 @@
   "scoreTDoctors": 10,
   "lostCtDoctors": 0,
   "lostTDoctors": 2,
+  "started_site" : "T",
   "playersDoctors": [
     {
       "nick": "fak_zhresko",

@@ -1,0 +1,129 @@
+{
+  "version": "Full",
+  "date": "01.03.26",
+  "tournament": "Friendly Cybersport 2026",
+  "threat": "Elite",
+  "opponent": "bloodfeed",
+  "map": "nuke",
+  "teamDoctorsScore": 13,
+  "teamOpponentScore": 8,
+  "scoreCtDoctors": 8,
+  "scoreTDoctors": 5,
+  "lostCtDoctors": 1,
+  "lostTDoctors": 7,
+  "started_site": "T",
+  "playersDoctors": [
+    {
+      "nick": "D1amp0",
+      "kills": 18,
+      "deaths": 11,
+      "assists": 3,
+      "adr": 90.9,
+      "hs_percent": 33.3,
+      "multikills": {"2k": 2, "3k": 2, "4k": 1, "5k": 0},
+      "round_swing": 5.58,
+      "rating": 1.62
+    },
+    {
+      "nick": "map1ks",
+      "kills": 15,
+      "deaths": 14,
+      "assists": 5,
+      "adr": 78.1,
+      "hs_percent": 40.0,
+      "multikills": {"2k": 2, "3k": 2, "4k": 0, "5k": 0},
+      "round_swing": 5.02,
+      "rating": 1.42
+    },
+    {
+      "nick": "Dew1erMode",
+      "kills": 12,
+      "deaths": 12,
+      "assists": 1,
+      "adr": 51.7,
+      "hs_percent": 41.7,
+      "multikills": {"2k": 4, "3k": 0, "4k": 0, "5k": 0},
+      "round_swing": 0.37,
+      "rating": 0.91
+    },
+    {
+      "nick": "lightwork",
+      "kills": 11,
+      "deaths": 15,
+      "assists": 5,
+      "adr": 73.0,
+      "hs_percent": 27.3,
+      "multikills": {"2k": 2, "3k": 0, "4k": 0, "5k": 0},
+      "round_swing": -0.14,
+      "rating": 0.96
+    },
+    {
+      "nick": "dark_sasi",
+      "kills": 14,
+      "deaths": 16,
+      "assists": 1,
+      "adr": 61.6,
+      "hs_percent": 42.9,
+      "multikills": {"2k": 2, "3k": 1, "4k": 0, "5k": 0},
+      "round_swing": -0.71,
+      "rating": 0.85
+    }
+  ],
+  "playersOpponent": [
+    {
+      "nick": "klafex",
+      "kills": 24,
+      "deaths": 14,
+      "assists": 5,
+      "adr": 116.1,
+      "hs_percent": 45.8,
+      "multikills": {"2k": 1, "3k": 4, "4k": 0, "5k": 0},
+      "round_swing": 1.33,
+      "rating": 1.58
+    },
+    {
+      "nick": "-m-v-s-",
+      "kills": 15,
+      "deaths": 15,
+      "assists": 6,
+      "adr": 72.2,
+      "hs_percent": 20.0,
+      "multikills": {"2k": 3, "3k": 0, "4k": 1, "5k": 0},
+      "round_swing": -0.16,
+      "rating": 1.06
+    },
+    {
+      "nick": "Garfiild_52",
+      "kills": 9,
+      "deaths": 14,
+      "assists": 4,
+      "adr": 48.2,
+      "hs_percent": 44.4,
+      "multikills": {"2k": 1, "3k": 0, "4k": 0, "5k": 0},
+      "round_swing": -3.33,
+      "rating": 0.57
+    },
+    {
+      "nick": "En0m1",
+      "kills": 8,
+      "deaths": 16,
+      "assists": 3,
+      "adr": 45.2,
+      "hs_percent": 50.0,
+      "multikills": {"2k": 2, "3k": 0, "4k": 0, "5k": 0},
+      "round_swing": -3.92,
+      "rating": 0.45
+    },
+    {
+      "nick": "-F0ld",
+      "kills": 12,
+      "deaths": 15,
+      "assists": 1,
+      "adr": 62.3,
+      "hs_percent": 33.3,
+      "multikills": {"2k": 3, "3k": 0, "4k": 0, "5k": 0},
+      "round_swing": -4.03,
+      "rating": 0.58
+    }
+  ]
+}

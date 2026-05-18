@@ -1,0 +1,129 @@
+{
+  "version": "Lite",
+  "date": "19.02.26",
+  "tournament": "Friendly Cybersport 2026",
+  "threat": "Elite",
+  "opponent": "CIFRASPB",
+  "map": "Inferno",
+  "teamDoctorsScore": 13,
+  "teamOpponentScore": 1,
+  "scoreCtDoctors": 12,
+  "scoreTDoctors": 1,
+  "lostCtDoctors": 0,
+  "lostTDoctors": 1,
+  "started_site": "CT",
+  "playersDoctors": [
+    {
+      "nick": "Dew1erMode",
+      "kills": 14,
+      "deaths": 3,
+      "assists": 2,
+      "adr": null,
+      "hs_percent": null,
+      "multikills": {"2k": 0, "3k": 0, "4k": 0, "5k": 0},
+      "round_swing": null,
+      "rating": 1.72
+    },
+    {
+      "nick": "D1amp0",
+      "kills": 7,
+      "deaths": 1,
+      "assists": 1,
+      "adr": null,
+      "hs_percent": null,
+      "multikills": {"2k": 0, "3k": 0, "4k": 0, "5k": 0},
+      "round_swing": null,
+      "rating": 1.44
+    },
+    {
+      "nick": "map1ks",
+      "kills": 8,
+      "deaths": 10,
+      "assists": 6,
+      "adr": null,
+      "hs_percent": null,
+      "multikills": {"2k": 0, "3k": 0, "4k": 0, "5k": 0},
+      "round_swing": null,
+      "rating": 1.04
+    },
+    {
+      "nick": "dark_sasi",
+      "kills": 26,
+      "deaths": 7,
+      "assists": 5,
+      "adr": null,
+      "hs_percent": null,
+      "multikills": {"2k": 0, "3k": 0, "4k": 0, "5k": 0},
+      "round_swing": null,
+      "rating": 2.50
+    },
+    {
+      "nick": "lightwork",
+      "kills": 10,
+      "deaths": 8,
+      "assists": 3,
+      "adr": null,
+      "hs_percent": null,
+      "multikills": {"2k": 0, "3k": 0, "4k": 0, "5k": 0},
+      "round_swing": null,
+      "rating": 1.10
+    }
+  ],
+  "playersOpponent": [
+    {
+      "nick": "bl_musya_ty_ku",
+      "kills": 13,
+      "deaths": 12,
+      "assists": 1,
+      "adr": null,
+      "hs_percent": null,
+      "multikills": {"2k": 0, "3k": 0, "4k": 0, "5k": 0},
+      "round_swing": null,
+      "rating": 0.93
+    },
+    {
+      "nick": "MC_GRIBADA",
+      "kills": 10,
+      "deaths": 13,
+      "assists": 1,
+      "adr": null,
+      "hs_percent": null,
+      "multikills": {"2k": 0, "3k": 0, "4k": 0, "5k": 0},
+      "round_swing": null,
+      "rating": 0.71
+    },
+    {
+      "nick": "EDEN_IVY",
+      "kills": 0,
+      "deaths": 14,
+      "assists": 0,
+      "adr": null,
+      "hs_percent": null,
+      "multikills": {"2k": 0, "3k": 0, "4k": 0, "5k": 0},
+      "round_swing": null,
+      "rating": 0.00
+    },
+    {
+      "nick": "gonshik_ftft",
+      "kills": 3,
+      "deaths": 11,
+      "assists": 3,
+      "adr": null,
+      "hs_percent": null,
+      "multikills": {"2k": 0, "3k": 0, "4k": 0, "5k": 0},
+      "round_swing": null,
+      "rating": 0.40
+    },
+    {
+      "nick": "Eschposchmak",
+      "kills": 2,
+      "deaths": 14,
+      "assists": 1,
+      "adr": null,
+      "hs_percent": null,
+      "multikills": {"2k": 0, "3k": 0, "4k": 0, "5k": 0},
+      "round_swing": null,
+      "rating": 0.17
+    }
+  ]
+}

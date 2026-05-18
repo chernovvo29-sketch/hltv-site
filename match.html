@@ -2,21 +2,635 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Детали матча</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Статистика матча | Team Doctors</title>
     <link rel="stylesheet" href="theme.css">
-    <link rel="stylesheet" href="main.css">
+    <!-- ==================== СТИЛИ ДЛЯ LITE ВЕРСИИ ==================== -->
+    <style>
+        .lite-version * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .lite-version {
+            margin: 0;
+            padding: 2vw;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #eee;
+            min-height: 100vh;
+        }
+        .lite-match-stats-container {
+            max-width: 65vw;
+            margin: 0 auto;
+            background-color: transparent;
+            border-radius: 0;
+            padding: 0;
+        }
+        .lite-back-link {
+            display: inline-block;
+            margin-top: 1.5vh;
+            color: #ffaa00;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.85vw;
+        }
+        .lite-back-link:hover {
+            text-decoration: underline;
+        }
+        .lite-error-message {
+            color: #ff6666;
+            text-align: center;
+            padding: 2vw;
+        }
+        .lite-top-panels {
+            display: flex;
+            gap: 1.5vw;
+            margin-bottom: 2vh;
+            align-items: stretch;
+        }
+        .lite-left-panel, .lite-right-panel {
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 0.8vw;
+            padding: 1.99vh 1.2vw;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .lite-left-panel { flex: 2; }
+        .lite-right-panel { flex: 1; }
+        .lite-tournament-header { text-align: center; margin-bottom: 1.5vh; }
+        .lite-tournament-name { font-size: 1.1vw; font-weight: bold; }
+        .lite-match-date { font-size: 0.75vw; color: #ccc; margin-bottom: 1vh; }
+        .lite-teams-score-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5vh;
+            gap: 1vw;
+        }
+        .lite-team-score-block { text-align: center; flex: 1; margin-top: 4vh; }
+        .lite-team-logo-small {
+            width: 3.5vw;
+            height: auto;
+            border-radius: 0;
+            background-color: rgba(255,255,255,0.1);
+            padding: 0.2vw;
+            margin-bottom: 0.5vh;
+        }
+        .lite-team-name-large { font-size: 1vw; font-weight: bold; }
+        .lite-team-score-large { font-size: 1.6vw; font-weight: bold; margin-top: 0.3vh; }
+        .lite-score-win { color: #2ecc71; }
+        .lite-score-lose { color: #e74c3c; }
+        .lite-map-block { text-align: center; flex: 1; }
+        .lite-map-name-large { font-size: 1.2vw; font-weight: bold; margin-bottom: 0.5vh; }
+        .lite-map-mini img { width: 12vw; height: auto; border-radius: 0.5vw; border: 0.1vw solid rgba(255,255,255,0.3); margin-top: 0.5vh; }
+        .lite-breakdown-row { display: flex; justify-content: center; margin-top: 1vh; margin-bottom: 1vh; font-size: 0.85vw; }
+        .lite-breakdown-item { padding: 0.4vh 1vw; border-radius: 0.6vw; }
+        .lite-breakdown-label { font-weight: bold; margin-right: 0.8vw; }
+        .lite-ct-color { color: #3498db; }
+        .lite-t-color { color: #e67e22; }
+        .lite-team-rating-row {
+            display: flex;
+            justify-content: center;
+            gap: 0.6vw;
+            margin-top: 1vh;
+            font-weight: bold;
+            font-size: 0.85vw;
+            margin-left: 0.12vh;
+        }
+        .lite-top-players-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2vh;
+            justify-content: space-evenly;
+            flex: 1;
+        }
+        .lite-top-player-item {
+            display: flex;
+            align-items: center;
+            gap: 1.2vw;
+            background-color: rgba(255,255,255,0.05);
+            padding: 2.9vh 0.8vw;
+            border-radius: 0.6vw;
+        }
+        .lite-top-player-avatar { width: 2vw; height: 2vw; object-fit: cover; border-radius: 0; }
+        .lite-top-player-info { flex: 1; font-size: 0.75vw; }
+        .lite-top-player-stat { font-weight: bold; font-size: 0.85vw; }
+        .lite-team-table {
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 0.67vw;
+            overflow-x: auto;
+            margin: 0 0 6vh 0;
+        }
+        .lite-team-table-doctors { margin-top: 5vh; }
+        .lite-team-table-opponent { margin-top: -2vh; margin-bottom: 2vh; }
+        .lite-team-table h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.8vw;
+            padding: 0.8vh 1vw;
+            background-color: rgba(0, 0, 0, 0.6);
+            margin: 0;
+            font-size: 1vw;
+        }
+        .lite-team-table h3 img { width: 2.2vw; height: auto; border-radius: 0; background-color: rgba(255,255,255,0.1); padding: 0.1vw; }
+        .lite-stats-table {
+            width: 90%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            font-size: 0.85vw;
+            table-layout: fixed;
+        }
+        .lite-stats-table th, .lite-stats-table td {
+            padding: 1vh 0.1vw;
+            text-align: center;
+            border-bottom: none;
+            white-space: nowrap;
+        }
+        .lite-stats-table th { font-weight: bold; border-bottom: none; }
+        .lite-stats-table th:first-child { background-color: inherit; }
+        .lite-stats-table td:first-child { text-align: left; padding-left: 1vw; font-weight: 500; }
+        .lite-stats-table th:nth-child(1) { width: 5vw; }
+        .lite-stats-table th:nth-child(2) { width: 4vw; }
+        .lite-stats-table th:nth-child(3) { width: 4vw; }
+        .lite-stats-table th:nth-child(4) { width: 4vw; }
+        .lite-stats-table th:nth-child(5) { width: 5vw; }
+        .lite-rating-high { color: #2ecc71; font-weight: bold; }
+        .lite-rating-medium { color: #eee; }
+        .lite-rating-low { color: #e74c3c; font-weight: bold; }
+        @media (max-width: 768px) {
+            .lite-match-stats-container { max-width: 90vw; }
+            .lite-stats-table { font-size: 2vw; }
+        }
+    </style>
+
+    <!-- ==================== СТИЛИ ДЛЯ FULL ВЕРСИИ ==================== -->
+    <style>
+        .full-version * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .full-version {
+            margin: 0;
+            padding: 2vw;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #eee;
+            min-height: 100vh;
+        }
+        .full-match-stats-container {
+            max-width: 65vw;
+            margin: 0 auto;
+            background-color: transparent;
+            border-radius: 0;
+            padding: 0;
+        }
+        .full-back-link {
+            display: inline-block;
+            margin-top: 1.5vh;
+            color: #ffaa00;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.85vw;
+        }
+        .full-back-link:hover {
+            text-decoration: underline;
+        }
+        .full-error-message {
+            color: #ff6666;
+            text-align: center;
+            padding: 2vw;
+        }
+        .full-top-panels {
+            display: flex;
+            gap: 1.5vw;
+            margin-bottom: 2vh;
+            align-items: stretch;
+        }
+        .full-left-panel, .full-right-panel {
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 0.8vw;
+            padding: 1.99vh 1.2vw;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .full-left-panel { flex: 2; }
+        .full-right-panel { flex: 1; }
+        .full-tournament-header { text-align: center; margin-bottom: 1.5vh; }
+        .full-tournament-name { font-size: 1.1vw; font-weight: bold; }
+        .full-match-date { font-size: 0.75vw; color: #ccc; margin-bottom: 1vh; }
+        .full-teams-score-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5vh;
+            gap: 1vw;
+        }
+        .full-team-score-block { text-align: center; flex: 1; margin-top: 4vh; }
+        .full-team-logo-small {
+            width: 3.5vw;
+            height: auto;
+            border-radius: 0;
+            background-color: rgba(255,255,255,0.1);
+            padding: 0.2vw;
+            margin-bottom: 0.5vh;
+        }
+        .full-team-name-large { font-size: 1vw; font-weight: bold; }
+        .full-team-score-large { font-size: 1.6vw; font-weight: bold; margin-top: 0.3vh; }
+        .full-score-win { color: #2ecc71; }
+        .full-score-lose { color: #e74c3c; }
+        .full-map-block { text-align: center; flex: 1; }
+        .full-map-name-large { font-size: 1.2vw; font-weight: bold; margin-bottom: 0.5vh; }
+        .full-map-mini img { width: 12vw; height: auto; border-radius: 0.5vw; border: 0.1vw solid rgba(255,255,255,0.3); margin-top: 0.5vh; }
+        .full-breakdown-row { display: flex; justify-content: center; margin-top: 1vh; margin-bottom: 1vh; font-size: 0.85vw; }
+        .full-breakdown-item { padding: 0.4vh 1vw; border-radius: 0.6vw; }
+        .full-breakdown-label { font-weight: bold; margin-right: 0.8vw; }
+        .full-ct-color { color: #3498db; }
+        .full-t-color { color: #e67e22; }
+        .full-team-rating-row {
+            display: flex;
+            justify-content: center;
+            gap: 0.6vw;
+            margin-top: 1vh;
+            font-weight: bold;
+            font-size: 0.85vw;
+            margin-left: 0.12vh;
+        }
+        .full-top-players-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2vh;
+            justify-content: space-evenly;
+            flex: 1;
+        }
+        .full-top-player-item {
+            display: flex;
+            align-items: center;
+            gap: 1.2vw;
+            background-color: rgba(255,255,255,0.05);
+            padding: 1.6vh 0.8vw;
+            border-radius: 0.6vw;
+        }
+        .full-top-player-avatar { width: 2vw; height: 2vw; object-fit: cover; border-radius: 0; }
+        .full-top-player-info { flex: 1; font-size: 0.75vw; }
+        .full-top-player-stat { font-weight: bold; font-size: 0.85vw; }
+        .full-team-table {
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 0.67vw;
+            overflow-x: auto;
+            margin: 0 0 6vh 0;
+        }
+        .full-team-table-doctors { margin-top: 5vh; }
+        .full-team-table-opponent { margin-top: -2vh; margin-bottom: 2vh; }
+        .full-team-table h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.8vw;
+            padding: 0.8vh 1vw;
+            background-color: rgba(0, 0, 0, 0.6);
+            margin: 0;
+            font-size: 1vw;
+        }
+        .full-team-table h3 img { width: 2.2vw; height: auto; border-radius: 0; background-color: rgba(255,255,255,0.1); padding: 0.1vw; }
+        .full-stats-table {
+            width: 90%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            font-size: 0.85vw;
+            table-layout: fixed;
+        }
+        .full-stats-table th, .full-stats-table td {
+            padding: 1vh 0.1vw;
+            text-align: center;
+            border-bottom: none;
+            white-space: nowrap;
+        }
+        .full-stats-table th { font-weight: bold; border-bottom: none; }
+        .full-stats-table th:first-child { background-color: inherit; }
+        .full-stats-table td:first-child { text-align: left; padding-left: 1vw; font-weight: 500; }
+        .full-stats-table th:nth-child(1) { width: 5vw; }
+        .full-stats-table th:nth-child(2) { width: 8vw; }
+        .full-stats-table th:nth-child(3) { width: 4vw; }
+        .full-stats-table th:nth-child(4) { width: 4vw; }
+        .full-stats-table th:nth-child(5) { width: 4vw; }
+        .full-stats-table th:nth-child(6) { width: 5vw; }
+        .full-stats-table th:nth-child(7) { width: 5vw; }
+        .full-stats-table th:nth-child(8) { width: 5vw; }
+        .full-rating-high { color: #2ecc71; font-weight: bold; }
+        .full-rating-medium { color: #eee; }
+        .full-rating-low { color: #e74c3c; font-weight: bold; }
+        .full-swing-positive { color: #2ecc71; font-weight: bold; }
+        .full-swing-negative { color: #e74c3c; font-weight: bold; }
+        @media (max-width: 768px) {
+            .full-match-stats-container { max-width: 90vw; }
+            .full-stats-table { font-size: 2vw; }
+        }
+    </style>
 </head>
-<body class="light">
-    <div class="container">
-        <h1>Детали матча</h1>
-        <p>Здесь позже будет полная статистика.</p>
-        <p>Параметр в URL: <span id="matchFile"></span></p>
-        <a href="main.html">← Назад</a>
+<body>
+
+<!-- ==================== LITE ВЕРСИЯ ==================== -->
+<div id="liteVersion" class="lite-version" style="display: none;">
+    <div class="lite-match-stats-container">
+        <div class="lite-top-panels">
+            <div class="lite-left-panel" id="liteLeftPanel"></div>
+            <div class="lite-right-panel" id="liteRightPanel"></div>
+        </div>
+        <div id="liteTableDoctors" class="lite-team-table lite-team-table-doctors"></div>
+        <div id="liteTableOpponent" class="lite-team-table lite-team-table-opponent"></div>
+        <a href="main.html" class="lite-back-link">← Назад к матчам</a>
     </div>
-    <script>
+</div>
+
+<!-- ==================== FULL ВЕРСИЯ ==================== -->
+<div id="fullVersion" class="full-version" style="display: none;">
+    <div class="full-match-stats-container">
+        <div class="full-top-panels">
+            <div class="full-left-panel" id="fullLeftPanel"></div>
+            <div class="full-right-panel" id="fullRightPanel"></div>
+        </div>
+        <div id="fullTableDoctors" class="full-team-table full-team-table-doctors"></div>
+        <div id="fullTableOpponent" class="full-team-table full-team-table-opponent"></div>
+        <a href="main.html" class="full-back-link">← Назад к матчам</a>
+    </div>
+</div>
+
+<!-- ==================== ЛОГИКА LITE ==================== -->
+<script>
+    const liteNickMapping = {
+        '_map1ks_': 'map1ks',
+        'fak_zhresko': 'dark_sasi',
+        'd1amp0': 'D1amp0',
+        'Iightwork': 'lightwork',
+        'fortyfortea1': 'Dew1erMode'
+    };
+    function liteMapNick(nick) { return liteNickMapping[nick] || nick; }
+    function liteRatingClass(rating) {
+        if (rating >= 1.05) return 'lite-rating-high';
+        if (rating <= 0.96) return 'lite-rating-low';
+        return 'lite-rating-medium';
+    }
+    function liteFindTopPlayer(players, field) {
+        if (!players.length) return null;
+        let top = players[0];
+        for (const p of players) if ((p[field] || 0) > (top[field] || 0)) top = p;
+        return top;
+    }
+    function liteGetPlayerAvatar(nick, teamName) {
+        const map = { 'dark_sasi':'player1.jpg', 'map1ks':'player2.jpg', 'D1amp0':'player4.jpg', 'Dew1erMode':'player3.jpg', 'lightwork':'player5.jpg' };
+        if (map[nick]) return map[nick];
+        return (teamName === 'Doctors') ? 'team-doctors.jpg' : 'opponent-logo.jpg';
+    }
+    function liteGetPlayerTeam(player, data) {
+        if (data.playersDoctors.some(p => p.nick === player.nick)) return 'Doctors';
+        return data.opponent || 'Opponent';
+    }
+
+    async function liteLoadMatch() {
         const urlParams = new URLSearchParams(window.location.search);
         const matchFile = urlParams.get('match');
-        document.getElementById('matchFile').textContent = matchFile;
-    </script>
+        if (!matchFile) { document.getElementById('liteVersion').innerHTML = '<div class="lite-error-message">Ошибка: не указан матч</div>'; return; }
+        try {
+            const res = await fetch(`matches/${matchFile}`);
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            const data = await res.json();
+            if (data.playersDoctors) data.playersDoctors.forEach(p => p.nick = liteMapNick(p.nick));
+            if (data.playersOpponent) data.playersOpponent.forEach(p => p.nick = liteMapNick(p.nick));
+
+            const doctorsWin = data.teamDoctorsScore > data.teamOpponentScore;
+            const opponentWin = data.teamOpponentScore > data.teamDoctorsScore;
+            const tournament = data.tournament || 'Unknown Tournament';
+            const dateRaw = data.date || '?';
+            const dateParts = dateRaw.split('.');
+            const formattedDate = dateParts.length === 3 ? `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}` : dateRaw;
+            const mapName = data.map || '?';
+            const mapSlug = (data.map || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+            const miniMapUrl = `maps/mini_${mapSlug}.jpg`;
+            const started = data.started_site;
+            const doctorsCt = data.scoreCtDoctors ?? 0;
+            const doctorsT = data.scoreTDoctors ?? 0;
+            const oppCt = data.lostCtDoctors ?? 0;
+            const oppT = data.lostTDoctors ?? 0;
+            let firstBracket, secondBracket;
+            if (started === 'CT') {
+                firstBracket = `<span class="lite-ct-color">${doctorsCt}</span> : <span class="lite-t-color">${oppCt}</span>`;
+                secondBracket = `<span class="lite-t-color">${doctorsT}</span> : <span class="lite-ct-color">${oppT}</span>`;
+            } else {
+                firstBracket = `<span class="lite-t-color">${doctorsT}</span> : <span class="lite-ct-color">${oppT}</span>`;
+                secondBracket = `<span class="lite-ct-color">${doctorsCt}</span> : <span class="lite-t-color">${oppCt}</span>`;
+            }
+            // Средние рейтинги команд
+            let doctorsRatingSum = 0, opponentRatingSum = 0;
+            if (data.playersDoctors && data.playersDoctors.length) doctorsRatingSum = data.playersDoctors.reduce((s,p)=>s+(p.rating||0),0);
+            if (data.playersOpponent && data.playersOpponent.length) opponentRatingSum = data.playersOpponent.reduce((s,p)=>s+(p.rating||0),0);
+            const doctorsTeamRating = (doctorsRatingSum / (data.playersDoctors?.length || 1)).toFixed(2);
+            const opponentTeamRating = (opponentRatingSum / (data.playersOpponent?.length || 1)).toFixed(2);
+
+            const leftHtml = `
+                <div class="lite-tournament-header"><div class="lite-tournament-name">${tournament}</div><div class="lite-match-date">${formattedDate}</div></div>
+                <div class="lite-teams-score-row">
+                    <div class="lite-team-score-block"><img class="lite-team-logo-small" src="team-doctors.jpg"><div class="lite-team-name-large">Doctors</div><div class="lite-team-score-large ${doctorsWin?'lite-score-win':'lite-score-lose'}">${data.teamDoctorsScore}</div></div>
+                    <div class="lite-map-block"><div class="lite-map-name-large">${mapName}</div><div class="lite-map-mini"><img src="${miniMapUrl}" onerror="this.style.display='none'"></div></div>
+                    <div class="lite-team-score-block"><img class="lite-team-logo-small" src="opponent-logo.jpg"><div class="lite-team-name-large">${data.opponent||'?'}</div><div class="lite-team-score-large ${opponentWin?'lite-score-win':'lite-score-lose'}">${data.teamOpponentScore}</div></div>
+                </div>
+                <div class="lite-breakdown-row"><div class="lite-breakdown-item"><span class="lite-breakdown-label">Breakdown</span> (${firstBracket}) (${secondBracket})</div></div>
+                <div class="lite-team-rating-row"><span>Team Rating:</span> <span>${doctorsTeamRating}</span> <span>${opponentTeamRating}</span></div>
+            `;
+            document.getElementById('liteLeftPanel').innerHTML = leftHtml;
+
+            const allPlayers = [...(data.playersDoctors||[]), ...(data.playersOpponent||[])];
+            const topKills = liteFindTopPlayer(allPlayers, 'kills');
+            const topAssists = liteFindTopPlayer(allPlayers, 'assists');
+            const topRating = liteFindTopPlayer(allPlayers, 'rating');
+            // В Lite НЕТ Most damage (ADR)
+            let rightHtml = '<div class="lite-top-players-list">';
+            if (topKills) rightHtml += `<div class="lite-top-player-item"><img class="lite-top-player-avatar" src="${liteGetPlayerAvatar(topKills.nick, liteGetPlayerTeam(topKills,data))}" onerror="this.src='opponent-logo.jpg'"><div class="lite-top-player-info"><div class="lite-top-player-stat">Most kills: ${topKills.kills}</div><div>${topKills.nick}</div></div></div>`;
+            if (topAssists) rightHtml += `<div class="lite-top-player-item"><img class="lite-top-player-avatar" src="${liteGetPlayerAvatar(topAssists.nick, liteGetPlayerTeam(topAssists,data))}" onerror="this.src='opponent-logo.jpg'"><div class="lite-top-player-info"><div class="lite-top-player-stat">Most assists: ${topAssists.assists}</div><div>${topAssists.nick}</div></div></div>`;
+            if (topRating) rightHtml += `<div class="lite-top-player-item"><img class="lite-top-player-avatar" src="${liteGetPlayerAvatar(topRating.nick, liteGetPlayerTeam(topRating,data))}" onerror="this.src='opponent-logo.jpg'"><div class="lite-top-player-info"><div class="lite-top-player-stat">Best rating: ${topRating.rating}</div><div>${topRating.nick}</div></div></div>`;
+            rightHtml += '</div>';
+            document.getElementById('liteRightPanel').innerHTML = rightHtml;
+
+            const sortByRating = (a,b) => (b.rating||0)-(a.rating||0);
+            const doctorsSorted = [...(data.playersDoctors||[])].sort(sortByRating);
+            const opponentSorted = [...(data.playersOpponent||[])].sort(sortByRating);
+            function renderLiteTable(players, teamName, logoUrl) {
+                if (!players.length) return `<h3><img src="${logoUrl}" alt="${teamName}"> ${teamName}</h3><p>Нет данных</p>`;
+                let html = `<h3><img src="${logoUrl}" alt="${teamName}"> ${teamName}</h3><table class="lite-stats-table"><thead><tr><th></th><th>K</th><th>D</th><th>A</th><th>Rating</th></tr></thead><tbody>`;
+                for (const p of players) {
+                    html += `<tr><td style="text-align:left; padding-left:1vw;">${p.nick||'?'}</td><td>${p.kills||0}</td><td>${p.deaths||0}</td><td>${p.assists||0}</td><td class="${liteRatingClass(p.rating||0)}">${(p.rating||0).toFixed(2)}</td></tr>`;
+                }
+                html += `</tbody></table>`;
+                return html;
+            }
+            document.getElementById('liteTableDoctors').innerHTML = renderLiteTable(doctorsSorted, 'Doctors', 'team-doctors.jpg');
+            document.getElementById('liteTableOpponent').innerHTML = renderLiteTable(opponentSorted, data.opponent||'Opponent', 'opponent-logo.jpg');
+
+            document.querySelector('.lite-version').style.backgroundImage = `url('maps/background_${mapSlug}.jpg')`;
+            document.querySelector('.lite-version').style.backgroundColor = '#1a1d2b';
+        } catch(err) {
+            console.error(err);
+            document.getElementById('liteVersion').innerHTML = `<div class="lite-error-message">Ошибка: ${err.message}</div>`;
+        }
+    }
+</script>
+
+<!-- ==================== ЛОГИКА FULL ==================== -->
+<script>
+    const fullNickMapping = {
+        '_map1ks_': 'map1ks',
+        'fak_zhresko': 'dark_sasi',
+        'd1amp0': 'D1amp0',
+        'Iightwork': 'lightwork',
+        'fortyfortea1': 'Dew1erMode'
+    };
+    function fullMapNick(nick) { return fullNickMapping[nick] || nick; }
+    function fullRatingClass(rating) {
+        if (rating >= 1.05) return 'full-rating-high';
+        if (rating <= 0.96) return 'full-rating-low';
+        return 'full-rating-medium';
+    }
+    function fullSwingClass(swing) { return swing >= 0 ? 'full-swing-positive' : 'full-swing-negative'; }
+    function fullFindTopPlayer(players, field) {
+        if (!players.length) return null;
+        let top = players[0];
+        for (const p of players) if ((p[field] || 0) > (top[field] || 0)) top = p;
+        return top;
+    }
+    function fullGetPlayerAvatar(nick, teamName) {
+        const map = { 'dark_sasi':'player1.jpg', 'map1ks':'player2.jpg', 'D1amp0':'player4.jpg', 'Dew1erMode':'player3.jpg', 'lightwork':'player5.jpg' };
+        if (map[nick]) return map[nick];
+        return (teamName === 'Doctors') ? 'team-doctors.jpg' : 'opponent-logo.jpg';
+    }
+    function fullGetPlayerTeam(player, data) {
+        if (data.playersDoctors.some(p => p.nick === player.nick)) return 'Doctors';
+        return data.opponent || 'Opponent';
+    }
+
+    async function fullLoadMatch() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const matchFile = urlParams.get('match');
+        if (!matchFile) { document.getElementById('fullVersion').innerHTML = '<div class="full-error-message">Ошибка: не указан матч</div>'; return; }
+        try {
+            const res = await fetch(`matches/${matchFile}`);
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            const data = await res.json();
+            if (data.playersDoctors) data.playersDoctors.forEach(p => p.nick = fullMapNick(p.nick));
+            if (data.playersOpponent) data.playersOpponent.forEach(p => p.nick = fullMapNick(p.nick));
+
+            const doctorsWin = data.teamDoctorsScore > data.teamOpponentScore;
+            const opponentWin = data.teamOpponentScore > data.teamDoctorsScore;
+            const tournament = data.tournament || 'Unknown Tournament';
+            const dateRaw = data.date || '?';
+            const dateParts = dateRaw.split('.');
+            const formattedDate = dateParts.length === 3 ? `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}` : dateRaw;
+            const mapName = data.map || '?';
+            const mapSlug = (data.map || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+            const miniMapUrl = `maps/mini_${mapSlug}.jpg`;
+            const started = data.started_site;
+            const doctorsCt = data.scoreCtDoctors ?? 0;
+            const doctorsT = data.scoreTDoctors ?? 0;
+            const oppCt = data.lostCtDoctors ?? 0;
+            const oppT = data.lostTDoctors ?? 0;
+            let firstBracket, secondBracket;
+            if (started === 'CT') {
+                firstBracket = `<span class="full-ct-color">${doctorsCt}</span> : <span class="full-t-color">${oppCt}</span>`;
+                secondBracket = `<span class="full-t-color">${doctorsT}</span> : <span class="full-ct-color">${oppT}</span>`;
+            } else {
+                firstBracket = `<span class="full-t-color">${doctorsT}</span> : <span class="full-ct-color">${oppT}</span>`;
+                secondBracket = `<span class="full-ct-color">${doctorsCt}</span> : <span class="full-t-color">${oppCt}</span>`;
+            }
+            let doctorsRatingSum = 0, opponentRatingSum = 0;
+            if (data.playersDoctors && data.playersDoctors.length) doctorsRatingSum = data.playersDoctors.reduce((s,p)=>s+(p.rating||0),0);
+            if (data.playersOpponent && data.playersOpponent.length) opponentRatingSum = data.playersOpponent.reduce((s,p)=>s+(p.rating||0),0);
+            const doctorsTeamRating = (doctorsRatingSum / (data.playersDoctors?.length || 1)).toFixed(2);
+            const opponentTeamRating = (opponentRatingSum / (data.playersOpponent?.length || 1)).toFixed(2);
+
+            const leftHtml = `
+                <div class="full-tournament-header"><div class="full-tournament-name">${tournament}</div><div class="full-match-date">${formattedDate}</div></div>
+                <div class="full-teams-score-row">
+                    <div class="full-team-score-block"><img class="full-team-logo-small" src="team-doctors.jpg"><div class="full-team-name-large">Doctors</div><div class="full-team-score-large ${doctorsWin?'full-score-win':'full-score-lose'}">${data.teamDoctorsScore}</div></div>
+                    <div class="full-map-block"><div class="full-map-name-large">${mapName}</div><div class="full-map-mini"><img src="${miniMapUrl}" onerror="this.style.display='none'"></div></div>
+                    <div class="full-team-score-block"><img class="full-team-logo-small" src="opponent-logo.jpg"><div class="full-team-name-large">${data.opponent||'?'}</div><div class="full-team-score-large ${opponentWin?'full-score-win':'full-score-lose'}">${data.teamOpponentScore}</div></div>
+                </div>
+                <div class="full-breakdown-row"><div class="full-breakdown-item"><span class="full-breakdown-label">Breakdown</span> (${firstBracket}) (${secondBracket})</div></div>
+                <div class="full-team-rating-row"><span>Team Rating:</span> <span>${doctorsTeamRating}</span> <span>${opponentTeamRating}</span></div>
+            `;
+            document.getElementById('fullLeftPanel').innerHTML = leftHtml;
+
+            const allPlayers = [...(data.playersDoctors||[]), ...(data.playersOpponent||[])];
+            const topKills = fullFindTopPlayer(allPlayers, 'kills');
+            const topDamage = fullFindTopPlayer(allPlayers, 'adr');
+            const topAssists = fullFindTopPlayer(allPlayers, 'assists');
+            const topRating = fullFindTopPlayer(allPlayers, 'rating');
+            let rightHtml = '<div class="full-top-players-list">';
+            if (topKills) rightHtml += `<div class="full-top-player-item"><img class="full-top-player-avatar" src="${fullGetPlayerAvatar(topKills.nick, fullGetPlayerTeam(topKills,data))}" onerror="this.src='opponent-logo.jpg'"><div class="full-top-player-info"><div class="full-top-player-stat">Most kills: ${topKills.kills}</div><div>${topKills.nick}</div></div></div>`;
+            if (topDamage) rightHtml += `<div class="full-top-player-item"><img class="full-top-player-avatar" src="${fullGetPlayerAvatar(topDamage.nick, fullGetPlayerTeam(topDamage,data))}" onerror="this.src='opponent-logo.jpg'"><div class="full-top-player-info"><div class="full-top-player-stat">Most damage: ${topDamage.adr}</div><div>${topDamage.nick}</div></div></div>`;
+            if (topAssists) rightHtml += `<div class="full-top-player-item"><img class="full-top-player-avatar" src="${fullGetPlayerAvatar(topAssists.nick, fullGetPlayerTeam(topAssists,data))}" onerror="this.src='opponent-logo.jpg'"><div class="full-top-player-info"><div class="full-top-player-stat">Most assists: ${topAssists.assists}</div><div>${topAssists.nick}</div></div></div>`;
+            if (topRating) rightHtml += `<div class="full-top-player-item"><img class="full-top-player-avatar" src="${fullGetPlayerAvatar(topRating.nick, fullGetPlayerTeam(topRating,data))}" onerror="this.src='opponent-logo.jpg'"><div class="full-top-player-info"><div class="full-top-player-stat">Best rating: ${topRating.rating}</div><div>${topRating.nick}</div></div></div>`;
+            rightHtml += '</div>';
+            document.getElementById('fullRightPanel').innerHTML = rightHtml;
+
+            const sortByRating = (a,b) => (b.rating||0)-(a.rating||0);
+            const doctorsSorted = [...(data.playersDoctors||[])].sort(sortByRating);
+            const opponentSorted = [...(data.playersOpponent||[])].sort(sortByRating);
+            function renderFullTable(players, teamName, logoUrl) {
+                if (!players.length) return `<h3><img src="${logoUrl}" alt="${teamName}"> ${teamName}</h3><p>Нет данных</p>`;
+                let html = `<h3><img src="${logoUrl}" alt="${teamName}"> ${teamName}</h3><table class="full-stats-table"><thead><tr><th></th><th>Round Swing</th><th>K</th><th>D</th><th>A</th><th>ADR</th><th>HS%</th><th>Rating</th></tr></thead><tbody>`;
+                for (const p of players) {
+                    const swing = p.round_swing || 0;
+                    const swingDisplay = (swing >= 0 ? '+' : '') + swing.toFixed(2) + '%';
+                    html += `<tr><td style="text-align:left; padding-left:1vw;">${p.nick||'?'}</td><td class="${fullSwingClass(swing)}">${swingDisplay}</td><td>${p.kills||0}</td><td>${p.deaths||0}</td><td>${p.assists||0}</td><td>${p.adr||0}</td><td>${p.hs_percent||0}%</td><td class="${fullRatingClass(p.rating||0)}">${(p.rating||0).toFixed(2)}</td></tr>`;
+                }
+                html += `</tbody></table>`;
+                return html;
+            }
+            document.getElementById('fullTableDoctors').innerHTML = renderFullTable(doctorsSorted, 'Doctors', 'team-doctors.jpg');
+            document.getElementById('fullTableOpponent').innerHTML = renderFullTable(opponentSorted, data.opponent||'Opponent', 'opponent-logo.jpg');
+
+            document.querySelector('.full-version').style.backgroundImage = `url('maps/background_${mapSlug}.jpg')`;
+            document.querySelector('.full-version').style.backgroundColor = '#1a1d2b';
+        } catch(err) {
+            console.error(err);
+            document.getElementById('fullVersion').innerHTML = `<div class="full-error-message">Ошибка: ${err.message}</div>`;
+        }
+    }
+</script>
+
+<!-- ==================== ВЫБОР ВЕРСИИ ==================== -->
+<script>
+    (async function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const matchFile = urlParams.get('match');
+        if (!matchFile) {
+            document.body.innerHTML = '<div class="lite-error-message">Ошибка: не указан матч</div>';
+            return;
+        }
+        try {
+            const res = await fetch(`matches/${matchFile}`);
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            const data = await res.json();
+            const isFull = data.version === 'Full';
+            if (isFull) {
+                document.getElementById('fullVersion').style.display = 'block';
+                fullLoadMatch();
+            } else {
+                document.getElementById('liteVersion').style.display = 'block';
+                liteLoadMatch();
+            }
+        } catch (err) {
+            console.error(err);
+            document.body.innerHTML = `<div class="lite-error-message">Ошибка загрузки матча: ${err.message}</div>`;
+        }
+    })();
+</script>
 </body>
 </html>

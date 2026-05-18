@@ -3,10 +3,10 @@
 ### 1. Определи команду Doctors
 - Игрок `fortyfortea1` или `Dew1erMode` — член команды Doctors. Его команда = Doctors, другая = соперник.
 - **Приведение ников**: если в данных встречаются следующие варианты, заменяй их на канонические имена:
-  - `_map1ks_` → `map1ks`
+  - `_map1ks_` или китайские символы какие-то → `map1ks`
   - `fak_zhresko` → `dark_sasi`
   - `d1amp0` → `D1amp0`
-  - `Iightwork` (с двумя i) → `lightwork`
+  - `Iightwork` (с двумя i) или urolog_alert → `lightwork`
   - `fortyfortea1` → `Dew1erMode` (ник в JSON должен быть `Dew1erMode`)
 
 ### 2. Определи версию
@@ -21,6 +21,7 @@
 - `map` (я укажу отдельно)
 - `teamDoctorsScore`, `teamOpponentScore`
 - `scoreCtDoctors`, `scoreTDoctors`, `lostCtDoctors`, `lostTDoctors` (если нет — вычисли по стороне, в которой играли Doctors) 
+- **`started_site` — за какую сторону начала играть команда Doctors: `"CT"` или `"T"` (это значение я сообщу тебе отдельно; ты должен включить его в JSON без изменений)**
 
 **Важно:** Я отдельно укажу тебе, за какую сторону (CT или T) начала играть команда Doctors. В скриншоте обычно в правом верхнем углу пишут First Half: Second Half: так как игра до 13 раундов, а одна половина максимум 12. Если допов нет, то ты догадаешься, сколько раундов мы взяли/отдали за CT и T сторону.
 
@@ -52,7 +53,7 @@ Impact = 0.31*(KPR/0.70) + 0.08*K_D + 0.15*(APR/0.25) + 0.09*((1-DPR)/0.30) + 0.
 SwingComponent = max(-0.3, min(0.45, round_swing / 18))
 RawRating = 0.65 * Impact + 0.5 * SwingComponent
 SurvivalBonus = 0.003 * Δ (только для победителей)
-MatchFactor = победители: (1 + 0.005 * Δ), проигравшие: (1 - 0.005 * Δ)
+MatchFactor = победители: (1 + 0.0025 * Δ), проигравшие: (1 - 0.0025 * Δ)
 TempRating = (RawRating + SurvivalBonus) * MatchFactor
 
 #### 5.3 Нормализация (для обеих версий, обязательное условие)

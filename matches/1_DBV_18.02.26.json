@@ -10,6 +10,7 @@
   "scoreTDoctors": 4,
   "lostCtDoctors": 3,
   "lostTDoctors": 3,
+  "started_site" : "CT",
   "playersDoctors": [
     {
       "nick": "lightwork",

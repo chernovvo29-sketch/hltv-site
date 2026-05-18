@@ -1,0 +1,129 @@
+{
+  "version": "Full",
+  "date": "21.03.26",
+  "tournament": "Friendly Cybersport 2026",
+  "threat": "Elite",
+  "opponent": "bloodfeed",
+  "map": "dust2",
+  "teamDoctorsScore": 6,
+  "teamOpponentScore": 13,
+  "scoreCtDoctors": 1,
+  "scoreTDoctors": 5,
+  "lostCtDoctors": 6,
+  "lostTDoctors": 7,
+  "started_site": "T",
+  "playersDoctors": [
+    {
+      "nick": "dark_sasi",
+      "kills": 12,
+      "deaths": 13,
+      "assists": 2,
+      "adr": 58.8,
+      "hs_percent": 50.0,
+      "multikills": {"2k": 2, "3k": 1, "4k": 0, "5k": 0},
+      "round_swing": -0.62,
+      "rating": 0.77
+    },
+    {
+      "nick": "lightwork",
+      "kills": 14,
+      "deaths": 13,
+      "assists": 4,
+      "adr": 86.3,
+      "hs_percent": 64.3,
+      "multikills": {"2k": 3, "3k": 1, "4k": 0, "5k": 0},
+      "round_swing": -1.90,
+      "rating": 0.96
+    },
+    {
+      "nick": "map1ks",
+      "kills": 10,
+      "deaths": 16,
+      "assists": 1,
+      "adr": 59.4,
+      "hs_percent": 80.0,
+      "multikills": {"2k": 2, "3k": 0, "4k": 0, "5k": 0},
+      "round_swing": -2.99,
+      "rating": 0.52
+    },
+    {
+      "nick": "Dew1erMode",
+      "kills": 5,
+      "deaths": 16,
+      "assists": 3,
+      "adr": 33.7,
+      "hs_percent": 60.0,
+      "multikills": {"2k": 0, "3k": 1, "4k": 0, "5k": 0},
+      "round_swing": -4.70,
+      "rating": 0.25
+    },
+    {
+      "nick": "D1amp0",
+      "kills": 11,
+      "deaths": 16,
+      "assists": 2,
+      "adr": 79.2,
+      "hs_percent": 63.6,
+      "multikills": {"2k": 1, "3k": 0, "4k": 0, "5k": 0},
+      "round_swing": -4.72,
+      "rating": 0.55
+    }
+  ],
+  "playersOpponent": [
+    {
+      "nick": "klafex",
+      "kills": 14,
+      "deaths": 9,
+      "assists": 4,
+      "adr": 79.2,
+      "hs_percent": 64.3,
+      "multikills": {"2k": 4, "3k": 0, "4k": 0, "5k": 0},
+      "round_swing": 3.87,
+      "rating": 1.41
+    },
+    {
+      "nick": "-halon",
+      "kills": 14,
+      "deaths": 13,
+      "assists": 6,
+      "adr": 81.3,
+      "hs_percent": 57.1,
+      "multikills": {"2k": 4, "3k": 0, "4k": 0, "5k": 0},
+      "round_swing": 3.67,
+      "rating": 1.37
+    },
+    {
+      "nick": "En0m1",
+      "kills": 15,
+      "deaths": 8,
+      "assists": 6,
+      "adr": 79.1,
+      "hs_percent": 46.7,
+      "multikills": {"2k": 3, "3k": 2, "4k": 0, "5k": 0},
+      "round_swing": 3.34,
+      "rating": 1.53
+    },
+    {
+      "nick": "-m-v-s-",
+      "kills": 17,
+      "deaths": 15,
+      "assists": 3,
+      "adr": 100.9,
+      "hs_percent": 52.9,
+      "multikills": {"2k": 4, "3k": 1, "4k": 0, "5k": 0},
+      "round_swing": 2.13,
+      "rating": 1.32
+    },
+    {
+      "nick": "_ALEKSOFF_",
+      "kills": 14,
+      "deaths": 9,
+      "assists": 5,
+      "adr": 69.3,
+      "hs_percent": 57.1,
+      "multikills": {"2k": 5, "3k": 0, "4k": 0, "5k": 0},
+      "round_swing": 1.91,
+      "rating": 1.33
+    }
+  ]
+}

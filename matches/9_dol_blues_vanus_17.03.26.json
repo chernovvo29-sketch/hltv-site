@@ -1,0 +1,129 @@
+{
+  "version": "Full",
+  "date": "17.03.26",
+  "tournament": "Friendly Cybersport 2026",
+  "threat": "Ordinary",
+  "opponent": "Dol Blues Vanus",
+  "map": "Nuke",
+  "teamDoctorsScore": 13,
+  "teamOpponentScore": 6,
+  "scoreCtDoctors": 11,
+  "scoreTDoctors": 2,
+  "lostCtDoctors": 1,
+  "lostTDoctors": 5,
+  "started_site": "CT",
+  "playersDoctors": [
+    {
+      "nick": "Dew1erMode",
+      "kills": 15,
+      "deaths": 12,
+      "assists": 5,
+      "adr": 79.1,
+      "hs_percent": 33.3,
+      "multikills": {"2k": 2, "3k": 2, "4k": 0, "5k": 0},
+      "round_swing": 6.85,
+      "rating": 1.44
+    },
+    {
+      "nick": "D1amp0",
+      "kills": 21,
+      "deaths": 9,
+      "assists": 7,
+      "adr": 100.9,
+      "hs_percent": 42.9,
+      "multikills": {"2k": 3, "3k": 1, "4k": 1, "5k": 0},
+      "round_swing": 5.31,
+      "rating": 1.82
+    },
+    {
+      "nick": "dark_sasi",
+      "kills": 18,
+      "deaths": 12,
+      "assists": 3,
+      "adr": 88.4,
+      "hs_percent": 55.6,
+      "multikills": {"2k": 4, "3k": 1, "4k": 0, "5k": 0},
+      "round_swing": 4.39,
+      "rating": 1.42
+    },
+    {
+      "nick": "map1ks",
+      "kills": 9,
+      "deaths": 13,
+      "assists": 8,
+      "adr": 68.5,
+      "hs_percent": 22.2,
+      "multikills": {"2k": 2, "3k": 0, "4k": 0, "5k": 0},
+      "round_swing": 1.45,
+      "rating": 1.02
+    },
+    {
+      "nick": "lightwork",
+      "kills": 11,
+      "deaths": 12,
+      "assists": 8,
+      "adr": 58.9,
+      "hs_percent": 27.3,
+      "multikills": {"2k": 2, "3k": 0, "4k": 0, "5k": 0},
+      "round_swing": -2.33,
+      "rating": 0.90
+    }
+  ],
+  "playersOpponent": [
+    {
+      "nick": "rekorrf",
+      "kills": 12,
+      "deaths": 15,
+      "assists": 6,
+      "adr": 87.5,
+      "hs_percent": 41.7,
+      "multikills": {"2k": 3, "3k": 0, "4k": 0, "5k": 0},
+      "round_swing": -1.66,
+      "rating": 0.86
+    },
+    {
+      "nick": "justkabaN",
+      "kills": 14,
+      "deaths": 16,
+      "assists": 3,
+      "adr": 72.1,
+      "hs_percent": 42.9,
+      "multikills": {"2k": 3, "3k": 1, "4k": 0, "5k": 0},
+      "round_swing": -2.69,
+      "rating": 0.73
+    },
+    {
+      "nick": "Guderian191",
+      "kills": 12,
+      "deaths": 13,
+      "assists": 4,
+      "adr": 66.9,
+      "hs_percent": 41.7,
+      "multikills": {"2k": 1, "3k": 1, "4k": 0, "5k": 0},
+      "round_swing": -3.20,
+      "rating": 0.70
+    },
+    {
+      "nick": "Sirniki239",
+      "kills": 10,
+      "deaths": 15,
+      "assists": 2,
+      "adr": 65.5,
+      "hs_percent": 30.0,
+      "multikills": {"2k": 4, "3k": 0, "4k": 0, "5k": 0},
+      "round_swing": -3.53,
+      "rating": 0.54
+    },
+    {
+      "nick": "AmGach",
+      "kills": 10,
+      "deaths": 17,
+      "assists": 5,
+      "adr": 72.9,
+      "hs_percent": 80.0,
+      "multikills": {"2k": 0, "3k": 1, "4k": 0, "5k": 0},
+      "round_swing": -4.57,
+      "rating": 0.56
+    }
+  ]
+}
