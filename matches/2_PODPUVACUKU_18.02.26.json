@@ -1,19 +1,20 @@
 {
   "version": "Full",
   "date": "18.02.26",
+  "tournament": "Friendly Cybersport 2026",
+  "threat": "Ordinary",
   "opponent": "PODPUVACUKU",
   "map": "Inferno",
-  "tournament": "Friendly Cybersport 2026",
   "teamDoctorsScore": 13,
   "teamOpponentScore": 2,
   "scoreCtDoctors": 3,
   "scoreTDoctors": 10,
   "lostCtDoctors": 0,
   "lostTDoctors": 2,
-  "started_site" : "T",
+  "started_site": "T",
   "playersDoctors": [
     {
-      "nick": "fak_zhresko",
+      "nick": "dark_sasi",
       "kills": 30,
       "deaths": 4,
       "assists": 1,
@@ -21,7 +22,18 @@
       "hs_percent": 56.7,
       "multikills": {"2k": 4, "3k": 4, "4k": 1, "5k": 0},
       "round_swing": 19.35,
-      "rating": 3.07
+      "rating": 2.87
+    },
+    {
+      "nick": "D1amp0",
+      "kills": 10,
+      "deaths": 5,
+      "assists": 6,
+      "adr": 74.8,
+      "hs_percent": 50.0,
+      "multikills": {"2k": 2, "3k": 1, "4k": 0, "5k": 0},
+      "round_swing": 3.44,
+      "rating": 1.52
     },
     {
       "nick": "lightwork",
@@ -32,21 +44,10 @@
       "hs_percent": 66.7,
       "multikills": {"2k": 3, "3k": 0, "4k": 0, "5k": 0},
       "round_swing": 6.38,
-      "rating": 1.26
+      "rating": 1.32
     },
     {
-      "nick": "d1amp0",
-      "kills": 10,
-      "deaths": 5,
-      "assists": 6,
-      "adr": 74.8,
-      "hs_percent": 50.0,
-      "multikills": {"2k": 2, "3k": 1, "4k": 0, "5k": 0},
-      "round_swing": 3.44,
-      "rating": 1.48
-    },
-    {
-      "nick": "fortyfortea1",
+      "nick": "Dew1erMode",
       "kills": 12,
       "deaths": 8,
       "assists": 1,
@@ -54,10 +55,10 @@
       "hs_percent": 66.7,
       "multikills": {"2k": 1, "3k": 1, "4k": 0, "5k": 0},
       "round_swing": 3.03,
-      "rating": 1.17
+      "rating": 1.23
     },
     {
-      "nick": "_map1ks_",
+      "nick": "map1ks",
       "kills": 8,
       "deaths": 9,
       "assists": 2,
@@ -65,7 +66,7 @@
       "hs_percent": 62.5,
       "multikills": {"2k": 1, "3k": 1, "4k": 0, "5k": 0},
       "round_swing": -1.03,
-      "rating": 0.83
+      "rating": 0.85
     }
   ],
   "playersOpponent": [
@@ -78,7 +79,7 @@
       "hs_percent": 50.0,
       "multikills": {"2k": 2, "3k": 0, "4k": 0, "5k": 0},
       "round_swing": -4.77,
-      "rating": 0.59
+      "rating": 0.60
     },
     {
       "nick": "REIVER_",
@@ -89,7 +90,7 @@
       "hs_percent": 0.0,
       "multikills": {"2k": 3, "3k": 0, "4k": 0, "5k": 0},
       "round_swing": -5.30,
-      "rating": 0.61
+      "rating": 0.63
     },
     {
       "nick": "kaktus0512",
@@ -100,7 +101,7 @@
       "hs_percent": 25.0,
       "multikills": {"2k": 0, "3k": 0, "4k": 0, "5k": 0},
       "round_swing": -6.49,
-      "rating": 0.45
+      "rating": 0.43
     },
     {
       "nick": "gsot",

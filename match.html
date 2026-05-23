@@ -280,7 +280,7 @@
             padding: 1.6vh 0.8vw;
             border-radius: 0.6vw;
         }
-        .full-top-player-avatar { width: 2vw; height: 2vw; object-fit: cover; border-radius: 0; }
+        .full-top-player-avatar { width: 2vw; height: 2vw; border-radius: 0; }
         .full-top-player-info { flex: 1; font-size: 0.75vw; }
         .full-top-player-stat { font-weight: bold; font-size: 0.85vw; }
         .full-team-table {
@@ -442,7 +442,7 @@
                     <div class="lite-map-block"><div class="lite-map-name-large">${mapName}</div><div class="lite-map-mini"><img src="${miniMapUrl}" onerror="this.style.display='none'"></div></div>
                     <div class="lite-team-score-block"><img class="lite-team-logo-small" src="opponent-logo.jpg"><div class="lite-team-name-large">${data.opponent||'?'}</div><div class="lite-team-score-large ${opponentWin?'lite-score-win':'lite-score-lose'}">${data.teamOpponentScore}</div></div>
                 </div>
-                <div class="lite-breakdown-row"><div class="lite-breakdown-item"><span class="lite-breakdown-label">Breakdown</span> (${firstBracket}) (${secondBracket})</div></div>
+                <div class="lite-breakdown-row"><div class="lite-breakdown-item"><span class="lite-breakdown-label">Breakdown:</span> (${firstBracket}) (${secondBracket})</div></div>
                 <div class="lite-team-rating-row"><span>Team Rating:</span> <span>${doctorsTeamRating}</span> <span>${opponentTeamRating}</span></div>
             `;
             document.getElementById('liteLeftPanel').innerHTML = leftHtml;
@@ -561,7 +561,7 @@
                     <div class="full-map-block"><div class="full-map-name-large">${mapName}</div><div class="full-map-mini"><img src="${miniMapUrl}" onerror="this.style.display='none'"></div></div>
                     <div class="full-team-score-block"><img class="full-team-logo-small" src="opponent-logo.jpg"><div class="full-team-name-large">${data.opponent||'?'}</div><div class="full-team-score-large ${opponentWin?'full-score-win':'full-score-lose'}">${data.teamOpponentScore}</div></div>
                 </div>
-                <div class="full-breakdown-row"><div class="full-breakdown-item"><span class="full-breakdown-label">Breakdown</span> (${firstBracket}) (${secondBracket})</div></div>
+                <div class="full-breakdown-row"><div class="full-breakdown-item"><span class="full-breakdown-label">Breakdown: </span> (${firstBracket}) (${secondBracket})</div></div>
                 <div class="full-team-rating-row"><span>Team Rating:</span> <span>${doctorsTeamRating}</span> <span>${opponentTeamRating}</span></div>
             `;
             document.getElementById('fullLeftPanel').innerHTML = leftHtml;

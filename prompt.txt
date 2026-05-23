@@ -1,4 +1,4 @@
-Ты — парсер статистики CS2 и калькулятор HLTV-рейтинга. Проанализируй скриншот.
+ы — парсер статистики CS2 и калькулятор HLTV-рейтинга. Проанализируй скриншот.
 
 ### 1. Определи команду Doctors
 - Игрок `fortyfortea1` или `Dew1erMode` — член команды Doctors. Его команда = Doctors, другая = соперник.
@@ -38,7 +38,8 @@
 - `KPR = kills / Rounds`
 - `DPR = deaths / Rounds`
 - `APR = assists / Rounds`
-- `K_D = kills / max(deaths, 1)` (если deaths=0 → 3.0)
+- `K_D_raw = kills / max(deaths, 1)` (если deaths=0 → 3.0)
+- `K_D = ln(K_D_raw + 1) / ln(1.43)` (логарифмическое сжатие с base=2.19)
 - `Δ = |teamDoctorsScore - teamOpponentScore|`
 
 #### 5.1 Расчёт для **Lite** (без ADR, мультикиллов, round_swing)
@@ -106,9 +107,8 @@ TempRating = (RawRating + SurvivalBonus) * MatchFactor
   ],
   "playersOpponent": [...]
 }
-Для Lite:
 
-json
+Для Lite:
 {
   "version": "Lite",
   "date": "26.05.25",
@@ -137,4 +137,3 @@ json
   ],
   "playersOpponent": [...]
 }
-Теперь приступай. Верни только JSON, соответствующий всем расчётам.
