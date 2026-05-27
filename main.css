@@ -1,4 +1,3 @@
-
 /* НАЧАЛО ЛОГОТИП HLTV */
 .hltv {
     position: fixed;
@@ -25,10 +24,6 @@
 }
 /* КОНЕЦ ЛОГОТИП HLTV */
 
-
-
-
-
 /* НАЧАЛО ПЕРВЫЙ ПАРАГРАФ – ИГРОКИ */
 .roster {
     text-align: center;
@@ -42,7 +37,6 @@
     margin-top: 0.78vw;
     flex-wrap: wrap;
 }
-
 .players-line{
     width: calc(100%-2vw);
     max-width: 48.67vw;
@@ -50,8 +44,6 @@
     background-color:  #3f5670;
     margin: 0.6vw auto 0 auto;
 }
-
-
 .player-card {
     text-align: center;
     width: 7.925vw;
@@ -71,11 +63,6 @@
     font-size: 0.9 vw;
 }
 /* КОНЕЦ ПЕРВЫЙ ПАРАГРАФ */
-
-
-
-
-
 
 /* НАЧАЛО ВТОРОЙ ПАРАГРАФ – DOCTORS */
 .team-doctors {
@@ -97,19 +84,16 @@
     letter-spacing: 0.104vw;
     transform: translateY(-0.50vw);
 }
-
 .russia {
     display: flex;
     gap: 0.5vw;
 }
-
 .russia-text {
     font-size: 1.2vw;
     font-weight: bold;
     letter-spacing: 0.05vw;
     transform: translateY(0.03vw);
 }
-
 .flag-img {
     width: 1.9vw;
     height: auto;
@@ -119,10 +103,6 @@
 }
 /* КОНЕЦ ВТОРОЙ ПАРАГРАФ */
 
-
-
-
-
 /* НАЧАЛО ТРЕТИЙ ПАРАГРАФ – DOCTORS */
 .player-age {
     display: block; 
@@ -130,7 +110,6 @@
     margin-left: 5.88vw;
     font-size: 1vw;
 }
-
 .coach {
     display: block; 
     margin-top: 1.0vw; 
@@ -138,10 +117,6 @@
     font-size: 1vw;
 }
 /* КОНЕЦ ТРЕТИЙ ПАРАГРАФ – DOCTORS */
-
-
-
-
 
 /* ЗАПРЕТ ГОРИЗОНТАЛЬНОЙ ПРОКРУТКИ */
 html, body {
@@ -152,9 +127,7 @@ html, body {
     padding: 0;
 }
 
-
 /* НАЧАЛО ПЛАШКИ */
-
 .tabs {
     display: flex;
     flex-wrap: wrap;
@@ -163,7 +136,6 @@ html, body {
     gap: 0;
     padding-bottom: 0.5vh;
 }
-
 .tab-btn {
     position: relative;
     background-color: #77828e;
@@ -173,23 +145,17 @@ html, body {
     font-size: 1.039vw;
     cursor: pointer;
     transition: 0.2s;
-    margin: 0;               /* убираем отступы */
+    margin: 0;
 }
-
 .tab-btn:last-child {
     border-right: none;
 }
-
 .tab-btn.active {
     filter: brightness(1.667); 
 }
-
 .tab-btn:hover {
     filter: brightness(1.267); 
-    
 }
-
-
 /* Карточка — только фон, тень и рамка, без сдвига содержимого */
 .card {
     background-color: #2d3246;   
@@ -201,16 +167,13 @@ html, body {
     padding-bottom: 1vh; 
     padding-top: 2.67vh;  
 }
-
 .card-roster {
     margin-top: 9.67vh;  
 }
-
 /* Все блоки контента по умолчанию скрыты */
 .tab-content {
     display: none;
 }
-
 /* Только активный блок показываем */
 .tab-content.active {
     display: block;
@@ -220,7 +183,6 @@ html, body {
     width: 100%;
     box-sizing: border-box;
 }
-
 .event-item {
     display: flex;
     background-color: rgba(0, 0, 0, 0.08);
@@ -232,31 +194,25 @@ html, body {
     padding: 1.1vw 1.1vw;
     box-sizing: border-box;
 }
-
 .tourney1 {
     margin-top: 3.97vh;
 }
-
-
 .event-logo {
     width: 5vw;
     height: auto;
     max-height: 5vw;
 }
-
 .event-details {
     margin-left: 1.25vw;
     display: flex;
-    flex-direction: column;  /* текст в колонку: название -> дата */
+    flex-direction: column;
     justify-content: center;
     gap: 1.67vh;
 }
-
 .event-name {
     font-size: 1.2vw;
     font-weight: bold;
 }
-
 .event-date {
     font-size: 0.9vw;
     opacity: 0.8;
@@ -269,8 +225,6 @@ html, body {
     margin-top: 2vw;
     margin-bottom: 2vw;
 }
-
-/* Строка заголовков */
 .achievements-header {
     display: flex;
     gap: 6.7vw;
@@ -281,23 +235,18 @@ html, body {
     font-size: 1.1vw;
     color: #aaa;
 }
-
-
-/* Строка достижения */
 .achievement-item {
     display: flex;
     gap: 2vw;
     margin-bottom: 1vh;
     width: 100%;
 }
-
 .achievement-placement {
     font-size: 1.2vw;
     margin-left: 3vw;
     font-weight: bold;
     color: #888;
 }
-
 .achievement-tournament {
     font-size: 1.2vw;
     font-weight: normal;
@@ -305,51 +254,36 @@ html, body {
     flex: 1;
 }
 
-
-
-
-
 #roster {
     margin-left: 5vw;
     margin-top: 6vh;
     margin-bottom: 6.7vh;
     margin-right: 6.67vw;
 }
-
 .roster-header, .roster-row {
     display: flex;
     align-items: center;
     margin-left: 2vw;
     padding-right: 2vw;
 }
-
-
-
-/* Ширина колонок через flex (настраивай) */
 .col-player { flex: 1.3; display: flex; align-items: center; gap: 1vw; }
 .col-time   { flex: 1.0; }
 .col-maps   { flex: 1.0; }
 .col-rating { flex: 0.9; }
-
-/* Заголовки */
 .roster-header {
     font-weight: bold;
     font-size: 1.1vw;
     color: #aaa;
     margin-bottom: 3.67vh;
 }
-
 .roster-row .col-time {
-    margin-left: 2vw;   /* меняй -2vw на нужное значение */
+    margin-left: 2vw;
 }
-
 .col-time, .col-maps, .col-rating, .col-player  {
-    font-size: 1.29vw;   /* поменяй значение по вкусу (например, 1.2vw) */
-    font-weight: normal; /* можно задать жирность */
-    text-align: center;   /* если нужно центрирование */
+    font-size: 1.29vw;
+    font-weight: normal;
+    text-align: center;
 }
-
-/* Строки */
 .roster-row {
     margin-bottom: 1.8vh;
     background-color: rgba(0, 0, 0, 0.05);
@@ -359,8 +293,6 @@ html, body {
     display: flex;
     align-items: center;
 }
-
-/* Контейнер для аватарки и флага */
 .avatar-wrapper {
     position: relative;
     width: 3.5vw;
@@ -372,12 +304,9 @@ html, body {
     height: 100%;
     transition: transform 0.2s ease; 
 }
-
-
 .roster-avatar:hover {
-    transform: scale(1.1);             /* увеличение на 10% при наведении */
+    transform: scale(1.1);
 }
-
 .player-flag {
     position: absolute;
     bottom: 1.2vw;
@@ -385,72 +314,50 @@ html, body {
     width: 1.47vw;
     height: auto;
 }
-
-/* Никнейм */
 .player-nick {
     font-size: 1.1vw;
     margin-left: 1.7vw;
-
     font-weight: bold;
     white-space: nowrap;
 }
-
 .col-maps {
-    margin-left: 1vw;   /* вправо */
-    /* или margin-right: 2vw; */
+    margin-left: 1vw;
 }
-
 .roster-header {
     display: grid;
-    grid-template-columns: 1.3fr 1.0fr 1.0fr 0.9fr;  /* те же пропорции, что у flex */
+    grid-template-columns: 1.3fr 1.0fr 1.0fr 0.9fr;
     gap: 0;
     align-items: center;
     margin-left: 2vw;
     width: 100%;
 }
-
 .roster-header .col-maps {
-    margin-left: -1.5vw;   /* сдвиг только у этого заголовка */
+    margin-left: -1.5vw;
 }
-
 .roster-header .col-time {
-    margin-left: 0.1vw;   /* сдвиг только у этого заголовка */
+    margin-left: 0.1vw;
 }
-
 .roster-header .col-player {
-    margin-left: 5.5vw;   /* сдвиг только у этого заголовка */
+    margin-left: 5.5vw;
 }
-
-
 .roster-header .col-rating {
-    margin-left: -4.5vw;   /* сдвиг только у рейтинга */
+    margin-left: -4.5vw;
 }
-
-
-
-
-
-
-
-
 
 .stats-blocks {
     display: flex;
     justify-content: center;
-    gap: 0;               /* убираем расстояние между блоками */
+    gap: 0;
     margin-bottom: 2vh;
     margin-top: 6vh;
 }
-
 .stat-block {
-    border: 0.06vw solid rgba(255, 255, 255, 0.3);   /* линия со всех сторон */
+    border: 0.06vw solid rgba(255, 255, 255, 0.3);
     padding: 2.5vh 4vw;
     text-align: center;
     min-width: 16.67vw;
     width: 10vw;
 }
-
-/* скругление внешних углов (как у таблицы) */
 .stat-block:first-child {
     border-top-left-radius: 0.35vw;
     border-bottom-left-radius: 0.35vw;
@@ -459,27 +366,21 @@ html, body {
     border-top-right-radius: 0.35vw;
     border-bottom-right-radius: 0.35vw;
 }
-
 .stat-label {
     font-size: 0.95vw;
     letter-spacing: 0.1vw;
     color: #aaa;
 }
-
 .stat-value {
     font-size: 1.67vw;
     font-weight: bold;
     margin-top: -0.8vh;
 }
 
-
-
-
 /* Группировка по турнирам */
 .tournament-group {
-    margin-bottom: 5vh;          /* вместо 2rem */
+    margin-bottom: 5vh;
 }
-
 .tournament-header {
     display: flex;
     justify-content: center;
@@ -490,15 +391,14 @@ html, body {
     font-size: 1.3vw;
     font-weight: bold;
     padding: 2.0vh 2.5vw;
-    border-top: 0.1vh solid rgba(255, 255, 255, 0.3);      /* только верхняя граница */
-    border-bottom: 0.1vh solid rgba(255, 255, 255, 0.3);   /* только нижняя граница */
-    border-left: none;                                      /* убираем левую */
-    border-right: none;                                     /* убираем правую */
+    border-top: 0.1vh solid rgba(255, 255, 255, 0.3);
+    border-bottom: 0.1vh solid rgba(255, 255, 255, 0.3);
+    border-left: none;
+    border-right: none;
     background-color: rgba(255, 255, 255, 0.05);
     width: 46.0vw;
     margin-bottom: 3vh;   
 }
-
 .match-item {
     display: flex;
     align-items: center;
@@ -508,52 +408,38 @@ html, body {
     margin-right: auto;
     width: 45.5vw;
     margin-bottom: 2vh;
-    transition: background-color 0.8s;   /* ДОБАВИТЬ эту строчку */
+    transition: background-color 0.67s;
 }
-
 .match-item:hover {
-    background-color: rgba(255, 255, 255, 0.1);   /* ДОБАВИТЬ этот блок */
+    background-color: rgba(255, 255, 255, 0.1);
 }
-
 .match-date {
     width: 10vw;
     font-size: 1.09vw;
     font-weight: 190;
     color: rgba(255, 255, 255, 0.5);
 }
-
-/* Контейнер для Doctors (иконка + текст) */
 .match-team-doctors {
     display: flex;
     align-items: center;
     gap: 0.5vw;
     width: 3vw;
 }
-
-/* Контейнер для соперника (иконка + текст) */
 .match-team-opponent {
     display: flex;
     align-items: center;
     gap: 0.5vw;
     width: 13vw;
 }
-
-/* Иконки логотипов */
 .match-team-logo {
     width: 2.5vw;
     height: auto;
 }
-
-/* Текст названия команды */
 .match-team-name {
     font-size: 1.2vw;
     font-weight: 400;
     white-space: nowrap;
-    
-    
 }
-
-/* Счёт */
 .match-score {
     width: 8vw;
     text-align: center;
@@ -562,8 +448,6 @@ html, body {
     margin-right: -3.0vw;
     margin-left: 0.9vw; 
 }
-
-/* Кнопка Match */
 .match-detail-btn {
     margin-left: 2vw;
     background-color: #314060;
@@ -572,21 +456,16 @@ html, body {
     padding: 0.9vh 0.9vw;
     border-radius: 0.2vw;
     cursor: pointer;
-}
-
-.match-detail-btn {
     transition: background-color 0.2s ease, filter 0.2s ease;
 }
 .match-detail-btn:hover {
-    background-color: #314060;   /* светлый синий */
+    background-color: #314060;
     filter: brightness(1.3);
 }
-
 .load-more-container {
     text-align: center;
     margin-top: 2vh;
 }
-
 .load-more-btn {
     background-color: #2c3e66;
     border: none;
@@ -596,7 +475,162 @@ html, body {
     cursor: pointer;
     font-size: 1vw;
 }
-
 .load-more-btn:hover {
     background-color: #1e2a3e;
+}
+
+/* ==================== НОВЫЕ СТИЛИ ДЛЯ СТАТИСТИКИ (вкладка Stats) ==================== */
+.stats-distribution {
+    margin-top: 7vh;
+    margin-left: 6vh;
+    border-radius: 1vw;
+    margin-bottom: 8vh;
+}
+.stats-distribution-header {
+    font-size: 1.33vw;
+    font-weight: bold;
+    margin-bottom: 4vh;
+    font-weight: bold;
+}
+
+.stats-donut-title {
+    font-weight: bold;
+}
+
+.stats-distribution-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5vh;
+    max-width: 67%;
+}
+.stats-distribution-row {
+    display: flex;
+    gap: 0.1vh;
+}
+.stats-distribution-label {
+    width: 6vw;
+    font-size: 1vw;
+    margin-top: -0.4vh;
+}
+.stats-distribution-bar-container {
+    flex: 1;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 0.5vw;
+    height: 2vh;
+}
+.stats-distribution-bar {
+    background-color: #3498db;
+    height: 100%;
+    width: 0%;
+}
+.stats-distribution-count {
+    width: 2.2vw;
+    text-align: right;
+    font-size: 0.9vw;
+    margin-top: -0.3vh;
+    font-weight: bold;
+}
+
+
+
+.stats-map-card {
+    position: relative;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5vw;
+    color: white;
+}
+
+.stats-map-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    z-index: 1;
+}
+.stats-map-left, .stats-map-right {
+    position: relative;
+    z-index: 2;
+}
+.stats-map-left {
+    flex: 2;
+    margin-left: 10vh;
+}
+.stats-map-name {
+    font-size: 1.8vw;
+    font-weight: bold;
+    margin-bottom: 1vh;
+}
+.stats-map-stats {
+    font-size: 1.2vw;
+    line-height: 1.8;
+}
+.stats-map-right {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    margin-right: 6vh;
+}
+.stats-donut-title {
+    font-size: 1.3vw;
+    margin-bottom: 2vh;
+}
+.stats-donut-canvas {
+    display: block;
+    margin: 0 auto;
+}
+.stats-donut-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.2vw;
+    font-weight: bold;
+    pointer-events: none;
+}
+
+/* Map MVP */
+.stats-map-mvp {
+    margin-top: 2vh;
+    text-align: center;
+}
+.mvp-label {
+    font-size: 1vw;
+    font-weight: bold;
+    margin-bottom: 0.5vh;
+    color: #ffffff;
+}
+.mvp-player {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8vw;
+    background-color: rgba(0,0,0,0.4);
+    padding: 0.5vh 1vw;
+}
+.mvp-avatar {
+    width: 2.2vw;
+    height: 2.2vw;
+}
+.mvp-nick {
+    font-size: 1vw;
+    font-weight: bold;
+}
+.mvp-rating {
+    font-size: 1vw;
+    font-weight: bold;
+    color: #ffaa00;
+}
+.stat-label-ct {
+    color: #3498db;  /* синий */
+}
+.stat-label-t {
+    color: #e67e22;  /* оранжевый */
 }

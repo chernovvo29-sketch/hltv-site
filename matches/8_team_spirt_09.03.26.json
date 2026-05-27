@@ -7,10 +7,10 @@
   "map": "Dust2",
   "teamDoctorsScore": 18,
   "teamOpponentScore": 22,
-  "scoreCtDoctors": 11,
+  "scoreCtDoctors": 5,
   "scoreTDoctors": 7,
-  "lostCtDoctors": 11,
-  "lostTDoctors": 11,
+  "lostCtDoctors": 7,
+  "lostTDoctors": 7,
   "started_site": "T",
   "playersDoctors": [
     {
