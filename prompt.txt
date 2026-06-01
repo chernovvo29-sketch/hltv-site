@@ -44,18 +44,18 @@
 
 
 #### 5.1 Расчёт для **Lite** (без ADR, мультикиллов, round_swing)
-BaseRating = 0.64*(KPR/0.70) + 0.08*K_D + 0.18*(APR/0.32) + 0.10*((1-DPR)/0.30)
+BaseRating = 0.64*(KPR/0.70) + 0.08*K_D + 0.18*(APR/0.31) + 0.10*((1-DPR)/0.30)
 MatchFactor = победители: (1 + 0.0025 * Δ), проигравшие: (1 - 0.0025 * Δ)
 TempRating = (BaseRating) * MatchFactor
 
 #### 5.2 Расчёт для **Full** (с ADR, мультикиллами, round_swing)
 MK_per_round = (2k + 3k + 4k + 5k) / Rounds
-Impact = 0.31*(KPR/0.70) + 0.08*K_D + 0.15*(APR/0.32) + 0.09*((1-DPR)/0.30) + 0.29*(ADR/85) + 0.025*(HS%/50) + 0.10*(MK_per_round/0.35)
+Impact = 0.31*(KPR/0.70) + 0.08*K_D + 0.15*(APR/0.32) + 0.09*((1-DPR)/0.30) + 0.29*(ADR/85) + 0.03*(HS%/50) + 0.10*(MK_per_round/0.35)
 SwingComponent = max(-0.29, -0.36 * Impact, min(0.45, round_swing / 18))
 RawRating = 0.65 * Impact + 0.5 * SwingComponent
 SurvivalBonus = 0.003 * Δ (только для победителей)
 MatchFactor = победители: (1 + 0.0025 * Δ), проигравшие: (1 - 0.0025 * Δ)
-TempRating = (RawRating + SurvivalBonus*0.02) * MatchFactor
+TempRating = (RawRating + SurvivalBonus*0.01) * MatchFactor
 
 #### 5.3 Нормализация (для обеих версий, обязательное условие)
 - `mean_temp = (сумма TempRating всех 10 игроков) / 10`

@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Статистика игрока | Team Doctors</title>
+    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .player-container {
+            max-width: 55vw;
+            margin: 0 auto;
+            margin-top: 6vh;
+            display: flex;
+            flex-direction: column;
+            gap: 3vh;
+        }
+        .player-card-left, .player-stats-right {
+            background-color: #2d3246;  
+            padding: 1.5vw;
+        }
+        .player-card-left {
+            display: flex;
+            gap: 1.5vw;
+            align-items: stretch;
+        }
+        .player-avatar {
+            width: 10vw;
+            height: auto;
+            object-fit: cover;
+            border-radius: 0;
+            background-color: rgba(255,255,255,0.1);
+        }
+        .player-info-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .player-nick {
+            font-size: 1.8vw;
+            font-weight: bold;
+        }
+        .player-fullname {
+            font-size: 1.1vw;
+            display: flex;
+            align-items: center;
+            gap: 0.5vw;
+            margin-top: 0.5vh;
+        }
+        .player-flag {
+            width: 1.5vw;
+            height: auto;
+        }
+        .player-details {
+            margin-top: 1.5vh;
+        }
+        .player-info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1vh;
+            font-size: 0.9vw;
+        }
+        .info-label {
+            color: #aaa;
+        }
+        .info-value {
+            font-weight: bold;
+        }
+        .player-stats-right {
+            display: flex;
+            flex-direction: column;
+        }
+        .rating-block {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.5vh;
+            margin-bottom: 2vh;
+        }
+        .main-rating {
+            font-size: 1.2vw;
+            font-weight: bold;
+        }
+        .elite-rating {
+            font-size: 1.2vw;
+            font-weight: bold;
+        }
+        .stats-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5vh;
+        }
+        .stats-row {
+            display: flex;
+            gap: 2vw;
+            justify-content: space-between;
+        }
+        .stat-bar-item {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+        .stat-label {
+            font-size: 0.8vw;
+            margin-bottom: 0.5vh;
+        }
+        .bar-container {
+            width: 100%;
+            height: 0.5vh;
+            background-color: rgba(255,255,255,0.2);
+            border-radius: 0.25vh;
+            margin: 0.5vh 0;
+            position: relative;
+        }
+        .bar-fill {
+            height: 100%;
+            width: 0%;
+            border-radius: 0.25vh;
+            transition: width 0.3s;
+        }
+        .bar-value {
+            font-size: 0.8vw;
+            font-weight: bold;
+            margin-top: 0.2vh;
+        }
+        .bar-status {
+            font-size: 0.6vw;
+            margin-top: 0.3vh;
+            text-align: left;
+            position: relative;
+        }
+        .status-good { color: #2ecc71; }
+        .status-bad { color: #e74c3c; }
+        .status-ok { color: #f1c40f; }
+        .current-team-link {
+            color: #ffaa00;
+            text-decoration: none;
+        }
+        .current-team-link:hover {
+            text-decoration: underline;
+        }
+        .error-message {
+            color: #ff6666;
+            text-align: center;
+            padding: 2vw;
+            background: rgba(0,0,0,0.5);
+            border-radius: 1vw;
+        }
+        @media (max-width: 768px) {
+            .player-container {
+                max-width: 90vw;
+            }
+            .player-card-left {
+                flex-direction: column;
+                align-items: center;
+            }
+            .stats-row {
+                flex-direction: column;
+                gap: 1.5vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="theme-toggle">
+        <input type="checkbox" id="themeSwitch">
+        <label for="themeSwitch" class="slider">
+            <i class="fa-solid fa-moon"></i>
+            <i class="fa-solid fa-sun"></i>
+        </label>
+    </div>
+    <div class="hltv">
+        <img src="hltv-pic.jpg" alt="logo" class="hltv-img">
+        <span>HLTV</span>
+    </div>
+
+    <div class="player-container" id="playerContainer">
+        <div style="text-align: center; width: 100%; color: #fff;">Загрузка статистики...</div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        (async function() {
+            const container = document.getElementById('playerContainer');
+            const urlParams = new URLSearchParams(window.location.search);
+            const nick = urlParams.get('nick');
+            if (!nick) {
+                container.innerHTML = '<div class="error-message">Ошибка: не указан игрок</div>';
+                return;
+            }
+
+            if (typeof getAllMatches !== 'function') {
+                container.innerHTML = '<div class="error-message">Ошибка: функция getAllMatches не найдена</div>';
+                return;
+            }
+
+            let allMatches;
+            try {
+                allMatches = await getAllMatches();
+            } catch (err) {
+                console.error(err);
+                container.innerHTML = `<div class="error-message">Ошибка загрузки матчей: ${err.message}</div>`;
+                return;
+            }
+
+            if (!allMatches || !allMatches.length) {
+                container.innerHTML = '<div class="error-message">Нет данных о матчах</div>';
+                return;
+            }
+
+            // Сбор статистики
+            let allPlayerMatches = [];
+            let fullMatches = [];
+            let playerData = null;
+
+            for (const match of allMatches) {
+                let player = null;
+                if (match.playersDoctors) {
+                    const p = match.playersDoctors.find(p => p.nick === nick);
+                    if (p) player = p;
+                }
+                if (!player && match.playersOpponent) {
+                    const p = match.playersOpponent.find(p => p.nick === nick);
+                    if (p) player = p;
+                }
+                if (player) {
+                    allPlayerMatches.push({ match, player });
+                    if (match.version === 'Full') fullMatches.push({ match, player });
+                    if (!playerData) playerData = player;
+                }
+            }
+
+            if (!playerData) {
+                container.innerHTML = `<div class="error-message">Игрок "${nick}" не найден в матчах</div>`;
+                return;
+            }
+
+            // Профили и аватар
+            const playerProfiles = {
+                'dark_sasi':   { fullname: 'Daniil Demin', age: 19, flag: 'russia-flag.png' },
+                'Dew1erMode':  { fullname: 'Ivan Ivanov', age: 20, flag: 'russia-flag.png' },
+                'map1ks':      { fullname: 'Maxim Petrov', age: 21, flag: 'russia-flag.png' },
+                'D1amp0':      { fullname: 'Alexey Smirnov', age: 22, flag: 'russia-flag.png' },
+                'lightwork':   { fullname: 'Sergey Kuznetsov', age: 19, flag: 'russia-flag.png' }
+            };
+            const profile = playerProfiles[nick] || { fullname: 'Unknown', age: '?', flag: 'russia-flag.png' };
+            const avatarMap = {
+                'dark_sasi': 'player1.jpg',
+                'map1ks': 'player2.jpg',
+                'D1amp0': 'player4.jpg',
+                'Dew1erMode': 'player3.jpg',
+                'lightwork': 'player5.jpg'
+            };
+            const avatarSrc = avatarMap[nick] || 'player1.jpg';
+
+            // Общие метрики
+            let totalKills = 0, totalDeaths = 0, totalAssists = 0, totalRounds = 0;
+            for (const item of allPlayerMatches) {
+                totalKills += item.player.kills || 0;
+                totalDeaths += item.player.deaths || 0;
+                totalAssists += item.player.assists || 0;
+                totalRounds += item.match.teamDoctorsScore + item.match.teamOpponentScore;
+            }
+            const matchesPlayed = allPlayerMatches.length;
+            let kpr = matchesPlayed ? (totalKills / totalRounds) : 0;
+            let dpr = matchesPlayed ? (totalDeaths / totalRounds) : 0;
+            let apr = matchesPlayed ? (totalAssists / totalRounds) : 0;
+            kpr = parseFloat(kpr.toFixed(3));
+            dpr = parseFloat(dpr.toFixed(3));
+            apr = parseFloat(apr.toFixed(3));
+
+            let totalAdr = 0, totalHs = 0, totalSwing = 0;
+            let fullCount = fullMatches.length;
+            for (const item of fullMatches) {
+                totalAdr += item.player.adr || 0;
+                totalHs += item.player.hs_percent || 0;
+                totalSwing += item.player.round_swing || 0;
+            }
+            const avgAdr = fullCount ? (totalAdr / fullCount) : 0;
+            const avgHs = fullCount ? (totalHs / fullCount) : 0;
+            const avgSwing = fullCount ? (totalSwing / fullCount) : 0;
+
+            // Elite Rating
+            const eliteMatches = allPlayerMatches.filter(item => item.match.threat === 'Elite');
+            let totalEliteRating = 0;
+            for (const item of eliteMatches) totalEliteRating += item.player.rating || 0;
+            const eliteRating = eliteMatches.length ? (totalEliteRating / eliteMatches.length) : 0;
+
+            let totalRating = 0;
+            for (const item of allPlayerMatches) totalRating += item.player.rating || 0;
+            const avgRating = matchesPlayed ? (totalRating / matchesPlayed) : 0;
+
+            function getRatingColorStyle(rating) {
+                if (rating >= 1.50) return '#4096e0';
+                if (rating >= 1.25) return '#31b605';
+                if (rating >= 1.05) return '#88cc44';
+                if (rating >= 0.96) return '';
+                return '#ff6666';
+            }
+
+            const thresholds = {
+                kpr: { avg: 0.70, minMult: 0.6, maxMult: 1.4, invert: false },
+                dpr: { avg: 0.70, minMult: 0.6, maxMult: 1.4, invert: true },
+                apr: { avg: 0.25, minMult: 0.6, maxMult: 1.4, invert: false },
+                adr: { avg: 85,   minMult: 0.6, maxMult: 1.4, invert: false },
+                hs:  { avg: 50,   minMult: 0.6, maxMult: 1.4, invert: false },
+                swing: { avg: 0,   minVal: -3.0, maxVal: 3.0, invert: false }
+            };
+
+            function getBarParams(value, metric) {
+                const t = thresholds[metric];
+                let norm = value;
+                let minVal, maxVal;
+                let percent, status, statusClass;
+
+                if (metric === 'swing') {
+                    minVal = t.minVal;
+                    maxVal = t.maxVal;
+                    norm = Math.min(maxVal, Math.max(minVal, norm));
+                    percent = ((norm - minVal) / (maxVal - minVal)) * 100;
+                    if (norm >= 1.5) { status = 'GOOD'; statusClass = 'status-good'; }
+                    else if (norm <= -1.5) { status = 'BAD'; statusClass = 'status-bad'; }
+                    else { status = 'OKAY'; statusClass = 'status-ok'; }
+                } else {
+                    const avg = t.avg;
+                    const minVal = avg * t.minMult;
+                    const maxVal = avg * t.maxMult;
+                    let raw = norm;
+                    if (!t.invert) {
+                        raw = Math.min(maxVal, Math.max(minVal, raw));
+                        percent = ((raw - minVal) / (maxVal - minVal)) * 100;
+                        if (raw >= avg * 1.2) { status = 'GOOD'; statusClass = 'status-good'; }
+                        else if (raw <= avg * 0.8) { status = 'BAD'; statusClass = 'status-bad'; }
+                        else { status = 'OKAY'; statusClass = 'status-ok'; }
+                    } else {
+                        raw = Math.min(maxVal, Math.max(minVal, raw));
+                        percent = ((maxVal - raw) / (maxVal - minVal)) * 100;
+                        if (raw <= avg * 0.8) { status = 'GOOD'; statusClass = 'status-good'; }
+                        else if (raw >= avg * 1.2) { status = 'BAD'; statusClass = 'status-bad'; }
+                        else { status = 'OKAY'; statusClass = 'status-ok'; }
+                    }
+                }
+                percent = Math.min(100, Math.max(0, percent));
+                return { percent: percent, status: status, statusClass: statusClass };
+            }
+
+            const barKpr = getBarParams(kpr, 'kpr');
+            const barDpr = getBarParams(dpr, 'dpr');
+            const barApr = getBarParams(apr, 'apr');
+            const barAdr = getBarParams(avgAdr, 'adr');
+            const barHs = getBarParams(avgHs, 'hs');
+            const barSwing = getBarParams(avgSwing, 'swing');
+
+            function getFillColor(bar) {
+                if (bar.status === 'GOOD') return '#2ecc71';
+                if (bar.status === 'BAD') return '#e74c3c';
+                return '#f1c40f';
+            }
+
+            function getStatusLabelPosition(bar) {
+                if (bar.status === 'GOOD') return 'right';
+                if (bar.status === 'BAD') return 'left';
+                return 'center';
+            }
+
+            function getStatusLabelText(bar) {
+                return bar.status;
+            }
+
+            const ratingColor = getRatingColorStyle(avgRating);
+            const eliteRatingColor = getRatingColorStyle(eliteRating);
+
+            const leftHtml = `
+                <div class="player-card-left">
+                    <img class="player-avatar" src="${avatarSrc}" alt="${nick}">
+                    <div class="player-info-area">
+                        <div>
+                            <div class="player-nick">${nick}</div>
+                            <div class="player-fullname">
+                                <img class="player-flag" src="${profile.flag}" alt="Russia">
+                                ${profile.fullname}
+                            </div>
+                        </div>
+                        <div class="player-details">
+                            <div class="player-info-row">
+                                <div class="info-label">Age</div>
+                                <div class="info-value">${profile.age}</div>
+                            </div>
+                            <div class="player-info-row">
+                                <div class="info-label">Current Team</div>
+                                <div class="info-value"><a href="main.html" class="current-team-link">Doctors</a></div>
+                            </div>
+                            <div class="player-info-row">
+                                <div class="info-label">Prize Money</div>
+                                <div class="info-value">$0</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            function generateBar(bar, label, valueDisplay) {
+                let textAlign = 'center';
+                if (getStatusLabelPosition(bar) === 'left') textAlign = 'left';
+                if (getStatusLabelPosition(bar) === 'right') textAlign = 'right';
+                return `
+                    <div class="stat-bar-item">
+                        <div class="stat-label">${label}</div>
+                        <div class="bar-container"><div class="bar-fill" style="width: ${bar.percent}%; background-color: ${getFillColor(bar)};"></div></div>
+                        <div class="bar-value">${valueDisplay}</div>
+                        <div class="bar-status" style="text-align: ${textAlign};">
+                            <span class="${bar.statusClass}">${getStatusLabelText(bar)}</span>
+                        </div>
+                    </div>
+                `;
+            }
+
+            const rightHtml = `
+                <div class="player-stats-right">
+                    <div class="rating-block">
+                        <div class="main-rating">Rating: <span style="color: ${ratingColor}">${avgRating.toFixed(2)}</span></div>
+                        <div class="elite-rating">Elite Rating: <span style="color: ${eliteRatingColor}">${eliteRating.toFixed(2)}</span></div>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stats-row">
+                            ${generateBar(barSwing, 'Round Swing', avgSwing.toFixed(2) + '%')}
+                            ${generateBar(barAdr, 'ADR', avgAdr.toFixed(1))}
+                            ${generateBar(barHs, 'HS%', avgHs.toFixed(1) + '%')}
+                        </div>
+                        <div class="stats-row">
+                            ${generateBar(barKpr, 'KPR', kpr.toFixed(2))}
+                            ${generateBar(barDpr, 'DPR', dpr.toFixed(2))}
+                            ${generateBar(barApr, 'APR', apr.toFixed(2))}
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            container.innerHTML = leftHtml + rightHtml;
+
+            if (typeof setTheme === 'function' && typeof document.getElementById('themeSwitch') !== 'undefined') {
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme) {
+                    setTheme(savedTheme === 'dark');
+                    const toggle = document.getElementById('themeSwitch');
+                    if (toggle) toggle.checked = savedTheme === 'dark';
+                }
+            }
+        })();
+    </script>
+</body>
+</html>

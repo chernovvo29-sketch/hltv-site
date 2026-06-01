@@ -67,7 +67,37 @@ function updateAverageAge() {
 }
 updateAverageAge();
 
-// ===== ЗАГРУЗКА МАТЧЕЙ =====
+// ===== ГЛОБАЛЬНАЯ ЗАГРУЗКА МАТЧЕЙ (доступна из других страниц) =====
+async function getAllMatches() {
+    if (allMatches.length > 0) return allMatches;
+    try {
+        const indexResp = await fetch('matches/index.json');
+        if (!indexResp.ok) throw new Error('Не удалось загрузить список матчей');
+        const { matches: matchFiles } = await indexResp.json();
+        const matchesData = [];
+        for (const fileName of matchFiles) {
+            const res = await fetch(`matches/${fileName}`);
+            if (res.ok) {
+                const match = await res.json();
+                match.fileName = fileName;
+                matchesData.push(match);
+            } else {
+                console.warn(`Не удалось загрузить ${fileName}`);
+            }
+        }
+        matchesData.sort((a, b) => {
+            const getNumber = (fileName) => parseInt(fileName.split('_')[0], 10);
+            return getNumber(b.fileName) - getNumber(a.fileName);
+        });
+        allMatches = matchesData;
+        return allMatches;
+    } catch (err) {
+        console.error(err);
+        return [];
+    }
+}
+
+// ===== ЗАГРУЗКА И ОТОБРАЖЕНИЕ МАТЧЕЙ ВО ВКЛАДКЕ MATCHES =====
 const matchesContainer = document.getElementById('matches');
 if (matchesContainer) {
     let displayedCount = 15;
@@ -171,38 +201,19 @@ if (matchesContainer) {
         }
     }
 
-    async function loadMatches() {
+    async function initMatches() {
         matchesContainer.innerHTML = '<p>Загрузка матчей...</p>';
-        try {
-            const indexResp = await fetch('matches/index.json');
-            if (!indexResp.ok) throw new Error('Не удалось загрузить список матчей');
-            const { matches: matchFiles } = await indexResp.json();
-            const matchesData = [];
-            for (const fileName of matchFiles) {
-                const res = await fetch(`matches/${fileName}`);
-                if (res.ok) {
-                    const match = await res.json();
-                    match.fileName = fileName;
-                    matchesData.push(match);
-                } else {
-                    console.warn(`Не удалось загрузить ${fileName}`);
-                }
-            }
-            matchesData.sort((a, b) => {
-                const getNumber = (fileName) => parseInt(fileName.split('_')[0], 10);
-                return getNumber(b.fileName) - getNumber(a.fileName);
-            });
-            allMatches = matchesData;
-            displayedCount = 15;
-            renderMatchesTable(allMatches, displayedCount);
-            updateRosterFromMatches(allMatches);
-            updateStats();
-        } catch (err) {
-            console.error(err);
+        await getAllMatches();
+        if (allMatches.length === 0) {
             matchesContainer.innerHTML = '<p>Ошибка загрузки матчей</p>';
+            return;
         }
+        displayedCount = 15;
+        renderMatchesTable(allMatches, displayedCount);
+        updateRosterFromMatches(allMatches);
+        updateStats();
     }
-    loadMatches();
+    initMatches();
 }
 
 // ===== ЦВЕТА ДЛЯ ROSTER =====
@@ -280,6 +291,7 @@ function updateRosterFromMatches(matches) {
         const timeCell = row.querySelector('.col-time');
         if (timeCell) timeCell.textContent = teamTime;
     });
+    initPlayerClickHandlers();
 }
 
 // ===== ВРЕМЯ В КОМАНДЕ =====
@@ -301,20 +313,10 @@ function getPercentColorStyle(percent) {
 
 // ===== ФУНКЦИЯ ДЛЯ ЦВЕТА ПОЛОСКИ В ГИСТОГРАММЕ =====
 function getMapBarColor(mapName) {
-    switch(mapName) {
-        case 'Ancient':   return '#5dade2'; // фиолетово-серый
-        case 'Anubis':    return '#5dade2'; // жёлтый
-        case 'Dust2':     return '#5dade2'; // оранжевый
-        case 'Inferno':   return '#5dade2'; // тёмно-красный
-        case 'Mirage':    return '#5dade2'; // золотой
-        case 'Nuke':      return '#5dade2'; // сине-серый
-        case 'Overpass':  return '#5dade2';// бирюзовый
-        default:          return '#5dade2'; // стандартный синий
-    }
+    return '#5dade2';
 }
 
 // ===== СТАТИСТИКА (ВКЛАДКА STATS) =====
-// ===== СТАТИСТИКА (ВКЛАДКА STATS) с Map MVP =====
 function updateStats() {
     const statsContainer = document.getElementById('stats');
     if (!statsContainer) return;
@@ -651,3 +653,31 @@ function onDonutLeave(e) {
     const canvas = e.currentTarget;
     resetDonutHighlight(canvas);
 }
+
+// ===== ОБРАБОТЧИКИ ДЛЯ ПЕРЕХОДА НА СТРАНИЦУ ИГРОКА =====
+function initPlayerClickHandlers() {
+    document.querySelectorAll('.player-card .avatar, .player-card .nickname, #roster .roster-avatar, #roster .player-nick').forEach(el => {
+        el.removeEventListener('click', playerClickHandler);
+        el.addEventListener('click', playerClickHandler);
+    });
+}
+
+function playerClickHandler(e) {
+    const target = e.currentTarget;
+    let nick = null;
+    if (target.closest('.player-card')) {
+        const card = target.closest('.player-card');
+        nick = card.querySelector('.nickname')?.innerText;
+    } else if (target.closest('.roster-row')) {
+        const row = target.closest('.roster-row');
+        nick = row.querySelector('.player-nick')?.innerText;
+    }
+    if (nick) {
+        window.location.href = `player-stats.html?nick=${encodeURIComponent(nick)}`;
+    }
+}
+
+// ===== ИНИЦИАЛИЗАЦИЯ =====
+document.addEventListener('DOMContentLoaded', () => {
+    initPlayerClickHandlers();
+});

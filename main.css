@@ -52,7 +52,7 @@
     width: 6.5vw;
     height: 6.5vw;
     border-radius: 5%;
-    transition: transform 0.2s;
+    transition: transform 0.8s;
 }
 .avatar:hover {
     transform: scale(1.08);
@@ -633,4 +633,11 @@ html, body {
 }
 .stat-label-t {
     color: #e67e22;  /* оранжевый */
+}
+.avatar, .nickname, .roster-avatar, .player-nick {
+    cursor: pointer;
+    transition: opacity 0.8s;
+}
+.avatar:hover, .nickname:hover, .roster-avatar:hover, .player-nick:hover {
+    opacity: 0.8;
 }
