@@ -4,13 +4,13 @@
   "tournament": "Friendly Cybersport 2026",
   "threat": "Ordinary",
   "opponent": "Team_Spirt",
-  "map": "Dust2",
+  "map": "dust2",
   "teamDoctorsScore": 18,
   "teamOpponentScore": 22,
   "scoreCtDoctors": 5,
   "scoreTDoctors": 7,
   "lostCtDoctors": 7,
-  "lostTDoctors": 7,
+  "lostTDoctors": 5,
   "started_site": "T",
   "playersDoctors": [
     {

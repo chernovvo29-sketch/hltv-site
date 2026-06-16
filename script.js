@@ -130,7 +130,7 @@ if (matchesContainer) {
                 </div>
                 <div class="stat-block">
                     <div class="stat-value">${stats.winRate}%</div>
-                    <div class="stat-label">Win rate</div>
+                    <div class="stat-label">WinRate</div>
                 </div>
             </div>
         `;
@@ -306,8 +306,8 @@ function getTeamTime() {
 
 // ===== ФУНКЦИЯ ДЛЯ ЦВЕТА ПРОЦЕНТОВ =====
 function getPercentColorStyle(percent) {
-    if (percent > 52.5) return '#2ecc71';
-    if (percent < 47.5) return '#e74c3c';
+    if (percent > 54.5) return '#2ecc71';
+    if (percent < 45.5) return '#e74c3c';
     return '';
 }
 
