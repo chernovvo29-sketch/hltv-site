@@ -136,6 +136,10 @@
             position: relative;
             overflow: hidden;
             cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        .recent-match-item:hover {
+            background-color: rgba(255,255,255,0.1);
         }
         .recent-match-item.win {
             border-right: 0.4vw solid #18ea6f;
@@ -153,11 +157,11 @@
             flex: 1;
         }
         .match-opponent-name {
-            font-size: 1vw;
+            font-size: 1.1vw;
             font-weight: bold;
         }
         .match-tournament {
-            font-size: 0.7vw;
+            font-size: 0.8vw;
             color: #aaa;
         }
         .match-score {
@@ -502,29 +506,16 @@
                 return { percent, status, statusClass };
             }
 
-            // Изменённая функция: для Round Swing, ADR, HS% при отсутствии данных показываем только одно N/S
             function generateBarWithNS(hasData, value, label, formatFunc) {
                 if (!hasData) {
-                    // Для трёх расширенных меток убираем строку статуса, оставляем только одно N/S в значении
-                    if (label === 'Round Swing' || label === 'ADR' || label === 'HS%') {
-                        return `
-                            <div class="stat-bar-item">
-                                <div class="stat-label">${label}</div>
-                                <div class="bar-container"><div class="bar-fill" style="width: 0%;"></div></div>
-                                <div class="bar-value ns-text">N/S</div>
-                            </div>
-                        `;
-                    } else {
-                        // Для остальных (KPR, DPR, APR) оставляем как было (два N/S)
-                        return `
-                            <div class="stat-bar-item">
-                                <div class="stat-label">${label}</div>
-                                <div class="bar-container"><div class="bar-fill" style="width: 0%;"></div></div>
-                                <div class="bar-value ns-text">N/S</div>
-                                <div class="bar-status"><span class="ns-text">N/S</span></div>
-                            </div>
-                        `;
-                    }
+                    return `
+                        <div class="stat-bar-item">
+                            <div class="stat-label">${label}</div>
+                            <div class="bar-container"><div class="bar-fill" style="width: 0%;"></div></div>
+                            <div class="bar-value ns-text">N/S</div>
+                            <div class="bar-status"><span class="ns-text">N/S</span></div>
+                        </div>
+                    `;
                 }
                 let metricKey = '';
                 if (label === 'Round Swing') metricKey = 'swing';
@@ -609,7 +600,7 @@
                 </div>
             `;
 
-            // Правая колонка (добавлен атрибут data-match-file)
+            // Правая колонка (с data-match-file и обработчиком клика)
             let recentMatchesHtml = `
                 <div class="coach-stats-col">
                     <div class="recent-header">Recent matches</div>
@@ -700,8 +691,8 @@
 
             // Обработчик клика на матчи (переход на страницу матча)
             document.querySelectorAll('.recent-match-item').forEach(el => {
-                el.addEventListener('click', () => {
-                    const fileName = el.getAttribute('data-match-file');
+                el.addEventListener('click', function() {
+                    const fileName = this.getAttribute('data-match-file');
                     if (fileName) {
                         window.location.href = `match.html?match=${fileName}`;
                     }

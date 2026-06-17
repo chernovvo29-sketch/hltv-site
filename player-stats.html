@@ -213,6 +213,17 @@
                 return;
             }
 
+            // Функция вычисления возраста (целое число)
+            function calculateAge(birthDate) {
+                const today = new Date();
+                let age = today.getFullYear() - birthDate.getFullYear();
+                const m = today.getMonth() - birthDate.getMonth();
+                if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                    age--;
+                }
+                return age;
+            }
+
             let allMatches;
             try {
                 allMatches = await getAllMatches();
@@ -254,15 +265,17 @@
                 return;
             }
 
-            // Профили и аватар
+            // Профили и аватар (теперь с датами рождения)
             const playerProfiles = {
-                'dark_sasi':   { fullname: 'Alexander Zubarev', age: 19 },
-                'Dew1erMode':  { fullname: 'Vadim Chernov', age: 20 },
-                'map1ks':      { fullname: 'Maxim', age: 21 },
-                'D1amp0':      { fullname: 'Dmitriy Galihin', age: 22 },
-                'lightwork':   { fullname: 'Andrey Moscovich', age: 19 }
+                'dark_sasi':   { fullname: 'Alexander Zubarev', birthDate: new Date(2007, 10, 9) },
+                'Dew1erMode':  { fullname: 'Vadim Chernov', birthDate: new Date(2007, 8, 30) },
+                'map1ks':      { fullname: 'Maksim Patissonov', birthDate: new Date(2007, 9, 17) },
+                'D1amp0':      { fullname: 'Dmitry Galikhin', birthDate: new Date(2007, 7, 24) },
+                'lightwork':   { fullname: 'Andrey Moskovich', birthDate: new Date(2007, 8, 23) }
             };
-            const profile = playerProfiles[nick] || { fullname: 'Unknown', age: '?' };
+            const profile = playerProfiles[nick] || { fullname: 'Unknown', birthDate: null };
+            const age = profile.birthDate ? calculateAge(profile.birthDate) : '?';
+
             const avatarMap = {
                 'dark_sasi': 'player1.jpg',
                 'map1ks': 'player2.jpg',
@@ -444,7 +457,7 @@
                         <div class="player-details">
                             <div class="player-info-row">
                                 <div class="info-label">Age</div>
-                                <div class="info-value">${profile.age}</div>
+                                <div class="info-value">${age}</div>
                             </div>
                             <div class="player-info-row">
                                 <div class="info-label">Current Team</div>

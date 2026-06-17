@@ -40,6 +40,7 @@ function switchTab(tabId) {
     if (activeBtn) activeBtn.classList.add('active');
     localStorage.setItem('lastTab', tabId);
     if (tabId === 'stats') updateStats();
+    if (tabId === 'news') loadNews();
 }
 tabBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -306,8 +307,8 @@ function getTeamTime() {
 
 // ===== ФУНКЦИЯ ДЛЯ ЦВЕТА ПРОЦЕНТОВ =====
 function getPercentColorStyle(percent) {
-    if (percent > 54.5) return '#2ecc71';
-    if (percent < 45.5) return '#e74c3c';
+    if (percent > 52.5) return '#2ecc71';
+    if (percent < 47.5) return '#e74c3c';
     return '';
 }
 
@@ -316,7 +317,7 @@ function getMapBarColor(mapName) {
     return '#5dade2';
 }
 
-// ===== СТАТИСТИКА (ВКЛАДКА STATS) =====
+// ===== СТАТИСТИКА (ВКЛАДКА STATS) - ИСПРАВЛЕННАЯ ЧАСТЬ С MVP ССЫЛКАМИ =====
 function updateStats() {
     const statsContainer = document.getElementById('stats');
     if (!statsContainer) return;
@@ -443,12 +444,17 @@ function updateStats() {
                 'lightwork': 'player5.jpg'
             };
             const avatarSrc = avatarMap[mvpNick] || 'player1.jpg';
+            const profileUrl = `player-stats.html?nick=${encodeURIComponent(mvpNick)}`;
             mvpHtml = `
                 <div class="stats-map-mvp">
                     <div class="mvp-label">Map MVP</div>
                     <div class="mvp-player">
-                        <img class="mvp-avatar" src="${avatarSrc}" alt="${mvpNick}">
-                        <span class="mvp-nick">${mvpNick}</span>
+                        <a href="${profileUrl}" style="display: inline-block; text-decoration: none; color: inherit;">
+                            <img class="mvp-avatar" src="${avatarSrc}" alt="${mvpNick}" style="cursor: pointer;">
+                        </a>
+                        <a href="${profileUrl}" style="text-decoration: none; color: inherit;">
+                            <span class="mvp-nick" style="cursor: pointer;">${mvpNick}</span>
+                        </a>
                         <span class="mvp-rating">${mvpAvgRating.toFixed(2)}</span>
                     </div>
                 </div>
@@ -485,7 +491,7 @@ function updateStats() {
     attachDonutInteractivity();
 }
 
-// ===== РИСОВАНИЕ ПОНЧИКА =====
+// ===== РИСОВАНИЕ ПОНЧИКА (без изменений) =====
 function drawDonutChart(canvas, ct, t) {
     const total = ct + t;
     if (total === 0) return;
@@ -674,6 +680,39 @@ function playerClickHandler(e) {
     }
     if (nick) {
         window.location.href = `player-stats.html?nick=${encodeURIComponent(nick)}`;
+    }
+}
+
+// ===== ЗАГРУЗКА НОВОСТЕЙ (2 колонки, большие отступы) =====
+async function loadNews() {
+    const newsContainer = document.getElementById('news');
+    if (!newsContainer) return;
+    try {
+        const response = await fetch('news/index.json');
+        if (!response.ok) throw new Error('Не удалось загрузить список новостей');
+        const data = await response.json();
+        if (!data.articles || !data.articles.length) {
+            newsContainer.innerHTML = '<p style="text-align:center; padding: 2vw; color: #8899bb;">Новостей пока нет.</p>';
+            return;
+        }
+        let html = '<div style="display:flex; flex-wrap:wrap; gap:3vw; padding:1vw 8vw; margin-top: 4vh; margin-bottom: 2vh">';
+        for (const article of data.articles) {
+            html += `
+                <div onclick="window.location.href='news/${article.file}'" style="cursor:pointer; background-color:rgba(0,0,0,0.2); border-radius:0.5vw; overflow:hidden; flex:0 0 calc(50% - 4vw); max-width:calc(50% - 3vw); transition:transform 0.2s; min-width:23vw;">
+                    <img src="news/${article.image}" alt="${article.title}" style="width:100%; height:auto; display:block;" onerror="this.style.display='none'">
+                    <div style="padding:0.7vw;">
+                        <div style="font-weight:bold; font-size:0.9vw; margin-bottom:0.3vh;">${article.title}</div>
+                        <div style="font-size:0.7vw; color:#8899bb; margin-bottom:0.5vh;">${article.date}</div>
+                        <div style="font-size:0.75vw; color:#cbd5e6;">${article.summary}</div>
+                    </div>
+                </div>
+            `;
+        }
+        html += '</div>';
+        newsContainer.innerHTML = html;
+    } catch (err) {
+        console.error(err);
+        newsContainer.innerHTML = '<p style="text-align:center; padding:2vw; color:#ff6666;">Ошибка загрузки новостей</p>';
     }
 }
 
