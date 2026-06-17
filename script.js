@@ -41,6 +41,7 @@ function switchTab(tabId) {
     localStorage.setItem('lastTab', tabId);
     if (tabId === 'stats') updateStats();
     if (tabId === 'news') loadNews();
+    if (tabId === 'info') updateInfo();
 }
 tabBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -317,7 +318,7 @@ function getMapBarColor(mapName) {
     return '#5dade2';
 }
 
-// ===== СТАТИСТИКА (ВКЛАДКА STATS) - ИСПРАВЛЕННАЯ ЧАСТЬ С MVP ССЫЛКАМИ =====
+// ===== СТАТИСТИКА (ВКЛАДКА STATS) =====
 function updateStats() {
     const statsContainer = document.getElementById('stats');
     if (!statsContainer) return;
@@ -491,7 +492,7 @@ function updateStats() {
     attachDonutInteractivity();
 }
 
-// ===== РИСОВАНИЕ ПОНЧИКА (без изменений) =====
+// ===== РИСОВАНИЕ ПОНЧИКА =====
 function drawDonutChart(canvas, ct, t) {
     const total = ct + t;
     if (total === 0) return;
@@ -683,7 +684,7 @@ function playerClickHandler(e) {
     }
 }
 
-// ===== ЗАГРУЗКА НОВОСТЕЙ (2 колонки, большие отступы) =====
+// ===== ЗАГРУЗКА НОВОСТЕЙ =====
 async function loadNews() {
     const newsContainer = document.getElementById('news');
     if (!newsContainer) return;
@@ -714,6 +715,313 @@ async function loadNews() {
         console.error(err);
         newsContainer.innerHTML = '<p style="text-align:center; padding:2vw; color:#ff6666;">Ошибка загрузки новостей</p>';
     }
+}
+
+// ===== ИНФО: ГРАФИК ПОСЛЕДНИХ 30 МАТЧЕЙ С ПРЕРЫВАНИЕМ ЛИНИЙ =====
+async function updateInfo() {
+    const infoContainer = document.getElementById('info');
+    if (!infoContainer) return;
+
+    if (!allMatches || allMatches.length === 0) {
+        try {
+            await getAllMatches();
+        } catch (e) {
+            infoContainer.innerHTML = '<p style="text-align:center; padding:2vw; color:#ff6666;">Не удалось загрузить данные матчей</p>';
+            return;
+        }
+    }
+    if (!allMatches || allMatches.length === 0) {
+        infoContainer.innerHTML = '<p style="text-align:center; padding:2vw; color:#8899bb;">Нет данных о матчах</p>';
+        return;
+    }
+
+    let matches = allMatches.filter(m => m.playersDoctors && m.playersDoctors.length > 0);
+    if (matches.length === 0) {
+        infoContainer.innerHTML = '<p style="text-align:center; padding:2vw; color:#8899bb;">Нет матчей с составом Doctors</p>';
+        return;
+    }
+    matches.sort((a, b) => {
+        const numA = parseInt(a.fileName.split('_')[0], 10);
+        const numB = parseInt(b.fileName.split('_')[0], 10);
+        return numA - numB;
+    });
+
+    const recentMatches = matches.slice(-30);
+
+    const mainPlayers = ['dark_sasi', 'map1ks', 'Dew1erMode', 'D1amp0', 'lightwork'];
+    const playerColors = ['#e74c3c', '#3498db', '#2ecc71', '#f1c40f', '#9b59b6'];
+
+    const teamAvgRatings = [];
+    const playerRatingsData = {};
+    mainPlayers.forEach(nick => { playerRatingsData[nick] = []; });
+
+    for (const match of recentMatches) {
+        const totalRating = match.playersDoctors.reduce((sum, p) => sum + (p.rating || 0), 0);
+        const avgRating = totalRating / match.playersDoctors.length;
+        teamAvgRatings.push(avgRating);
+
+        for (const nick of mainPlayers) {
+            const player = match.playersDoctors.find(p => p.nick === nick);
+            playerRatingsData[nick].push(player ? (player.rating || 0) : null);
+        }
+    }
+
+    // По умолчанию только Average активен
+    const visibility = {
+        avg: true,
+        dark_sasi: false,
+        map1ks: false,
+        Dew1erMode: false,
+        D1amp0: false,
+        lightwork: false
+    };
+
+    function drawChart(container, teamAvgRatings, playerRatingsData, mainPlayers, playerColors, visibility) {
+        const canvas = container.querySelector('#ratingChart');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        const w = canvas.width, h = canvas.height;
+        const padding = { top: 40, bottom: 100, left: 70, right: 30 };
+        const chartW = w - padding.left - padding.right;
+        const chartH = h - padding.top - padding.bottom;
+
+        const allValues = [];
+        for (const val of teamAvgRatings) allValues.push(val);
+        for (const nick of mainPlayers) {
+            const vals = playerRatingsData[nick].filter(v => v !== null);
+            for (const v of vals) allValues.push(v);
+        }
+        const maxVal = Math.max(...allValues);
+        const maxY = Math.ceil(maxVal * 10) / 10;
+        const minY = 0;
+
+        ctx.clearRect(0, 0, w, h);
+
+        ctx.strokeStyle = '#8899bb';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(padding.left, padding.top);
+        ctx.lineTo(padding.left, padding.top + chartH);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(padding.left, padding.top + chartH);
+        ctx.lineTo(padding.left + chartW, padding.top + chartH);
+        ctx.stroke();
+
+        ctx.fillStyle = '#8899bb';
+        ctx.font = '10px sans-serif';
+        ctx.textAlign = 'right';
+        ctx.textBaseline = 'middle';
+        let yStep = 0.1;
+        if (maxY > 3) yStep = 0.2;
+        if (maxY > 6) yStep = 0.5;
+        if (maxY > 10) yStep = 1.0;
+        for (let val = minY; val <= maxY; val += yStep) {
+            const y = padding.top + chartH - ((val - minY) / (maxY - minY)) * chartH;
+            ctx.fillText(val.toFixed(1), padding.left - 10, y);
+            ctx.beginPath();
+            ctx.moveTo(padding.left - 5, y);
+            ctx.lineTo(padding.left, y);
+            ctx.stroke();
+        }
+
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'top';
+        const xStep = Math.max(1, Math.floor(recentMatches.length / 10));
+        for (let i = 0; i < recentMatches.length; i += xStep) {
+            const x = padding.left + (i / (recentMatches.length - 1 || 1)) * chartW;
+            ctx.fillText(`#${i+1}`, x, padding.top + chartH + 8);
+        }
+
+        // Храним точки для тултипа
+        const linesData = [];
+
+        // Функция рисования линии с прерыванием при null
+        function drawLine(values, color, lineWidth = 1.5, dash = [], label = '') {
+            const points = [];
+            // Собираем все точки, игнорируя null
+            for (let i = 0; i < values.length; i++) {
+                const val = values[i];
+                if (val === null) continue;
+                const x = padding.left + (i / (values.length - 1 || 1)) * chartW;
+                const y = padding.top + chartH - ((val - minY) / (maxY - minY)) * chartH;
+                points.push({ x, y, value: val, matchIndex: i });
+            }
+            if (points.length < 2) return;
+
+            // Разбиваем на сегменты, где разница индексов > 1 (был пропуск)
+            let start = 0;
+            for (let i = 1; i < points.length; i++) {
+                if (points[i].matchIndex - points[i-1].matchIndex > 1) {
+                    // Рисуем сегмент от start до i-1
+                    if (i - start >= 2) { // если хотя бы две точки
+                        ctx.beginPath();
+                        ctx.strokeStyle = color;
+                        ctx.lineWidth = lineWidth;
+                        ctx.setLineDash(dash);
+                        ctx.moveTo(points[start].x, points[start].y);
+                        for (let j = start + 1; j < i; j++) {
+                            ctx.lineTo(points[j].x, points[j].y);
+                        }
+                        ctx.stroke();
+                        ctx.setLineDash([]);
+                        // Сохраняем точки сегмента для тултипа
+                        for (let j = start; j < i; j++) {
+                            linesData.push({ label, color, point: points[j] });
+                        }
+                    }
+                    start = i;
+                }
+            }
+            // Последний сегмент
+            if (points.length - start >= 2) {
+                ctx.beginPath();
+                ctx.strokeStyle = color;
+                ctx.lineWidth = lineWidth;
+                ctx.setLineDash(dash);
+                ctx.moveTo(points[start].x, points[start].y);
+                for (let j = start + 1; j < points.length; j++) {
+                    ctx.lineTo(points[j].x, points[j].y);
+                }
+                ctx.stroke();
+                ctx.setLineDash([]);
+                for (let j = start; j < points.length; j++) {
+                    linesData.push({ label, color, point: points[j] });
+                }
+            }
+        }
+
+        // Линии игроков
+        for (let idx = 0; idx < mainPlayers.length; idx++) {
+            const nick = mainPlayers[idx];
+            if (visibility[nick]) {
+                const color = playerColors[idx];
+                const data = playerRatingsData[nick];
+                drawLine(data, color, 1.5, [], nick);
+            }
+        }
+
+        // Средняя линия (без прерываний)
+        if (visibility.avg) {
+            const points = [];
+            for (let i = 0; i < teamAvgRatings.length; i++) {
+                const val = teamAvgRatings[i];
+                const x = padding.left + (i / (teamAvgRatings.length - 1 || 1)) * chartW;
+                const y = padding.top + chartH - ((val - minY) / (maxY - minY)) * chartH;
+                points.push({ x, y, value: val, matchIndex: i });
+            }
+            if (points.length > 1) {
+                ctx.beginPath();
+                ctx.strokeStyle = '#ffffff';
+                ctx.lineWidth = 3;
+                ctx.moveTo(points[0].x, points[0].y);
+                for (let i = 1; i < points.length; i++) {
+                    ctx.lineTo(points[i].x, points[i].y);
+                }
+                ctx.stroke();
+                // Сохраняем точки для тултипа
+                for (const p of points) {
+                    linesData.push({ label: 'Average', color: '#ffffff', point: p });
+                }
+            }
+        }
+
+        ctx.fillStyle = '#cbd5e6';
+        ctx.font = 'bold 16px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'bottom';
+        ctx.fillText('Player ratings', w / 2, padding.top - 5);
+
+        // Сохраняем данные для тултипа в canvas
+        canvas._linesData = linesData;
+    }
+
+    // Интерфейс
+    let html = `
+        <div style="padding:0 1vw; text-align:center; margin-top: 6vh; margin-bottom:4vh; padding-bottom: 150px;">
+            <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:1.5vw; margin-bottom:1vh;">
+    `;
+    const legendItems = [
+        { label: 'Average', key: 'avg', color: '#ffffff', isBold: true }
+    ];
+    mainPlayers.forEach((nick, idx) => {
+        legendItems.push({ label: nick, key: nick, color: playerColors[idx], isBold: false });
+    });
+    for (const item of legendItems) {
+        html += `
+            <div class="legend-item" data-key="${item.key}" style="display:flex; align-items:center; gap:0.5vw; font-size:0.8vw; color:#cbd5e6; cursor:pointer; opacity:${visibility[item.key] ? '1' : '0.3'}; transition:opacity 0.2s;">
+                <span style="display:inline-block; width:1.2vw; height:${item.isBold ? '0.3vw' : '0.2vw'}; background-color:${item.color};"></span>
+                <span>${item.label}</span>
+            </div>
+        `;
+    }
+    html += `
+            </div>
+            <div style="position:relative; display:inline-block; width:100%; max-width:60vw; margin:0 auto;">
+                <canvas id="ratingChart" width="800" height="700" style="width:100%; height:auto; background:transparent; border-radius:0.5vw; display:block; margin:0 auto;"></canvas>
+                <div id="chartTooltip" style="position:absolute; pointer-events:none; background:rgba(0,0,0,0.7); color:#fff; padding:0.2vw 0.5vw; border-radius:0.2vw; font-size:0.9vw; display:none; z-index:100; font-weight:bold;"></div>
+            </div>
+        </div>
+    `;
+
+    infoContainer.innerHTML = html;
+
+    const canvas = document.getElementById('ratingChart');
+    if (!canvas) return;
+
+    drawChart(infoContainer, teamAvgRatings, playerRatingsData, mainPlayers, playerColors, visibility);
+
+    // Клики по легенде
+    const legendItemsElements = infoContainer.querySelectorAll('.legend-item');
+    legendItemsElements.forEach(el => {
+        el.addEventListener('click', function() {
+            const key = this.dataset.key;
+            visibility[key] = !visibility[key];
+            this.style.opacity = visibility[key] ? '1' : '0.3';
+            drawChart(infoContainer, teamAvgRatings, playerRatingsData, mainPlayers, playerColors, visibility);
+        });
+    });
+
+    // Тултип
+    const tooltip = document.getElementById('chartTooltip');
+    canvas.addEventListener('mousemove', function(e) {
+        const rect = canvas.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+        const scaleX = canvas.width / rect.width;
+        const scaleY = canvas.height / rect.height;
+        const canvasX = mouseX * scaleX;
+        const canvasY = mouseY * scaleY;
+
+        const data = canvas._linesData;
+        if (!data || data.length === 0) { tooltip.style.display = 'none'; return; }
+
+        let closest = null;
+        let minDist = Infinity;
+        for (const entry of data) {
+            const p = entry.point;
+            const dx = canvasX - p.x;
+            const dy = canvasY - p.y;
+            const dist = Math.sqrt(dx*dx + dy*dy);
+            if (dist < minDist) {
+                minDist = dist;
+                closest = p;
+            }
+        }
+
+        if (closest && minDist < 10) {
+            tooltip.textContent = closest.value.toFixed(2);
+            tooltip.style.display = 'block';
+            tooltip.style.left = (e.clientX - rect.left + 15) + 'px';
+            tooltip.style.top = (e.clientY - rect.top - 10) + 'px';
+        } else {
+            tooltip.style.display = 'none';
+        }
+    });
+
+    canvas.addEventListener('mouseleave', function() {
+        tooltip.style.display = 'none';
+    });
 }
 
 // ===== ИНИЦИАЛИЗАЦИЯ =====

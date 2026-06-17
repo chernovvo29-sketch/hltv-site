@@ -176,7 +176,7 @@
             color: #aaa;
             margin-bottom: 2vh;
         }
-        /* Игровая статистика */
+        /* Игровая статистика (Stand-in) */
         .rating-block {
             display: flex;
             flex-direction: column;
@@ -460,8 +460,8 @@
             const thresholds = {
                 kpr: { avg: 0.68, minMult: 0.75, maxMult: 1.25, goodMult: 1.125, badMult: 0.875, invert: false },
                 dpr: { avg: 0.68, minMult: 0.8, maxMult: 1.2, goodMult: 0.89, badMult: 1.11, invert: true },
-                apr: { avg: 0.23, minMult: 0.7, maxMult: 1.3, goodMult: 1.15, badMult: 0.85, invert: false },
-                adr: { avg: 81.5, minMult: 0.7, maxMult: 1.3, goodMult: 1.15, badMult: 0.85, invert: false },
+                apr: { avg: 0.23, minMult: 0.65, maxMult: 1.45, goodMult: 1.175, badMult: 0.825, invert: false },
+                adr: { avg: 80.5, minMult: 0.7, maxMult: 1.3, goodMult: 1.15, badMult: 0.85, invert: false },
                 hs:  { avg: 51,   minMult: 0.7, maxMult: 1.3, goodMult: 1.15, badMult: 0.85, invert: false },
                 swing: { avg: 0, minVal: -2.7, maxVal: 2.7, good: 1.25, bad: -1.25, invert: false }
             };
@@ -506,6 +506,7 @@
                 return { percent, status, statusClass };
             }
 
+            // Исправленная функция generateBarWithNS — теперь только одна N/S
             function generateBarWithNS(hasData, value, label, formatFunc) {
                 if (!hasData) {
                     return `
@@ -513,7 +514,6 @@
                             <div class="stat-label">${label}</div>
                             <div class="bar-container"><div class="bar-fill" style="width: 0%;"></div></div>
                             <div class="bar-value ns-text">N/S</div>
-                            <div class="bar-status"><span class="ns-text">N/S</span></div>
                         </div>
                     `;
                 }
@@ -569,7 +569,7 @@
                 </div>
             `;
 
-            // Левая колонка статистики с цветными буквами CT/T и WinRate
+            // Левая колонка статистики
             const leftStatsHtml = `
                 <div class="coach-stats-col">
                     <div class="coach-stat-block">
@@ -600,7 +600,7 @@
                 </div>
             `;
 
-            // Правая колонка (с data-match-file и обработчиком клика)
+            // Правая колонка (матчи)
             let recentMatchesHtml = `
                 <div class="coach-stats-col">
                     <div class="recent-header">Recent matches</div>
@@ -630,7 +630,7 @@
                 </div>
             `;
 
-            // Контент для вкладки Stand-in
+            // Контент для вкладки Stand-in (с исправленным N/S)
             let standinContentHtml = '';
             if (!matchesPlayed) {
                 standinContentHtml = '<p style="text-align:center;">Нет данных о выступлениях в качестве игрока</p>';
@@ -689,7 +689,7 @@
                 });
             });
 
-            // Обработчик клика на матчи (переход на страницу матча)
+            // Обработчик клика на матчи
             document.querySelectorAll('.recent-match-item').forEach(el => {
                 el.addEventListener('click', function() {
                     const fileName = this.getAttribute('data-match-file');
