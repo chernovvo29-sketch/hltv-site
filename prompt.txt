@@ -45,7 +45,7 @@
 
 
 #### 5.1 Расчёт для **Lite** (без ADR, мультикиллов, round_swing)
-BaseRating = 0.64*(KPR/0.70) + 0.08*K_D + 0.17*(APR/0.32) + 0.10*((1-DPR)/0.30)
+BaseRating = 0.63*(KPR/0.70) + 0.09*K_D + 0.17*(APR/0.32) + 0.10*((1-DPR)/0.30)
 MatchFactor = победители: (1 + 0.0025 * Δ), проигравшие: (1 - 0.0025 * Δ)
 TempRating = (BaseRating) * MatchFactor
 
