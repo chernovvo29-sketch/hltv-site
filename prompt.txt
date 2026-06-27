@@ -39,24 +39,24 @@
 - `KPR = kills / Rounds`
 - `DPR = deaths / Rounds`
 - `APR = assists / Rounds`
-- `K_D_raw = kills / max(deaths, 1)` (если deaths=0 → 3.0)
+- `K_D_raw = kills / max(deaths, 1)`
 - `K_D = ln(K_D_raw + 1) / ln(1.43)` (логарифмическое сжатие с base=2.19)
 - `Δ = |teamDoctorsScore - teamOpponentScore|`
 
 
 #### 5.1 Расчёт для **Lite** (без ADR, мультикиллов, round_swing)
-BaseRating = 0.64*(KPR/0.70) + 0.08*K_D + 0.18*(APR/0.31) + 0.10*((1-DPR)/0.30)
+BaseRating = 0.64*(KPR/0.70) + 0.08*K_D + 0.17*(APR/0.32) + 0.10*((1-DPR)/0.30)
 MatchFactor = победители: (1 + 0.0025 * Δ), проигравшие: (1 - 0.0025 * Δ)
 TempRating = (BaseRating) * MatchFactor
 
 #### 5.2 Расчёт для **Full** (с ADR, мультикиллами, round_swing)
-MK_per_round = (2k + 3k + 4k + 5k) / Rounds
-Impact = 0.31*(KPR/0.70) + 0.08*K_D + 0.15*(APR/0.32) + 0.09*((1-DPR)/0.30) + 0.29*(ADR/85) + 0.03*(HS%/50) + 0.10*(MK_per_round/0.35)
-SwingComponent = max(-0.29, -0.36 * Impact, min(0.45, round_swing / 18))
-RawRating = 0.65 * Impact + 0.5 * SwingComponent
+MK_score = (2k * 1.0 + 3k * 2.5 + 4k * 5.9 + 5k * 15.3) / Rounds
+Impact = 0.31*(KPR/0.70) + 0.08*K_D + 0.15*(APR/0.32) + 0.09*((1-DPR)/0.30) + 0.29*(ADR/85) + 0.03*(HS%/50) + 0.08*(MK_per_round/0.45)
+SwingComponent = max(-0.25, -0.35 * Impact, min(0.45, round_swing / 18))
+RawRating = 0.65 * Impact + 0.45 * SwingComponent
 SurvivalBonus = 0.003 * Δ (только для победителей)
-MatchFactor = победители: (1 + 0.0025 * Δ), проигравшие: (1 - 0.0025 * Δ)
-TempRating = (RawRating + SurvivalBonus*0.01) * MatchFactor
+MatchFactor = победители: (1 + 0.002 * Δ), проигравшие: (1 - 0.002 * Δ)
+TempRating = (RawRating + SurvivalBonus*0.05) * MatchFactor
 
 #### 5.3 Нормализация (для обеих версий, обязательное условие)
 - `mean_temp = (сумма TempRating всех 10 игроков) / 10`
