@@ -4,12 +4,49 @@
 <head>
     <meta charset="UTF-8">
     <title>Team Doctors</title>
+
+    <style>
+        html.preload-dark {
+            background-color: #1a1d2b;
+        }
+
+        html.preload-light {
+            background-color: #8ecafb;
+        }
+
+        html.theme-loading body {
+            visibility: hidden;
+        }
+    </style>
+
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('theme');
+            const theme = savedTheme === 'dark' ? 'dark' : 'light';
+
+            document.documentElement.classList.add('theme-loading');
+            document.documentElement.classList.add('preload-' + theme);
+        })();
+    </script>
+
     <link rel="stylesheet" href="theme.css">
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
-<body class="light">
+<body>
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('theme');
+            const theme = savedTheme === 'dark' ? 'dark' : 'light';
+
+            document.body.classList.remove('dark', 'light');
+            document.body.classList.add(theme);
+
+            document.documentElement.classList.remove('theme-loading');
+        })();
+    </script>
+
     <!-- Переключатель темы -->
     <div class="theme-toggle">
         <input type="checkbox" id="themeSwitch">
@@ -18,6 +55,16 @@
             <i class="fa-solid fa-sun"></i>
         </label>
     </div>
+
+    <script>
+        (function () {
+            const toggle = document.getElementById('themeSwitch');
+            const savedTheme = localStorage.getItem('theme');
+            if (toggle) {
+                toggle.checked = savedTheme === 'dark';
+            }
+        })();
+    </script>
 
     <!-- Логотип HLTV (фиксированный) -->
     <div class="hltv">
@@ -117,6 +164,7 @@
                 <div class="col-maps">Maps played</div>
                 <div class="col-rating">Rating</div>
             </div>
+
             <!-- dark_sasi -->
             <div class="roster-row">
                 <div class="col-player">
@@ -130,6 +178,7 @@
                 <div class="col-maps">209</div>
                 <div class="col-rating">3.0</div>
             </div>
+
             <!-- map1ks -->
             <div class="roster-row">
                 <div class="col-player">
@@ -143,6 +192,7 @@
                 <div class="col-maps">139</div>
                 <div class="col-rating">0.83</div>
             </div>
+
             <!-- D1amp0 -->
             <div class="roster-row">
                 <div class="col-player">
@@ -156,6 +206,7 @@
                 <div class="col-maps">147</div>
                 <div class="col-rating">1.20</div>
             </div>
+
             <!-- Dew1erMode -->
             <div class="roster-row">
                 <div class="col-player">
@@ -169,6 +220,7 @@
                 <div class="col-maps">142</div>
                 <div class="col-rating">1.45</div>
             </div>
+
             <!-- lightwork -->
             <div class="roster-row">
                 <div class="col-player">

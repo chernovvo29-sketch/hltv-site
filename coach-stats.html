@@ -1,13 +1,37 @@
-<!-- coach-stats.html -->
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Тренер | Team Doctors</title>
+
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('theme');
+            const theme = savedTheme || 'dark';
+            document.documentElement.classList.add(theme);
+        })();
+    </script>
+
+    <style>
+        html, body {
+            background-color: #1a1d2b !important;
+            color: #cbd5e6 !important;
+        }
+
+        html.light, html.light body {
+            background-color: #8ecafb !important;
+        }
+
+        html.dark, html.dark body {
+            background-color: #1a1d2b !important;
+        }
+    </style>
+
     <link rel="stylesheet" href="theme.css">
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <style>
         .coach-container {
             max-width: 55vw;
@@ -17,6 +41,7 @@
             flex-direction: column;
             gap: 3vh;
         }
+
         .coach-card-left {
             background-color: #2d3246;
             padding: 1.5vw;
@@ -24,6 +49,7 @@
             gap: 1.5vw;
             align-items: stretch;
         }
+
         .coach-avatar {
             width: 10vw;
             height: 10vw;
@@ -36,12 +62,14 @@
             border-radius: 0;
             background-color: rgba(255,255,255,0.1);
         }
+
         .coach-info-area {
             flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
+
         .coach-nick {
             font-size: 1.8vw;
             font-weight: bold;
@@ -49,6 +77,7 @@
             color: inherit;
             text-decoration: none;
         }
+
         .coach-fullname {
             font-size: 1.1vw;
             display: flex;
@@ -57,15 +86,18 @@
             margin-top: 0.5vh;
             margin-left: 0.3vh;
         }
+
         .coach-flag-img {
             width: 1.5vw;
             height: auto;
             display: inline-block;
             vertical-align: middle;
         }
+
         .coach-details {
             margin-top: 1.5vh;
         }
+
         .coach-info-row {
             display: flex;
             justify-content: space-between;
@@ -73,62 +105,76 @@
             margin-bottom: 1vh;
             font-size: 0.9vw;
         }
+
         .info-label {
             color: #aaa;
         }
+
         .info-value {
             font-weight: bold;
         }
+
         .current-team-link {
             color: inherit;
             text-decoration: none;
             transition: opacity 0.2s;
         }
+
         .current-team-link:hover {
             opacity: 0.8;
         }
+
         .coach-two-columns {
             display: flex;
             gap: 2vw;
             justify-content: space-between;
         }
+
         .coach-stats-col {
             flex: 1;
             display: flex;
             flex-direction: column;
             gap: 1.5vh;
         }
+
         .coach-stat-block {
             background-color: rgba(0,0,0,0.2);
             padding: 0.6vw;
             text-align: center;
             border-radius: 0.5vw;
         }
+
         .coach-stat-label {
             font-size: 0.9vw;
             color: #aaa;
             margin-bottom: 0.3vh;
         }
+
         .coach-stat-value {
             font-size: 1.8vw;
             font-weight: bold;
         }
+
         .coach-stat-sub {
             font-size: 0.8vw;
             color: #bbb;
             margin-top: 0.3vh;
         }
+
         .ct-letter {
             color: #3498db;
         }
+
         .t-letter {
             color: #e67e22;
         }
+
         .recent-matches-list {
             display: flex;
             flex-direction: column;
             gap: 1.7vh;
         }
+
         .recent-match-item {
             display: flex;
             align-items: center;
@@ -141,15 +187,19 @@
             cursor: pointer;
             transition: background-color 0.2s ease;
         }
+
         .recent-match-item:hover {
             background-color: rgba(255,255,255,0.1);
         }
+
         .recent-match-item.win {
             border-right: 0.4vw solid #18ea6f;
         }
+
         .recent-match-item.loss {
             border-right: 0.4vw solid #d82f1d;
         }
+
         .match-opponent-logo {
             width: 3vw;
             height: 3vw;
@@ -163,22 +213,27 @@
             border-radius: 0;
             background-color: rgba(255,255,255,0.1);
         }
+
         .match-info {
             flex: 1;
         }
+
         .match-opponent-name {
             font-size: 1.1vw;
             font-weight: bold;
         }
+
         .match-tournament {
             font-size: 0.8vw;
             color: #aaa;
         }
+
         .match-score {
             font-size: 1.2vw;
             font-weight: bold;
             white-space: nowrap;
         }
+
         .recent-header {
             text-align: center;
             font-size: 1.3vw;
@@ -186,6 +241,7 @@
             color: #aaa;
             margin-bottom: 2vh;
         }
+
         .rating-block {
             display: flex;
             flex-direction: column;
@@ -193,34 +249,41 @@
             gap: 0.5vh;
             margin-bottom: 2vh;
         }
+
         .main-rating {
             font-size: 1.2vw;
             font-weight: bold;
         }
+
         .elite-rating {
             font-size: 1.2vw;
             font-weight: bold;
             margin-bottom: 3vh;
         }
+
         .stats-grid {
             display: flex;
             flex-direction: column;
             gap: 2.5vh;
         }
+
         .stats-row {
             display: flex;
             gap: 2vw;
             justify-content: space-between;
         }
+
         .stat-bar-item {
             flex: 1;
             text-align: center;
             position: relative;
         }
+
         .stat-label {
             font-size: 0.8vw;
             margin-bottom: 0.5vh;
         }
+
         .bar-container {
             width: 80%;
             height: 0.5vh;
@@ -229,24 +292,37 @@
             margin: 0.5vh auto;
             position: relative;
         }
+
         .bar-fill {
             height: 100%;
             width: 0%;
             border-radius: 0.25vh;
             transition: width 0.3s;
         }
+
         .bar-value {
             font-size: 1.0vw;
             font-weight: bold;
             margin-top: 0.2vh;
         }
+
         .bar-status {
             font-size: 0.8vw;
             margin-top: 0.3vh;
         }
-        .status-good { color: #2ecc71; }
-        .status-bad { color: #e74c3c; }
-        .status-ok { color: #f1c40f; }
+
+        .status-good {
+            color: #2ecc71;
+        }
+
+        .status-bad {
+            color: #e74c3c;
+        }
+
+        .status-ok {
+            color: #f1c40f;
+        }
+
         .error-message {
             color: #ff6666;
             text-align: center;
@@ -254,22 +330,26 @@
             background: rgba(0,0,0,0.5);
             border-radius: 1vw;
         }
+
         .ns-text {
             color: #aaa;
             font-weight: normal;
         }
+
         .coach-container .card {
             margin-left: 0;
             width: 100%;
             max-width: 100%;
             box-sizing: border-box;
         }
+
         .coach-container .tabs {
             margin-left: 5.88vw;
         }
     </style>
 </head>
-<body>
+
+<body class="dark">
     <div class="theme-toggle">
         <input type="checkbox" id="themeSwitch">
         <label for="themeSwitch" class="slider">
@@ -277,6 +357,7 @@
             <i class="fa-solid fa-sun"></i>
         </label>
     </div>
+
     <div class="hltv">
         <img src="hltv-pic.jpg" alt="logo" class="hltv-img">
         <span>HLTV</span>
@@ -287,6 +368,34 @@
     </div>
 
     <script src="script.js"></script>
+
+    <script>
+        (function () {
+            const oldSetTheme = window.setTheme;
+
+            window.setTheme = function (isDark) {
+                document.documentElement.classList.toggle('dark', isDark);
+                document.documentElement.classList.toggle('light', !isDark);
+
+                if (typeof oldSetTheme === 'function') {
+                    oldSetTheme(isDark);
+                } else {
+                    document.body.classList.toggle('dark', isDark);
+                    document.body.classList.toggle('light', !isDark);
+                    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+                }
+            };
+
+            const savedTheme = localStorage.getItem('theme');
+            const isDark = (savedTheme || 'dark') === 'dark';
+
+            window.setTheme(isDark);
+
+            const toggle = document.getElementById('themeSwitch');
+            if (toggle) toggle.checked = isDark;
+        })();
+    </script>
+
     <script>
         (async function() {
             const container = document.getElementById('coachContainer');
@@ -296,21 +405,33 @@
                 const today = new Date();
                 let age = today.getFullYear() - birthDate.getFullYear();
                 const m = today.getMonth() - birthDate.getMonth();
-                if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) age--;
+
+                if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                    age--;
+                }
+
                 return age;
             }
+
             const coachBirthday = new Date(2007, 3, 26);
             const coachAge = calculateAge(coachBirthday);
 
             async function loadMatchesDirectly() {
                 console.log('Прямая загрузка матчей через index.json');
+
                 try {
                     const indexResp = await fetch('matches/index.json');
-                    if (!indexResp.ok) throw new Error(`index.json не загружен: ${indexResp.status}`);
+
+                    if (!indexResp.ok) {
+                        throw new Error(`index.json не загружен: ${indexResp.status}`);
+                    }
+
                     const { matches: matchFiles } = await indexResp.json();
                     const matchesData = [];
+
                     for (const fileName of matchFiles) {
                         const res = await fetch(`matches/${fileName}`);
+
                         if (res.ok) {
                             const match = await res.json();
                             match.fileName = fileName;
@@ -319,10 +440,12 @@
                             console.warn(`Не удалось загрузить ${fileName}`);
                         }
                     }
+
                     matchesData.sort((a, b) => {
                         const getNumber = (fileName) => parseInt(fileName.split('_')[0], 10);
                         return getNumber(b.fileName) - getNumber(a.fileName);
                     });
+
                     return matchesData;
                 } catch (err) {
                     console.error('Ошибка прямой загрузки:', err);
@@ -331,10 +454,15 @@
             }
 
             let allMatches = [];
+
             try {
                 if (typeof getAllMatches === 'function') {
                     console.log('Используем getAllMatches');
-                    const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('Таймаут')), 5000));
+
+                    const timeoutPromise = new Promise((_, reject) => {
+                        setTimeout(() => reject(new Error('Таймаут')), 5000);
+                    });
+
                     allMatches = await Promise.race([getAllMatches(), timeoutPromise]);
                     console.log('getAllMatches загрузил', allMatches.length, 'матчей');
                 } else {
@@ -353,41 +481,78 @@
             }
 
             const coachMatches = allMatches;
-            let totalMaps = 0, wins = 0, totalRoundsCt = 0, totalRoundsCtWon = 0, totalRoundsT = 0, totalRoundsTWon = 0;
+
+            let totalMaps = 0;
+            let wins = 0;
+            let totalRoundsCt = 0;
+            let totalRoundsCtWon = 0;
+            let totalRoundsT = 0;
+            let totalRoundsTWon = 0;
+
             const mapWinStats = {};
 
             for (const match of coachMatches) {
                 const map = match.map;
-                if (!map) continue;
+
+                if (!map) {
+                    continue;
+                }
+
                 totalMaps++;
-                const doctorsWin = (match.teamDoctorsScore > match.teamOpponentScore);
-                if (doctorsWin) wins++;
+
+                const doctorsWin = match.teamDoctorsScore > match.teamOpponentScore;
+
+                if (doctorsWin) {
+                    wins++;
+                }
+
                 const ctWon = match.scoreCtDoctors || 0;
                 const ctLost = match.lostCtDoctors || 0;
+
                 totalRoundsCt += ctWon + ctLost;
                 totalRoundsCtWon += ctWon;
+
                 const tWon = match.scoreTDoctors || 0;
                 const tLost = match.lostTDoctors || 0;
+
                 totalRoundsT += tWon + tLost;
                 totalRoundsTWon += tWon;
-                if (!mapWinStats[map]) mapWinStats[map] = { wins: 0, played: 0 };
+
+                if (!mapWinStats[map]) {
+                    mapWinStats[map] = {
+                        wins: 0,
+                        played: 0
+                    };
+                }
+
                 mapWinStats[map].played++;
-                if (doctorsWin) mapWinStats[map].wins++;
+
+                if (doctorsWin) {
+                    mapWinStats[map].wins++;
+                }
             }
 
             const mapWinrate = totalMaps ? (wins / totalMaps * 100).toFixed(0) : 0;
             const ctWinrate = totalRoundsCt ? (totalRoundsCtWon / totalRoundsCt * 100).toFixed(0) : 0;
             const tWinrate = totalRoundsT ? (totalRoundsTWon / totalRoundsT * 100).toFixed(0) : 0;
 
-            let bestMap = null, bestMapWinrate = -1, bestMapPlayed = 0;
-            let worstMap = null, worstMapWinrate = 101, worstMapPlayed = 0;
+            let bestMap = null;
+            let bestMapWinrate = -1;
+            let bestMapPlayed = 0;
+
+            let worstMap = null;
+            let worstMapWinrate = 101;
+            let worstMapPlayed = 0;
+
             for (const [map, stats] of Object.entries(mapWinStats)) {
-                const wr = (stats.wins / stats.played * 100);
+                const wr = stats.wins / stats.played * 100;
+
                 if (wr > bestMapWinrate || (wr === bestMapWinrate && stats.played > bestMapPlayed)) {
                     bestMapWinrate = wr;
                     bestMap = map;
                     bestMapPlayed = stats.played;
                 }
+
                 if (wr < worstMapWinrate || (wr === worstMapWinrate && stats.played > worstMapPlayed)) {
                     worstMapWinrate = wr;
                     worstMap = map;
@@ -398,53 +563,93 @@
             const recentMatches = allMatches.slice(0, 5);
 
             const playerNick = 'adski_profi';
-            let allPlayerMatches = [], fullMatches = [];
+
+            let allPlayerMatches = [];
+            let fullMatches = [];
+
             for (const match of allMatches) {
                 let player = null;
-                if (match.playersDoctors) player = match.playersDoctors.find(p => p.nick === playerNick);
-                if (!player && match.playersOpponent) player = match.playersOpponent.find(p => p.nick === playerNick);
+
+                if (match.playersDoctors) {
+                    player = match.playersDoctors.find(p => p.nick === playerNick);
+                }
+
+                if (!player && match.playersOpponent) {
+                    player = match.playersOpponent.find(p => p.nick === playerNick);
+                }
+
                 if (player) {
-                    allPlayerMatches.push({ match, player });
-                    if (match.version === 'Full') fullMatches.push({ match, player });
+                    allPlayerMatches.push({
+                        match,
+                        player
+                    });
+
+                    if (match.version === 'Full') {
+                        fullMatches.push({
+                            match,
+                            player
+                        });
+                    }
                 }
             }
 
-            let totalKills = 0, totalDeaths = 0, totalAssists = 0, totalRoundsPlayed = 0;
+            let totalKills = 0;
+            let totalDeaths = 0;
+            let totalAssists = 0;
+            let totalRoundsPlayed = 0;
+
             for (const item of allPlayerMatches) {
                 totalKills += item.player.kills || 0;
                 totalDeaths += item.player.deaths || 0;
                 totalAssists += item.player.assists || 0;
                 totalRoundsPlayed += item.match.teamDoctorsScore + item.match.teamOpponentScore;
             }
+
             const matchesPlayed = allPlayerMatches.length;
-            let kpr = matchesPlayed ? (totalKills / totalRoundsPlayed) : 0;
-            let dpr = matchesPlayed ? (totalDeaths / totalRoundsPlayed) : 0;
-            let apr = matchesPlayed ? (totalAssists / totalRoundsPlayed) : 0;
+
+            let kpr = matchesPlayed ? totalKills / totalRoundsPlayed : 0;
+            let dpr = matchesPlayed ? totalDeaths / totalRoundsPlayed : 0;
+            let apr = matchesPlayed ? totalAssists / totalRoundsPlayed : 0;
+
             kpr = parseFloat(kpr.toFixed(3));
             dpr = parseFloat(dpr.toFixed(3));
             apr = parseFloat(apr.toFixed(3));
 
-            let totalAdr = 0, totalHs = 0, totalSwing = 0;
-            let fullCount = fullMatches.length;
+            let totalAdr = 0;
+            let totalHs = 0;
+            let totalSwing = 0;
+
+            const fullCount = fullMatches.length;
+
             for (const item of fullMatches) {
                 totalAdr += item.player.adr || 0;
                 totalHs += item.player.hs_percent || 0;
                 totalSwing += item.player.round_swing || 0;
             }
+
             const hasFull = fullCount > 0;
-            const avgAdr = hasFull ? (totalAdr / fullCount) : null;
-            const avgHs = hasFull ? (totalHs / fullCount) : null;
-            const avgSwing = hasFull ? (totalSwing / fullCount) : null;
+            const avgAdr = hasFull ? totalAdr / fullCount : null;
+            const avgHs = hasFull ? totalHs / fullCount : null;
+            const avgSwing = hasFull ? totalSwing / fullCount : null;
 
             const eliteMatches = allPlayerMatches.filter(item => item.match.threat === 'Elite');
             const hasElite = eliteMatches.length > 0;
+
             let totalEliteRating = 0;
-            for (const item of eliteMatches) totalEliteRating += item.player.rating || 0;
-            const eliteRating = hasElite ? (totalEliteRating / eliteMatches.length) : null;
+
+            for (const item of eliteMatches) {
+                totalEliteRating += item.player.rating || 0;
+            }
+
+            const eliteRating = hasElite ? totalEliteRating / eliteMatches.length : null;
 
             let totalRating = 0;
-            for (const item of allPlayerMatches) totalRating += item.player.rating || 0;
-            const avgRating = matchesPlayed ? (totalRating / matchesPlayed) : null;
+
+            for (const item of allPlayerMatches) {
+                totalRating += item.player.rating || 0;
+            }
+
+            const avgRating = matchesPlayed ? totalRating / matchesPlayed : null;
 
             function getRatingColorStyle(rating) {
                 if (rating === null) return '';
@@ -456,52 +661,137 @@
             }
 
             const thresholds = {
-                kpr: { avg: 0.68, minMult: 0.75, maxMult: 1.25, goodMult: 1.125, badMult: 0.875, invert: false },
-                dpr: { avg: 0.68, minMult: 0.8, maxMult: 1.2, goodMult: 0.89, badMult: 1.11, invert: true },
-                apr: { avg: 0.23, minMult: 0.65, maxMult: 1.45, goodMult: 1.175, badMult: 0.825, invert: false },
-                adr: { avg: 80.5, minMult: 0.7, maxMult: 1.3, goodMult: 1.15, badMult: 0.85, invert: false },
-                hs:  { avg: 51,   minMult: 0.7, maxMult: 1.3, goodMult: 1.15, badMult: 0.85, invert: false },
-                swing: { avg: 0, minVal: -2.7, maxVal: 2.7, good: 1.25, bad: -1.25, invert: false }
+                kpr: {
+                    avg: 0.68,
+                    minMult: 0.75,
+                    maxMult: 1.25,
+                    goodMult: 1.125,
+                    badMult: 0.875,
+                    invert: false
+                },
+                dpr: {
+                    avg: 0.68,
+                    minMult: 0.8,
+                    maxMult: 1.2,
+                    goodMult: 0.89,
+                    badMult: 1.11,
+                    invert: true
+                },
+                apr: {
+                    avg: 0.23,
+                    minMult: 0.65,
+                    maxMult: 1.45,
+                    goodMult: 1.175,
+                    badMult: 0.825,
+                    invert: false
+                },
+                adr: {
+                    avg: 80.5,
+                    minMult: 0.7,
+                    maxMult: 1.3,
+                    goodMult: 1.15,
+                    badMult: 0.85,
+                    invert: false
+                },
+                hs: {
+                    avg: 51,
+                    minMult: 0.7,
+                    maxMult: 1.3,
+                    goodMult: 1.15,
+                    badMult: 0.85,
+                    invert: false
+                },
+                swing: {
+                    avg: 0,
+                    minVal: -2.7,
+                    maxVal: 2.7,
+                    good: 1.25,
+                    bad: -1.25,
+                    invert: false
+                }
             };
 
             function getBarParams(value, metric) {
                 const t = thresholds[metric];
+
                 if (!t) {
                     console.warn('Неизвестная метрика:', metric);
-                    return { percent: 0, status: 'N/S', statusClass: 'ns-text' };
+
+                    return {
+                        percent: 0,
+                        status: 'N/S',
+                        statusClass: 'ns-text'
+                    };
                 }
+
                 let norm = value;
-                let minVal, maxVal;
-                let percent, status, statusClass;
+                let minVal;
+                let maxVal;
+                let percent;
+                let status;
+                let statusClass;
 
                 if (metric === 'swing') {
-                    minVal = t.minVal; maxVal = t.maxVal;
+                    minVal = t.minVal;
+                    maxVal = t.maxVal;
                     norm = Math.min(maxVal, Math.max(minVal, norm));
                     percent = ((norm - minVal) / (maxVal - minVal)) * 100;
-                    if (norm >= t.good) { status = 'GOOD'; statusClass = 'status-good'; }
-                    else if (norm <= t.bad) { status = 'BAD'; statusClass = 'status-bad'; }
-                    else { status = 'OKAY'; statusClass = 'status-ok'; }
+
+                    if (norm >= t.good) {
+                        status = 'GOOD';
+                        statusClass = 'status-good';
+                    } else if (norm <= t.bad) {
+                        status = 'BAD';
+                        statusClass = 'status-bad';
+                    } else {
+                        status = 'OKAY';
+                        statusClass = 'status-ok';
+                    }
                 } else {
                     const avg = t.avg;
-                    const minVal = avg * t.minMult;
-                    const maxVal = avg * t.maxMult;
+                    minVal = avg * t.minMult;
+                    maxVal = avg * t.maxMult;
+
                     let raw = norm;
+
                     if (!t.invert) {
                         raw = Math.min(maxVal, Math.max(minVal, raw));
                         percent = ((raw - minVal) / (maxVal - minVal)) * 100;
-                        if (raw >= avg * t.goodMult) { status = 'GOOD'; statusClass = 'status-good'; }
-                        else if (raw <= avg * t.badMult) { status = 'BAD'; statusClass = 'status-bad'; }
-                        else { status = 'OKAY'; statusClass = 'status-ok'; }
+
+                        if (raw >= avg * t.goodMult) {
+                            status = 'GOOD';
+                            statusClass = 'status-good';
+                        } else if (raw <= avg * t.badMult) {
+                            status = 'BAD';
+                            statusClass = 'status-bad';
+                        } else {
+                            status = 'OKAY';
+                            statusClass = 'status-ok';
+                        }
                     } else {
                         raw = Math.min(maxVal, Math.max(minVal, raw));
                         percent = ((maxVal - raw) / (maxVal - minVal)) * 100;
-                        if (raw <= avg * t.goodMult) { status = 'GOOD'; statusClass = 'status-good'; }
-                        else if (raw >= avg * t.badMult) { status = 'BAD'; statusClass = 'status-bad'; }
-                        else { status = 'OKAY'; statusClass = 'status-ok'; }
+
+                        if (raw <= avg * t.goodMult) {
+                            status = 'GOOD';
+                            statusClass = 'status-good';
+                        } else if (raw >= avg * t.badMult) {
+                            status = 'BAD';
+                            statusClass = 'status-bad';
+                        } else {
+                            status = 'OKAY';
+                            statusClass = 'status-ok';
+                        }
                     }
                 }
+
                 percent = Math.min(100, Math.max(0, percent));
-                return { percent, status, statusClass };
+
+                return {
+                    percent,
+                    status,
+                    statusClass
+                };
             }
 
             function generateBarWithNS(hasData, value, label, formatFunc) {
@@ -509,12 +799,16 @@
                     return `
                         <div class="stat-bar-item">
                             <div class="stat-label">${label}</div>
-                            <div class="bar-container"><div class="bar-fill" style="width: 0%;"></div></div>
+                            <div class="bar-container">
+                                <div class="bar-fill" style="width: 0%;"></div>
+                            </div>
                             <div class="bar-value ns-text">N/S</div>
                         </div>
                     `;
                 }
+
                 let metricKey = '';
+
                 if (label === 'Round Swing') metricKey = 'swing';
                 else if (label === 'ADR') metricKey = 'adr';
                 else if (label === 'HS%') metricKey = 'hs';
@@ -524,14 +818,23 @@
                 else metricKey = label.toLowerCase();
 
                 const bar = getBarParams(value, metricKey);
-                const fillColor = bar.status === 'GOOD' ? '#2ecc71' : (bar.status === 'BAD' ? '#e74c3c' : '#f1c40f');
+
+                const fillColor = bar.status === 'GOOD'
+                    ? '#2ecc71'
+                    : (bar.status === 'BAD' ? '#e74c3c' : '#f1c40f');
+
                 const displayValue = formatFunc(value);
+
                 return `
                     <div class="stat-bar-item">
                         <div class="stat-label">${label}</div>
-                        <div class="bar-container"><div class="bar-fill" style="width: ${bar.percent}%; background-color: ${fillColor};"></div></div>
+                        <div class="bar-container">
+                            <div class="bar-fill" style="width: ${bar.percent}%; background-color: ${fillColor};"></div>
+                        </div>
                         <div class="bar-value">${displayValue}</div>
-                        <div class="bar-status"><span class="${bar.statusClass}">${bar.status}</span></div>
+                        <div class="bar-status">
+                            <span class="${bar.statusClass}">${bar.status}</span>
+                        </div>
                     </div>
                 `;
             }
@@ -554,7 +857,9 @@
                             </div>
                             <div class="coach-info-row">
                                 <div class="info-label">Current Team</div>
-                                <div class="info-value"><a href="index.html" class="current-team-link">Doctors</a></div>
+                                <div class="info-value">
+                                    <a href="index.html" class="current-team-link">Doctors</a>
+                                </div>
                             </div>
                             <div class="coach-info-row">
                                 <div class="info-label">Prize Money</div>
@@ -572,25 +877,39 @@
                         <div class="coach-stat-value">${mapWinrate}%</div>
                         <div class="coach-stat-sub">Based on ${totalMaps} map${totalMaps !== 1 ? 's' : ''}</div>
                     </div>
+
                     <div class="coach-stat-block">
-                        <div class="coach-stat-label"><span class="ct-letter">CT</span> round winrate</div>
+                        <div class="coach-stat-label">
+                            <span class="ct-letter">CT</span> round winrate
+                        </div>
                         <div class="coach-stat-value">${ctWinrate}%</div>
                         <div class="coach-stat-sub">Based on ${totalRoundsCt} round${totalRoundsCt !== 1 ? 's' : ''}</div>
                     </div>
+
                     <div class="coach-stat-block">
-                        <div class="coach-stat-label"><span class="t-letter">T</span> round winrate</div>
+                        <div class="coach-stat-label">
+                            <span class="t-letter">T</span> round winrate
+                        </div>
                         <div class="coach-stat-value">${tWinrate}%</div>
                         <div class="coach-stat-sub">Based on ${totalRoundsT} round${totalRoundsT !== 1 ? 's' : ''}</div>
                     </div>
+
                     <div class="coach-stat-block">
                         <div class="coach-stat-label">Best map</div>
                         <div class="coach-stat-value">${bestMap ? bestMap : '—'}</div>
-                        <div class="coach-stat-sub">Based on ${bestMapPlayed} map${bestMapPlayed !== 1 ? 's' : ''}<br>${bestMapWinrate > 0 ? bestMapWinrate.toFixed(0) : 0}% WinRate</div>
+                        <div class="coach-stat-sub">
+                            Based on ${bestMapPlayed} map${bestMapPlayed !== 1 ? 's' : ''}<br>
+                            ${bestMapWinrate > 0 ? bestMapWinrate.toFixed(0) : 0}% WinRate
+                        </div>
                     </div>
+
                     <div class="coach-stat-block">
                         <div class="coach-stat-label">Worst map</div>
                         <div class="coach-stat-value">${worstMap ? worstMap : '—'}</div>
-                        <div class="coach-stat-sub">Based on ${worstMapPlayed} map${worstMapPlayed !== 1 ? 's' : ''}<br>${worstMapWinrate < 101 ? worstMapWinrate.toFixed(0) : 0}% WinRate</div>
+                        <div class="coach-stat-sub">
+                            Based on ${worstMapPlayed} map${worstMapPlayed !== 1 ? 's' : ''}<br>
+                            ${worstMapWinrate < 101 ? worstMapWinrate.toFixed(0) : 0}% WinRate
+                        </div>
                     </div>
                 </div>
             `;
@@ -600,22 +919,30 @@
                     <div class="recent-header">Recent matches</div>
                     <div class="recent-matches-list">
             `;
+
             for (const match of recentMatches) {
                 const isWin = match.teamDoctorsScore > match.teamOpponentScore;
                 const winClass = isWin ? 'win' : 'loss';
                 const score = `${match.teamDoctorsScore || 0} : ${match.teamOpponentScore || 0}`;
+
                 recentMatchesHtml += `
                     <div class="recent-match-item ${winClass}" data-match-file="${match.fileName}">
                         <img class="match-opponent-logo" src="opponent-logo.jpg" alt="opponent">
+
                         <div class="match-info">
                             <div class="match-opponent-name">vs ${match.opponent || '?'}</div>
                             <div class="match-tournament">${match.tournament || 'Unknown tournament'}</div>
                         </div>
+
                         <div class="match-score">${score}</div>
                     </div>
                 `;
             }
-            recentMatchesHtml += `</div></div>`;
+
+            recentMatchesHtml += `
+                    </div>
+                </div>
+            `;
 
             const coachContentHtml = `
                 <div class="coach-two-columns">
@@ -625,22 +952,33 @@
             `;
 
             let standinContentHtml = '';
+
             if (!matchesPlayed) {
                 standinContentHtml = '<p style="text-align:center;">Нет данных о выступлениях в качестве игрока</p>';
             } else {
                 const ratingColor = getRatingColorStyle(avgRating);
-                const eliteDisplay = hasElite ? `<span style="color: ${getRatingColorStyle(eliteRating)}">${eliteRating.toFixed(2)}</span>` : '<span class="ns-text">N/S</span>';
+
+                const eliteDisplay = hasElite
+                    ? `<span style="color: ${getRatingColorStyle(eliteRating)}">${eliteRating.toFixed(2)}</span>`
+                    : '<span class="ns-text">N/S</span>';
+
                 standinContentHtml = `
                     <div class="rating-block">
-                        <div class="main-rating">Rating: <span style="color: ${ratingColor}">${avgRating.toFixed(2)}</span></div>
-                        <div class="elite-rating">Elite Rating: ${eliteDisplay}</div>
+                        <div class="main-rating">
+                            Rating: <span style="color: ${ratingColor}">${avgRating.toFixed(2)}</span>
+                        </div>
+                        <div class="elite-rating">
+                            Elite Rating: ${eliteDisplay}
+                        </div>
                     </div>
+
                     <div class="stats-grid">
                         <div class="stats-row">
                             ${generateBarWithNS(hasFull, avgSwing, 'Round Swing', (v) => (v > 0 ? '+' : '') + v.toFixed(2) + '%')}
                             ${generateBarWithNS(hasFull, avgAdr, 'ADR', (v) => v.toFixed(1))}
                             ${generateBarWithNS(hasFull, avgHs, 'HS%', (v) => v.toFixed(1) + '%')}
                         </div>
+
                         <div class="stats-row">
                             ${generateBarWithNS(true, kpr, 'KPR', (v) => v.toFixed(2))}
                             ${generateBarWithNS(true, dpr, 'DPR', (v) => v.toFixed(2))}
@@ -656,8 +994,14 @@
                         <button class="tab-btn active" data-tab="coach">Coach</button>
                         <button class="tab-btn" data-tab="standin">Stand-in</button>
                     </div>
-                    <div id="coachTab" class="tab-content active" style="padding: 1.5vw;">${coachContentHtml}</div>
-                    <div id="standinTab" class="tab-content" style="padding: 1.5vw;">${standinContentHtml}</div>
+
+                    <div id="coachTab" class="tab-content active" style="padding: 1.5vw;">
+                        ${coachContentHtml}
+                    </div>
+
+                    <div id="standinTab" class="tab-content" style="padding: 1.5vw;">
+                        ${standinContentHtml}
+                    </div>
                 </div>
             `;
 
@@ -665,24 +1009,38 @@
             container.innerHTML = fullHtml;
 
             const tabBtns = document.querySelectorAll('.tab-btn');
+
             const tabContentsMap = {
                 coach: document.getElementById('coachTab'),
                 standin: document.getElementById('standinTab')
             };
+
             tabBtns.forEach(btn => {
                 btn.addEventListener('click', () => {
                     const tabId = btn.getAttribute('data-tab');
-                    tabBtns.forEach(b => b.classList.remove('active'));
+
+                    tabBtns.forEach(b => {
+                        b.classList.remove('active');
+                    });
+
                     btn.classList.add('active');
-                    Object.values(tabContentsMap).forEach(content => content.classList.remove('active'));
-                    if (tabId === 'coach') tabContentsMap.coach.classList.add('active');
-                    else if (tabId === 'standin') tabContentsMap.standin.classList.add('active');
+
+                    Object.values(tabContentsMap).forEach(content => {
+                        content.classList.remove('active');
+                    });
+
+                    if (tabId === 'coach') {
+                        tabContentsMap.coach.classList.add('active');
+                    } else if (tabId === 'standin') {
+                        tabContentsMap.standin.classList.add('active');
+                    }
                 });
             });
 
             document.querySelectorAll('.recent-match-item').forEach(el => {
                 el.addEventListener('click', function() {
                     const fileName = this.getAttribute('data-match-file');
+
                     if (fileName) {
                         window.location.href = `match.html?match=${fileName}`;
                     }
@@ -691,10 +1049,15 @@
 
             if (typeof setTheme === 'function' && typeof document.getElementById('themeSwitch') !== 'undefined') {
                 const savedTheme = localStorage.getItem('theme');
+
                 if (savedTheme) {
                     setTheme(savedTheme === 'dark');
+
                     const toggle = document.getElementById('themeSwitch');
-                    if (toggle) toggle.checked = savedTheme === 'dark';
+
+                    if (toggle) {
+                        toggle.checked = savedTheme === 'dark';
+                    }
                 }
             }
         })();
