@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Статистика матча | Team Doctors</title>
     <link rel="stylesheet" href="theme.css">
+
     <!-- ==================== СТИЛИ ДЛЯ LITE ВЕРСИИ ==================== -->
     <style>
         .lite-version * {
@@ -60,7 +61,12 @@
             flex-direction: column;
             justify-content: space-between;
         }
-        .lite-left-panel { flex: 2; }
+        .lite-left-panel {
+            flex: 2;
+            contain: layout style;
+            will-change: transform;
+            gap: 0.5vh !important;
+        }
         .lite-right-panel { flex: 1; }
         .lite-tournament-header { text-align: center; margin-bottom: 1.5vh; }
         .lite-tournament-name { font-size: 1.1vw; font-weight: bold; }
@@ -71,24 +77,43 @@
             align-items: center;
             margin-bottom: 2.5vh;
             gap: 1vw;
+            contain: layout style;
+            will-change: transform;
         }
-        .lite-team-score-block { text-align: center; flex: 1; margin-top: 4vh; }
+        .lite-team-score-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5vh;
+            flex: 1;
+        }
         .lite-team-logo-small {
             width: 3.5vw;
             height: auto;
             border-radius: 0;
             background-color: rgba(255,255,255,0.1);
             padding: 0.2vw;
-            margin-bottom: 0.5vh;
         }
         .lite-team-name-large { font-size: 1vw; font-weight: bold; }
-        .lite-team-score-large { font-size: 1.6vw; font-weight: bold; margin-top: 0.3vh; }
+        .lite-team-score-large { font-size: 1.6vw; font-weight: bold; }
         .lite-score-win { color: #2ecc71; }
         .lite-score-lose { color: #e74c3c; }
         .lite-map-block { text-align: center; flex: 1; }
         .lite-map-name-large { font-size: 1.2vw; font-weight: bold; margin-bottom: 0.5vh; }
-        .lite-map-mini img { width: 12vw; height: auto; border-radius: 0.5vw; border: 0.1vw solid rgba(255,255,255,0.3); margin-top: 0.5vh; }
-        .lite-breakdown-row { display: flex; justify-content: center; margin-top: 1vh; margin-bottom: 1vh; font-size: 0.85vw; }
+        .lite-map-mini img {
+            width: 12vw;
+            height: auto;
+            border-radius: 0.5vw;
+            border: 0.1vw solid rgba(255,255,255,0.3);
+            margin-top: 0 !important;
+        }
+        .lite-breakdown-row {
+            display: flex;
+            justify-content: center;
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+            font-size: 0.85vw;
+        }
         .lite-breakdown-item { padding: 0.4vh 1vw; border-radius: 0.6vw; }
         .lite-breakdown-label { font-weight: bold; margin-right: 0.8vw; }
         .lite-ct-color { color: #3498db; }
@@ -167,7 +192,6 @@
         .lite-rating-high { color: #2ecc71; font-weight: bold; }
         .lite-rating-medium { color: #eee; }
         .lite-rating-low { color: #e74c3c; font-weight: bold; }
-        /* ссылки для ников Doctors */
         .lite-player-link, .full-player-link {
             color: inherit;
             text-decoration: none;
@@ -177,8 +201,8 @@
             text-decoration: underline;
         }
         @media (max-width: 768px) {
-            .lite-match-stats-container { max-width: 90vw; }
-            .lite-stats-table { font-size: 2vw; }
+            .lite-match-stats-container { max-width: 65vw; }
+            .lite-stats-table { font-size: 0.85vw; }
         }
     </style>
 
@@ -237,7 +261,12 @@
             flex-direction: column;
             justify-content: space-between;
         }
-        .full-left-panel { flex: 2; }
+        .full-left-panel {
+            flex: 2;
+            contain: layout style;
+            will-change: transform;
+            gap: 0.5vh !important;
+        }
         .full-right-panel { flex: 1; }
         .full-tournament-header { text-align: center; margin-bottom: 1.5vh; }
         .full-tournament-name { font-size: 1.1vw; font-weight: bold; }
@@ -248,24 +277,43 @@
             align-items: center;
             margin-bottom: 2.5vh;
             gap: 1vw;
+            contain: layout style;
+            will-change: transform;
         }
-        .full-team-score-block { text-align: center; flex: 1; margin-top: 4vh; }
+        .full-team-score-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5vh;
+            flex: 1;
+        }
         .full-team-logo-small {
             width: 3.5vw;
             height: auto;
             border-radius: 0;
             background-color: rgba(255,255,255,0.1);
             padding: 0.2vw;
-            margin-bottom: 0.5vh;
         }
         .full-team-name-large { font-size: 1vw; font-weight: bold; }
-        .full-team-score-large { font-size: 1.6vw; font-weight: bold; margin-top: 0.3vh; }
+        .full-team-score-large { font-size: 1.6vw; font-weight: bold; }
         .full-score-win { color: #2ecc71; }
         .full-score-lose { color: #e74c3c; }
         .full-map-block { text-align: center; flex: 1; }
         .full-map-name-large { font-size: 1.2vw; font-weight: bold; margin-bottom: 0.5vh; }
-        .full-map-mini img { width: 12vw; height: auto; border-radius: 0.5vw; border: 0.1vw solid rgba(255,255,255,0.3); margin-top: 0.5vh; }
-        .full-breakdown-row { display: flex; justify-content: center; margin-top: 1vh; margin-bottom: 1vh; font-size: 0.85vw; }
+        .full-map-mini img {
+            width: 12vw;
+            height: auto;
+            border-radius: 0.5vw;
+            border: 0.1vw solid rgba(255,255,255,0.3);
+            margin-top: 0 !important;
+        }
+        .full-breakdown-row {
+            display: flex;
+            justify-content: center;
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+            font-size: 0.85vw;
+        }
         .full-breakdown-item { padding: 0.4vh 1vw; border-radius: 0.6vw; }
         .full-breakdown-label { font-weight: bold; margin-right: 0.8vw; }
         .full-ct-color { color: #3498db; }
@@ -349,8 +397,8 @@
         .full-swing-positive { color: #2ecc71; font-weight: bold; }
         .full-swing-negative { color: #e74c3c; font-weight: bold; }
         @media (max-width: 768px) {
-            .full-match-stats-container { max-width: 90vw; }
-            .full-stats-table { font-size: 2vw; }
+            .full-match-stats-container { max-width: 65vw; }
+            .full-stats-table { font-size: 0.85vw; }
         }
     </style>
 </head>

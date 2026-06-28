@@ -1,3 +1,4 @@
+<!-- coach-stats.html -->
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -8,7 +9,6 @@
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* Дополнительные стили */
         .coach-container {
             max-width: 55vw;
             margin: 0 auto;
@@ -26,7 +26,13 @@
         }
         .coach-avatar {
             width: 10vw;
+            height: 10vw;
+            min-width: 10vw;
+            max-width: 10vw;
+            min-height: 10vw;
             max-height: 10vw;
+            flex: 0 0 10vw;
+            display: block;
             border-radius: 0;
             background-color: rgba(255,255,255,0.1);
         }
@@ -81,7 +87,6 @@
         .current-team-link:hover {
             opacity: 0.8;
         }
-        /* Стили для двух колонок */
         .coach-two-columns {
             display: flex;
             gap: 2vw;
@@ -113,14 +118,12 @@
             color: #bbb;
             margin-top: 0.3vh;
         }
-        /* Цвета для букв CT и T */
         .ct-letter {
             color: #3498db;
         }
         .t-letter {
             color: #e67e22;
         }
-        /* Recent matches */
         .recent-matches-list {
             display: flex;
             flex-direction: column;
@@ -149,7 +152,14 @@
         }
         .match-opponent-logo {
             width: 3vw;
-            height: auto;
+            height: 3vw;
+            min-width: 3vw;
+            max-width: 3vw;
+            min-height: 3vw;
+            max-height: 3vw;
+            flex: 0 0 3vw;
+            object-fit: cover;
+            display: block;
             border-radius: 0;
             background-color: rgba(255,255,255,0.1);
         }
@@ -176,7 +186,6 @@
             color: #aaa;
             margin-bottom: 2vh;
         }
-        /* Игровая статистика (Stand-in) */
         .rating-block {
             display: flex;
             flex-direction: column;
@@ -257,15 +266,6 @@
         }
         .coach-container .tabs {
             margin-left: 5.88vw;
-        }
-        @media (max-width: 768px) {
-            .coach-container { max-width: 90vw; }
-            .coach-card-left { flex-direction: column; align-items: center; }
-            .stats-row { flex-direction: column; gap: 1.5vh; }
-            .coach-two-columns { flex-direction: column; }
-            .coach-container .tabs { margin-left: 4vw; }
-            .coach-stat-block { padding: 1vw; }
-            .recent-match-item { padding: 1.5vw; }
         }
     </style>
 </head>
@@ -352,7 +352,6 @@
                 return;
             }
 
-            // ========== ТРЕНЕРСКАЯ СТАТИСТИКА ==========
             const coachMatches = allMatches;
             let totalMaps = 0, wins = 0, totalRoundsCt = 0, totalRoundsCtWon = 0, totalRoundsT = 0, totalRoundsTWon = 0;
             const mapWinStats = {};
@@ -398,7 +397,6 @@
 
             const recentMatches = allMatches.slice(0, 5);
 
-            // ========== ИГРОВАЯ СТАТИСТИКА ДЛЯ adski_profi ==========
             const playerNick = 'adski_profi';
             let allPlayerMatches = [], fullMatches = [];
             for (const match of allMatches) {
@@ -506,7 +504,6 @@
                 return { percent, status, statusClass };
             }
 
-            // Исправленная функция generateBarWithNS — теперь только одна N/S
             function generateBarWithNS(hasData, value, label, formatFunc) {
                 if (!hasData) {
                     return `
@@ -525,7 +522,7 @@
                 else if (label === 'DPR') metricKey = 'dpr';
                 else if (label === 'APR') metricKey = 'apr';
                 else metricKey = label.toLowerCase();
-                
+
                 const bar = getBarParams(value, metricKey);
                 const fillColor = bar.status === 'GOOD' ? '#2ecc71' : (bar.status === 'BAD' ? '#e74c3c' : '#f1c40f');
                 const displayValue = formatFunc(value);
@@ -539,7 +536,6 @@
                 `;
             }
 
-            // Левая карточка
             const leftHtml = `
                 <div class="coach-card-left">
                     <img class="coach-avatar" src="coach.jpg" alt="adski_profi">
@@ -569,7 +565,6 @@
                 </div>
             `;
 
-            // Левая колонка статистики
             const leftStatsHtml = `
                 <div class="coach-stats-col">
                     <div class="coach-stat-block">
@@ -600,7 +595,6 @@
                 </div>
             `;
 
-            // Правая колонка (матчи)
             let recentMatchesHtml = `
                 <div class="coach-stats-col">
                     <div class="recent-header">Recent matches</div>
@@ -630,7 +624,6 @@
                 </div>
             `;
 
-            // Контент для вкладки Stand-in (с исправленным N/S)
             let standinContentHtml = '';
             if (!matchesPlayed) {
                 standinContentHtml = '<p style="text-align:center;">Нет данных о выступлениях в качестве игрока</p>';
@@ -657,7 +650,6 @@
                 `;
             }
 
-            // Карточка с вкладками
             const cardWithTabs = `
                 <div class="card" style="max-width: 100%; width: auto; padding-bottom: 0;">
                     <div class="tabs">
@@ -672,7 +664,6 @@
             const fullHtml = leftHtml + cardWithTabs;
             container.innerHTML = fullHtml;
 
-            // Переключение вкладок
             const tabBtns = document.querySelectorAll('.tab-btn');
             const tabContentsMap = {
                 coach: document.getElementById('coachTab'),
@@ -689,7 +680,6 @@
                 });
             });
 
-            // Обработчик клика на матчи
             document.querySelectorAll('.recent-match-item').forEach(el => {
                 el.addEventListener('click', function() {
                     const fileName = this.getAttribute('data-match-file');
@@ -699,7 +689,6 @@
                 });
             });
 
-            // Переключение темы
             if (typeof setTheme === 'function' && typeof document.getElementById('themeSwitch') !== 'undefined') {
                 const savedTheme = localStorage.getItem('theme');
                 if (savedTheme) {

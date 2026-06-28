@@ -476,7 +476,7 @@ function updateStats() {
             </div>
             <div class="stats-map-right">
                 <div class="stats-donut-title">Distribution of won rounds</div>
-                <canvas class="stats-donut-canvas" width="200" height="200"></canvas>
+                <canvas class="stats-donut-canvas" width="200" height="200" style="width: 12vw; height: 12vw;"></canvas>
                 ${mvpHtml}
             </div>
         `;
@@ -559,8 +559,10 @@ function attachDonutInteractivity() {
 function onDonutHover(e) {
     const canvas = e.currentTarget;
     const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    const x = (e.clientX - rect.left) * scaleX;
+    const y = (e.clientY - rect.top) * scaleY;
     const w = canvas.width;
     const h = canvas.height;
     const centerX = w / 2;
@@ -766,7 +768,6 @@ async function updateInfo() {
         }
     }
 
-    // По умолчанию только Average активен
     const visibility = {
         avg: true,
         dark_sasi: false,
@@ -833,13 +834,10 @@ async function updateInfo() {
             ctx.fillText(`#${i+1}`, x, padding.top + chartH + 8);
         }
 
-        // Храним точки для тултипа
         const linesData = [];
 
-        // Функция рисования линии с прерыванием при null
         function drawLine(values, color, lineWidth = 1.5, dash = [], label = '') {
             const points = [];
-            // Собираем все точки, игнорируя null
             for (let i = 0; i < values.length; i++) {
                 const val = values[i];
                 if (val === null) continue;
@@ -849,12 +847,10 @@ async function updateInfo() {
             }
             if (points.length < 2) return;
 
-            // Разбиваем на сегменты, где разница индексов > 1 (был пропуск)
             let start = 0;
             for (let i = 1; i < points.length; i++) {
                 if (points[i].matchIndex - points[i-1].matchIndex > 1) {
-                    // Рисуем сегмент от start до i-1
-                    if (i - start >= 2) { // если хотя бы две точки
+                    if (i - start >= 2) {
                         ctx.beginPath();
                         ctx.strokeStyle = color;
                         ctx.lineWidth = lineWidth;
@@ -865,7 +861,6 @@ async function updateInfo() {
                         }
                         ctx.stroke();
                         ctx.setLineDash([]);
-                        // Сохраняем точки сегмента для тултипа
                         for (let j = start; j < i; j++) {
                             linesData.push({ label, color, point: points[j] });
                         }
@@ -873,7 +868,6 @@ async function updateInfo() {
                     start = i;
                 }
             }
-            // Последний сегмент
             if (points.length - start >= 2) {
                 ctx.beginPath();
                 ctx.strokeStyle = color;
@@ -891,7 +885,6 @@ async function updateInfo() {
             }
         }
 
-        // Линии игроков
         for (let idx = 0; idx < mainPlayers.length; idx++) {
             const nick = mainPlayers[idx];
             if (visibility[nick]) {
@@ -901,7 +894,6 @@ async function updateInfo() {
             }
         }
 
-        // Средняя линия (без прерываний)
         if (visibility.avg) {
             const points = [];
             for (let i = 0; i < teamAvgRatings.length; i++) {
@@ -919,7 +911,6 @@ async function updateInfo() {
                     ctx.lineTo(points[i].x, points[i].y);
                 }
                 ctx.stroke();
-                // Сохраняем точки для тултипа
                 for (const p of points) {
                     linesData.push({ label: 'Average', color: '#ffffff', point: p });
                 }
@@ -932,11 +923,9 @@ async function updateInfo() {
         ctx.textBaseline = 'bottom';
         ctx.fillText('Player ratings', w / 2, padding.top - 5);
 
-        // Сохраняем данные для тултипа в canvas
         canvas._linesData = linesData;
     }
 
-    // Интерфейс
     let html = `
         <div style="padding:0 1vw; text-align:center; margin-top: 6vh; margin-bottom:4vh; padding-bottom: 150px;">
             <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:1.5vw; margin-bottom:1vh;">
@@ -971,7 +960,6 @@ async function updateInfo() {
 
     drawChart(infoContainer, teamAvgRatings, playerRatingsData, mainPlayers, playerColors, visibility);
 
-    // Клики по легенде
     const legendItemsElements = infoContainer.querySelectorAll('.legend-item');
     legendItemsElements.forEach(el => {
         el.addEventListener('click', function() {
@@ -982,7 +970,6 @@ async function updateInfo() {
         });
     });
 
-    // Тултип
     const tooltip = document.getElementById('chartTooltip');
     canvas.addEventListener('mousemove', function(e) {
         const rect = canvas.getBoundingClientRect();

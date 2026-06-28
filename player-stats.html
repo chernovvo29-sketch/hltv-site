@@ -1,3 +1,4 @@
+<!-- player-stats.html -->
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -27,7 +28,14 @@
         }
         .player-avatar {
             width: 10vw;
+            height: 10vw;
+            min-width: 10vw;
+            max-width: 10vw;
+            min-height: 10vw;
             max-height: 10vw;
+            flex: 0 0 10vw;
+            object-fit: cover;
+            display: block;
             border-radius: 0;
             background-color: rgba(255,255,255,0.1);
         }
@@ -165,19 +173,6 @@
             background: rgba(0,0,0,0.5);
             border-radius: 1vw;
         }
-        @media (max-width: 768px) {
-            .player-container {
-                max-width: 90vw;
-            }
-            .player-card-left {
-                flex-direction: column;
-                align-items: center;
-            }
-            .stats-row {
-                flex-direction: column;
-                gap: 1.5vh;
-            }
-        }
     </style>
 </head>
 <body>
@@ -213,7 +208,6 @@
                 return;
             }
 
-            // Функция вычисления возраста (целое число)
             function calculateAge(birthDate) {
                 const today = new Date();
                 let age = today.getFullYear() - birthDate.getFullYear();
@@ -238,7 +232,6 @@
                 return;
             }
 
-            // Сбор статистики
             let allPlayerMatches = [];
             let fullMatches = [];
             let playerData = null;
@@ -265,7 +258,6 @@
                 return;
             }
 
-            // Профили и аватар (теперь с датами рождения)
             const playerProfiles = {
                 'dark_sasi':   { fullname: 'Alexander Zubarev', birthDate: new Date(2007, 10, 9) },
                 'Dew1erMode':  { fullname: 'Vadim Chernov', birthDate: new Date(2007, 8, 30) },
@@ -285,7 +277,6 @@
             };
             const avatarSrc = avatarMap[nick] || 'player1.jpg';
 
-            // Общие метрики
             let totalKills = 0, totalDeaths = 0, totalAssists = 0, totalRounds = 0;
             for (const item of allPlayerMatches) {
                 totalKills += item.player.kills || 0;
@@ -312,7 +303,6 @@
             const avgHs = fullCount ? (totalHs / fullCount) : 0;
             const avgSwing = fullCount ? (totalSwing / fullCount) : 0;
 
-            // Elite Rating
             const eliteMatches = allPlayerMatches.filter(item => item.match.threat === 'Elite');
             let totalEliteRating = 0;
             for (const item of eliteMatches) totalEliteRating += item.player.rating || 0;
@@ -330,7 +320,6 @@
                 return '#ff6666';
             }
 
-            // НАСТРАИВАЕМЫЕ ПОРОГИ ДЛЯ КАЖДОЙ МЕТРИКИ
             const thresholds = {
                 kpr: { 
                     avg: 0.68, minMult: 0.75, maxMult: 1.25, 
@@ -442,7 +431,6 @@
             const ratingColor = getRatingColorStyle(avgRating);
             const eliteRatingColor = getRatingColorStyle(eliteRating);
 
-            // Левая карточка – флаг картинкой russia-flag.png
             const leftHtml = `
                 <div class="player-card-left">
                     <img class="player-avatar" src="${avatarSrc}" alt="${nick}">

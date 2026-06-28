@@ -18,7 +18,7 @@
     font-size: 4.58vw;
     font-weight: bold;
     color: white;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    text-shadow: 0.05vw 0.05vw 0.1vw rgba(0, 0, 0, 0.5);
     white-space: nowrap;
     transform: translateY(-0.23vw);
 }
@@ -45,7 +45,10 @@
     margin: 0.6vw auto 0 auto;
 }
 .player-card {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.067vw;
     width: 7.925vw;
 }
 .avatar {
@@ -58,9 +61,8 @@
     transform: scale(1.08);
 }
 .nickname {
-    margin-top: 0.067vw;
     font-weight: bold;
-    font-size: 0.9 vw;
+    font-size: 0.9vw;
 }
 /* КОНЕЦ ПЕРВЫЙ ПАРАГРАФ */
 
@@ -139,16 +141,32 @@ html, body {
     padding: 0;
 }
 
-/* НАЧАЛО ПЛАШКИ */
+/* НАЧАЛО ПЛАШКИ — исправлено для стабильности при масштабировании */
 .tabs {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    overflow-x: auto;
     margin-top: 0.5vw;
     margin-left: 5.88vw;
     gap: 0;
     padding-bottom: 0.5vh;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+    contain: layout style;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+.tabs::-webkit-scrollbar {
+    height: 4px;
+}
+.tabs::-webkit-scrollbar-thumb {
+    background: #5a6a7a;
+    border-radius: 4px;
 }
 .tab-btn {
+    flex: 0 0 auto;
+    white-space: nowrap;
     position: relative;
     background-color: #77828e;
     border: none;
@@ -156,7 +174,7 @@ html, body {
     padding: 0.57vw 1.3vw;
     font-size: 1.039vw;
     cursor: pointer;
-    transition: 0.2s;
+    transition: none;
     margin: 0;
 }
 .tab-btn:last-child {
@@ -465,10 +483,20 @@ html, body {
     background-color: #314060;
     border: none;
     color: white;
-    padding: 0.9vh 0.9vw;
+    width: 5.6vw;
+    height: 3.1vh;
+    padding: 0;
     border-radius: 0.2vw;
     cursor: pointer;
     transition: background-color 0.2s ease, filter 0.2s ease;
+    font-size: 0.9vw;
+    line-height: 1;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    flex: 0 0 4.6vw;
 }
 .match-detail-btn:hover {
     background-color: #314060;
@@ -542,8 +570,6 @@ html, body {
     margin-top: -0.3vh;
     font-weight: bold;
 }
-
-
 
 .stats-map-card {
     position: relative;
@@ -641,10 +667,10 @@ html, body {
     color: #ffaa00;
 }
 .stat-label-ct {
-    color: #3498db;  /* синий */
+    color: #3498db;
 }
 .stat-label-t {
-    color: #e67e22;  /* оранжевый */
+    color: #e67e22;
 }
 .avatar, .nickname, .roster-avatar, .player-nick {
     cursor: pointer;

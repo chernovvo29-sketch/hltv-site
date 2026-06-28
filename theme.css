@@ -5,6 +5,7 @@
     top: 1.587vw;
     right: 1.587vw;
     z-index: 1000;
+    contain: layout style;   /* изолируем пересчёт, чтобы не дёргалось при масштабе */
 }
 .theme-toggle input {
     opacity: 0;
@@ -21,6 +22,8 @@
     cursor: pointer;
     position: relative;
     transition: background-color 0.7s;
+    will-change: transform;   /* включаем аппаратное ускорение */
+    backface-visibility: hidden; /* предотвращает мерцание при трансформациях */
 }
 .slider::before {
     content: "";
@@ -31,7 +34,7 @@
     bottom: 0.224vw;
     background-color: white;
     border-radius: 50%;
-    transition: 1.5s;
+    transition: transform 0.7s ease; /* уменьшил время для плавности, но можно оставить 1.5s */
 }
 .theme-toggle input:checked + .slider::before {
     transform: translateX(3.129vw);
