@@ -1,10 +1,11 @@
 {
   "version": "Full",
   "date": "01.03.26",
+  "elo": 1995,
   "tournament": "Friendly Cybersport 2026",
   "threat": "Elite",
   "opponent": "bloodfeed",
-  "map": "nuke",
+  "map": "Nuke",
   "teamDoctorsScore": 13,
   "teamOpponentScore": 8,
   "scoreCtDoctors": 8,
