@@ -910,7 +910,7 @@ function calculateDoctorsExpected(teamRating, opponentRating) {
     const team = Math.max(Number(teamRating) || 0, 100);
     const opp = Math.max(Number(opponentRating) || 0, 100);
 
-    return 1 / (1 + Math.pow(opp / team, 400 / 111));
+    return 1 / (1 + Math.pow(opp / team, 400 / 117));
 }
 
 function calculateDoctorsRatingChange(teamRating, opponentRating, result, matchesPlayed) {
@@ -925,7 +925,7 @@ function calculateDoctorsRatingChange(teamRating, opponentRating, result, matche
     const actual = result === 'win' ? 1 : 0;
     const expected = calculateDoctorsExpected(team, opp);
 
-    const weakWinPenalty = 1 / (1 + 3.5 * Math.pow(Math.max(0, Math.log(team / opp)), 2));
+    const weakWinPenalty = 1 / (1 + 1.9 * Math.pow(Math.max(0, Math.log(team / opp)), 2));
     const multiplier = actual === 1 ? weakWinPenalty : 1;
 
     return Math.round(K * (actual - expected) * multiplier);
@@ -1057,7 +1057,7 @@ function renderDoctorsRatingBlock(history) {
                 <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:1.5vw;">
                     <div>
                         <div style="font-size:0.68vw; color:#8899bb; letter-spacing:0.12vw; text-transform:uppercase; font-weight:900;">
-                            Estimated Elo Rating
+                            Estimated Team Elo Rating
                         </div>
 
                         <div style="display:flex; align-items:flex-end; gap:0.8vw; margin-top:0.15vw;">
@@ -1078,7 +1078,7 @@ function renderDoctorsRatingBlock(history) {
                 <div style="margin-top:1.25vw; padding-top:1.05vw; border-top:0.052vw solid rgba(255,255,255,0.08);">
                     <div style="display:flex; justify-content:flex-start; align-items:center; margin-bottom:0.55vw;">
                         <div style="font-size:0.72vw; color:#8899bb; text-transform:uppercase; letter-spacing:0.08vw; font-weight:900;">
-                            Rating Tape Last 30 rated matches
+                            Last 30 matches
                         </div>
                     </div>
 
