@@ -3,16 +3,22 @@ const body = document.body;
 let allMatches = [];
 
 function setTheme(isDark) {
-    if (isDark) {
-        body.classList.add('dark');
-        body.classList.remove('light');
-    } else {
-        body.classList.remove('dark');
-        body.classList.add('light');
-    }
+    document.documentElement.classList.toggle('dark', isDark);
+    document.documentElement.classList.toggle('light', !isDark);
+    body.classList.toggle('dark', isDark);
+    body.classList.toggle('light', !isDark);
 
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
 }
+
+function updateDeviceMode() {
+    const isMobile = window.innerWidth <= 768;
+    document.documentElement.classList.toggle('is-mobile', isMobile);
+    body.classList.toggle('is-mobile', isMobile);
+}
+
+updateDeviceMode();
+window.addEventListener('resize', updateDeviceMode);
 
 const savedTheme = localStorage.getItem('theme');
 
@@ -1495,6 +1501,16 @@ async function updateInfo() {
         tooltip.style.display = 'none';
     });
 }
+
+
+let infoResizeTimer = null;
+window.addEventListener('resize', () => {
+    clearTimeout(infoResizeTimer);
+    infoResizeTimer = setTimeout(() => {
+        const infoTab = document.getElementById('info');
+        if (infoTab && infoTab.classList.contains('active')) updateInfo();
+    }, 180);
+});
 
 document.addEventListener('DOMContentLoaded', () => {
     initPlayerClickHandlers();
