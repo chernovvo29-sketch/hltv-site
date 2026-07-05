@@ -914,9 +914,9 @@ function calculateDoctorsExpected(teamRating, opponentRating) {
 }
 
 function calculateDoctorsRatingChange(teamRating, opponentRating, result, matchesPlayed) {
-    let K = 67;
+    let K = 80;
 
-    if (matchesPlayed >= 30) K = 50;
+    if (matchesPlayed >= 30) K = 60;
     if (matchesPlayed >= 60) K = 45;
 
     const team = Math.max(Number(teamRating) || 0, 100);
