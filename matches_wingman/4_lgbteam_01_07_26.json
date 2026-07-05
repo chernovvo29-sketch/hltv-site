@@ -1,0 +1,63 @@
+{
+  "version": "Lite",
+  "date": "01.06.26",
+  "tournament": "Friendly Cybersport",
+  "threat": "Ordinary",
+  "opponent": "lgbTeam",
+  "map": "de_overpass",
+  "teamDoctorsScore": 10,
+  "teamOpponentScore": 12,
+  "scoreCtDoctors": null,
+  "scoreTDoctors": null,
+  "lostCtDoctors": null,
+  "lostTDoctors": null,
+  "started_site": null,
+  "playersDoctors": [
+    {
+      "nick": "D1amp0",
+      "kills": 17,
+      "deaths": 12,
+      "assists": 0,
+      "adr": null,
+      "hs_percent": null,
+      "multikills": {"2k": 0, "3k": 0, "4k": 0, "5k": 0},
+      "round_swing": null,
+      "rating": 1.19
+    },
+    {
+      "nick": "Dew1erMode",
+      "kills": 5,
+      "deaths": 17,
+      "assists": 6,
+      "adr": null,
+      "hs_percent": null,
+      "multikills": {"2k": 0, "3k": 0, "4k": 0, "5k": 0},
+      "round_swing": null,
+      "rating": 0.62
+    }
+  ],
+  "playersOpponent": [
+    {
+      "nick": "Casio",
+      "kills": 19,
+      "deaths": 11,
+      "assists": 1,
+      "adr": null,
+      "hs_percent": null,
+      "multikills": {"2k": 0, "3k": 0, "4k": 0, "5k": 0},
+      "round_swing": null,
+      "rating": 1.38
+    },
+    {
+      "nick": "-lokyy-",
+      "kills": 9,
+      "deaths": 12,
+      "assists": 3,
+      "adr": null,
+      "hs_percent": null,
+      "multikills": {"2k": 0, "3k": 0, "4k": 0, "5k": 0},
+      "round_swing": null,
+      "rating": 0.81
+    }
+  ]
+}

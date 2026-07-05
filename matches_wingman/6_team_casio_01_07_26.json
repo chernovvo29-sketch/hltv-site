@@ -1,0 +1,63 @@
+{
+  "version": "Lite",
+  "date": "01.07.26",
+  "tournament": null,
+  "threat": "Ordinary",
+  "opponent": "team_Casio",
+  "map": "Vertigo",
+  "teamDoctorsScore": 9,
+  "teamOpponentScore": 0,
+  "scoreCtDoctors": null,
+  "scoreTDoctors": null,
+  "lostCtDoctors": null,
+  "lostTDoctors": null,
+  "started_site": null,
+  "playersDoctors": [
+    {
+      "nick": "D1amp0",
+      "kills": 6,
+      "deaths": 3,
+      "assists": 3,
+      "adr": null,
+      "hs_percent": null,
+      "multikills": {"2k":0,"3k":0,"4k":0,"5k":0},
+      "round_swing": null,
+      "rating": 1.35
+    },
+    {
+      "nick": "Dew1erMode",
+      "kills": 11,
+      "deaths": 2,
+      "assists": 1,
+      "adr": null,
+      "hs_percent": null,
+      "multikills": {"2k":0,"3k":0,"4k":0,"5k":0},
+      "round_swing": null,
+      "rating": 1.95
+    }
+  ],
+  "playersOpponent": [
+    {
+      "nick": "Casio",
+      "kills": 4,
+      "deaths": 9,
+      "assists": 0,
+      "adr": null,
+      "hs_percent": null,
+      "multikills": {"2k":0,"3k":0,"4k":0,"5k":0},
+      "round_swing": null,
+      "rating": 0.55
+    },
+    {
+      "nick": "-lokyy-",
+      "kills": 1,
+      "deaths": 9,
+      "assists": 0,
+      "adr": null,
+      "hs_percent": null,
+      "multikills": {"2k":0,"3k":0,"4k":0,"5k":0},
+      "round_swing": null,
+      "rating": 0.14
+    }
+  ]
+}

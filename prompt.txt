@@ -2,7 +2,7 @@
 
 1. Определи режим матча:
 - 5v5: 10 игроков (5 на 5). Есть версии Full и Lite.
-- Wingman: 4 игрока (2 на 2). Всегда Lite.
+- Wingman: 4 игрока (2 на 2). Всегда Lite. и всегд threat: Ordinary для напарников.
 
 2. Определи команду Doctors:
 - Игроки Doctors: fortyfortea1 / Dew1erMode, map1ks, dark_sasi, D1amp0, lightwork, sazhinfed.

@@ -1,0 +1,63 @@
+{
+  "version": "Lite",
+  "date": "01.07.26",
+  "tournament": null,
+  "threat": "Ordinary",
+  "opponent": "IgbTeam",
+  "map": "Inferno",
+  "teamDoctorsScore": 9,
+  "teamOpponentScore": 0,
+  "scoreCtDoctors": null,
+  "scoreTDoctors": null,
+  "lostCtDoctors": null,
+  "lostTDoctors": null,
+  "started_site": null,
+  "playersDoctors": [
+    {
+      "nick": "D1amp0",
+      "kills": 8,
+      "deaths": 0,
+      "assists": 4,
+      "adr": null,
+      "hs_percent": null,
+      "multikills": {"2k":0,"3k":0,"4k":0,"5k":0},
+      "round_swing": null,
+      "rating": 1.87
+    },
+    {
+      "nick": "Dew1erMode",
+      "kills": 10,
+      "deaths": 4,
+      "assists": 2,
+      "adr": null,
+      "hs_percent": null,
+      "multikills": {"2k":0,"3k":0,"4k":0,"5k":0},
+      "round_swing": null,
+      "rating": 1.61
+    }
+  ],
+  "playersOpponent": [
+    {
+      "nick": "Casio",
+      "kills": 1,
+      "deaths": 9,
+      "assists": 0,
+      "adr": null,
+      "hs_percent": null,
+      "multikills": {"2k":0,"3k":0,"4k":0,"5k":0},
+      "round_swing": null,
+      "rating": 0.13
+    },
+    {
+      "nick": "-lokyy-",
+      "kills": 3,
+      "deaths": 9,
+      "assists": 0,
+      "adr": null,
+      "hs_percent": null,
+      "multikills": {"2k":0,"3k":0,"4k":0,"5k":0},
+      "round_swing": null,
+      "rating": 0.39
+    }
+  ]
+}
