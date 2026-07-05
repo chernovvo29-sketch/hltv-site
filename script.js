@@ -274,8 +274,8 @@ if (matchesContainer) {
 }
 
 function getRatingColorStyle(rating) {
-    if (rating >= 1.50) return '#4096e0';
-    if (rating >= 1.25) return '#31b605';
+    if (rating >= 1.30) return '#1eff00';
+    if (rating >= 1.15) return '#31b605';
     if (rating >= 1.05) return '#88cc44';
     if (rating >= 0.96) return '';
     return '#ff6666';
