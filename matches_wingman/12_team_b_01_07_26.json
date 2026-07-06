@@ -1,0 +1,83 @@
+{
+  "version": "Lite",
+  "date": "01.07.26",
+  "tournament": null,
+  "threat": "Ordinary",
+  "opponent": "Team B",
+  "map": "Nuke",
+  "teamDoctorsScore": 3,
+  "teamOpponentScore": 9,
+  "scoreCtDoctors": null,
+  "scoreTDoctors": null,
+  "lostCtDoctors": null,
+  "lostTDoctors": null,
+  "started_site": null,
+  "playersDoctors": [
+    {
+      "nick": "dark_sasi",
+      "kills": 8,
+      "deaths": 10,
+      "assists": 3,
+      "adr": null,
+      "hs_percent": null,
+      "multikills": {
+        "2k": 0,
+        "3k": 0,
+        "4k": 0,
+        "5k": 0
+      },
+      "round_swing": null,
+      "rating": 1.03
+    },
+    {
+      "nick": "adski_profi",
+      "kills": 4,
+      "deaths": 10,
+      "assists": 0,
+      "adr": null,
+      "hs_percent": null,
+      "multikills": {
+        "2k": 0,
+        "3k": 0,
+        "4k": 0,
+        "5k": 0
+      },
+      "round_swing": null,
+      "rating": 0.43
+    }
+  ],
+  "playersOpponent": [
+    {
+      "nick": "彩色药丸",
+      "kills": 6,
+      "deaths": 9,
+      "assists": 3,
+      "adr": null,
+      "hs_percent": null,
+      "multikills": {
+        "2k": 0,
+        "3k": 0,
+        "4k": 0,
+        "5k": 0
+      },
+      "round_swing": null,
+      "rating": 0.86
+    },
+    {
+      "nick": "justkaba",
+      "kills": 14,
+      "deaths": 4,
+      "assists": 1,
+      "adr": null,
+      "hs_percent": null,
+      "multikills": {
+        "2k": 0,
+        "3k": 0,
+        "4k": 0,
+        "5k": 0
+      },
+      "round_swing": null,
+      "rating": 1.68
+    }
+  ]
+}

@@ -261,6 +261,13 @@
             margin-bottom: 3vh;
         }
 
+        .wingman-rating {
+            font-size: 1.2vw;
+            font-weight: bold;
+            margin-top: -2vh;
+            margin-bottom: 2vh;
+        }
+
         .stats-grid {
             display: flex;
             flex-direction: column;
@@ -453,6 +460,39 @@
                 }
             }
 
+            async function getAllWingmanMatches() {
+                try {
+                    const indexResp = await fetch('matches_wingman/index.json');
+
+                    if (!indexResp.ok) throw new Error('Не удалось загрузить список Wingman матчей');
+
+                    const { matches: matchFiles } = await indexResp.json();
+                    const matchesData = [];
+
+                    for (const fileName of matchFiles) {
+                        const res = await fetch(`matches_wingman/${fileName}`);
+
+                        if (res.ok) {
+                            const match = await res.json();
+                            match.fileName = fileName;
+                            matchesData.push(match);
+                        } else {
+                            console.warn(`Не удалось загрузить Wingman матч ${fileName}`);
+                        }
+                    }
+
+                    matchesData.sort((a, b) => {
+                        const getNumber = (fileName) => parseInt(fileName.split('_')[0], 10);
+                        return getNumber(b.fileName) - getNumber(a.fileName);
+                    });
+
+                    return matchesData;
+                } catch (err) {
+                    console.error('Ошибка загрузки Wingman матчей:', err);
+                    return [];
+                }
+            }
+
             let allMatches = [];
 
             try {
@@ -478,6 +518,14 @@
             if (!allMatches || !allMatches.length) {
                 container.innerHTML = '<div class="error-message">Нет данных о матчах</div>';
                 return;
+            }
+
+            let wingmanMatches = [];
+
+            try {
+                wingmanMatches = await getAllWingmanMatches();
+            } catch (err) {
+                console.error('Ошибка загрузки Wingman матчей:', err);
             }
 
             const coachMatches = allMatches;
@@ -592,6 +640,36 @@
                     }
                 }
             }
+
+            let wingmanPlayerMatches = [];
+
+            for (const match of wingmanMatches) {
+                let player = null;
+
+                if (match.playersDoctors) {
+                    player = match.playersDoctors.find(p => p.nick === playerNick);
+                }
+
+                if (!player && match.playersOpponent) {
+                    player = match.playersOpponent.find(p => p.nick === playerNick);
+                }
+
+                if (player) {
+                    wingmanPlayerMatches.push({
+                        match,
+                        player
+                    });
+                }
+            }
+
+            let wingmanTotalRating = 0;
+
+            for (const item of wingmanPlayerMatches) {
+                wingmanTotalRating += item.player.rating || 0;
+            }
+
+            const wingmanMatchesCount = wingmanPlayerMatches.length;
+            const wingmanRating = wingmanMatchesCount ? (wingmanTotalRating / wingmanMatchesCount) : null;
 
             let totalKills = 0;
             let totalDeaths = 0;
@@ -953,7 +1031,7 @@
 
             let standinContentHtml = '';
 
-            if (!matchesPlayed) {
+            if (!matchesPlayed && !wingmanMatchesCount) {
                 standinContentHtml = '<p style="text-align:center;">Нет данных о выступлениях в качестве игрока</p>';
             } else {
                 const ratingColor = getRatingColorStyle(avgRating);
@@ -962,13 +1040,26 @@
                     ? `<span style="color: ${getRatingColorStyle(eliteRating)}">${eliteRating.toFixed(2)}</span>`
                     : '<span class="ns-text">N/S</span>';
 
+                const wingmanRatingColor = getRatingColorStyle(wingmanRating);
+
+                const wingmanDisplay = wingmanRating !== null
+                    ? `<span style="color: ${wingmanRatingColor}">${wingmanRating.toFixed(2)}</span>`
+                    : '<span class="ns-text">N/S</span>';
+
+                const mainRatingDisplay = matchesPlayed
+                    ? `<span style="color: ${ratingColor}">${avgRating.toFixed(2)}</span>`
+                    : '<span class="ns-text">N/S</span>';
+
                 standinContentHtml = `
                     <div class="rating-block">
                         <div class="main-rating">
-                            Rating: <span style="color: ${ratingColor}">${avgRating.toFixed(2)}</span>
+                            Rating: ${mainRatingDisplay}
                         </div>
                         <div class="elite-rating">
                             Elite Rating: ${eliteDisplay}
+                        </div>
+                        <div class="wingman-rating">
+                            Wingman Rating: ${wingmanDisplay}
                         </div>
                     </div>
 

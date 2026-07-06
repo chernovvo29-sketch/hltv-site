@@ -1,0 +1,83 @@
+{
+  "version": "Lite",
+  "date": "01.07.26",
+  "tournament": null,
+  "threat": "Ordinary",
+  "opponent": "team_kaktus0512",
+  "map": "Mirage",
+  "teamDoctorsScore": 3,
+  "teamOpponentScore": 9,
+  "scoreCtDoctors": null,
+  "scoreTDoctors": null,
+  "lostCtDoctors": null,
+  "lostTDoctors": null,
+  "started_site": null,
+  "playersDoctors": [
+    {
+      "nick": "adski_profi",
+      "kills": 2,
+      "deaths": 10,
+      "assists": 3,
+      "adr": null,
+      "hs_percent": null,
+      "multikills": {
+        "2k": 0,
+        "3k": 0,
+        "4k": 0,
+        "5k": 0
+      },
+      "round_swing": null,
+      "rating": 0.44
+    },
+    {
+      "nick": "dark_sasi",
+      "kills": 7,
+      "deaths": 9,
+      "assists": 2,
+      "adr": null,
+      "hs_percent": null,
+      "multikills": {
+        "2k": 0,
+        "3k": 0,
+        "4k": 0,
+        "5k": 0
+      },
+      "round_swing": null,
+      "rating": 0.89
+    }
+  ],
+  "playersOpponent": [
+    {
+      "nick": "kaktus0512",
+      "kills": 13,
+      "deaths": 3,
+      "assists": 3,
+      "adr": null,
+      "hs_percent": null,
+      "multikills": {
+        "2k": 0,
+        "3k": 0,
+        "4k": 0,
+        "5k": 0
+      },
+      "round_swing": null,
+      "rating": 1.81
+    },
+    {
+      "nick": "gsot8",
+      "kills": 6,
+      "deaths": 6,
+      "assists": 2,
+      "adr": null,
+      "hs_percent": null,
+      "multikills": {
+        "2k": 0,
+        "3k": 0,
+        "4k": 0,
+        "5k": 0
+      },
+      "round_swing": null,
+      "rating": 0.87
+    }
+  ]
+}

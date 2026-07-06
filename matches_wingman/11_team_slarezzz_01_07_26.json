@@ -1,0 +1,83 @@
+{
+  "version": "Lite",
+  "date": "01.07.26",
+  "tournament": null,
+  "threat": "Ordinary",
+  "opponent": "team_SlaRezzz",
+  "map": "Vertigo",
+  "teamDoctorsScore": 5,
+  "teamOpponentScore": 9,
+  "scoreCtDoctors": null,
+  "scoreTDoctors": null,
+  "lostCtDoctors": null,
+  "lostTDoctors": null,
+  "started_site": null,
+  "playersDoctors": [
+    {
+      "nick": "dark_sasi",
+      "kills": 7,
+      "deaths": 10,
+      "assists": 2,
+      "adr": null,
+      "hs_percent": null,
+      "multikills": {
+        "2k": 0,
+        "3k": 0,
+        "4k": 0,
+        "5k": 0
+      },
+      "round_swing": null,
+      "rating": 0.85
+    },
+    {
+      "nick": "adski_profi",
+      "kills": 5,
+      "deaths": 11,
+      "assists": 1,
+      "adr": null,
+      "hs_percent": null,
+      "multikills": {
+        "2k": 0,
+        "3k": 0,
+        "4k": 0,
+        "5k": 0
+      },
+      "round_swing": null,
+      "rating": 0.58
+    }
+  ],
+  "playersOpponent": [
+    {
+      "nick": "SlaRezzz",
+      "kills": 12,
+      "deaths": 7,
+      "assists": 2,
+      "adr": null,
+      "hs_percent": null,
+      "multikills": {
+        "2k": 0,
+        "3k": 0,
+        "4k": 0,
+        "5k": 0
+      },
+      "round_swing": null,
+      "rating": 1.41
+    },
+    {
+      "nick": "Eryt",
+      "kills": 9,
+      "deaths": 6,
+      "assists": 2,
+      "adr": null,
+      "hs_percent": null,
+      "multikills": {
+        "2k": 0,
+        "3k": 0,
+        "4k": 0,
+        "5k": 0
+      },
+      "round_swing": null,
+      "rating": 1.16
+    }
+  ]
+}
