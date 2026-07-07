@@ -190,7 +190,7 @@
             display: block;
             text-align: center;
         }
-        .bar-status .status-fascinating {
+        .bar-status .status-demonic {
             display: block;
             text-align: right;
             padding-right: 16.7%;
@@ -198,12 +198,12 @@
         .status-good { color: #2ecc71; }
         .status-bad { color: #e74c3c; }
         .status-ok { color: #f1c40f; }
-        .status-fascinating {
+        .status-demonic {
             color: #ffffff;
             font-weight: 900;
             text-shadow: 0 0 6px rgba(255, 255, 255, 0.9), 0 0 12px rgba(255, 255, 255, 0.5);
         }
-        .bar-fill-fascinating {
+        .bar-fill-demonic {
             box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.9), 0 0 3px rgba(255, 255, 255, 1) inset;
         }
         .current-team-link {
@@ -525,8 +525,8 @@
                 }
                 percent = Math.min(100, Math.max(0, percent));
                 if (percent >= 100) {
-                    status = 'FASCINATING';
-                    statusClass = 'status-fascinating';
+                    status = 'DEMONIC';
+                    statusClass = 'status-demonic';
                 }
                 return { percent, status, statusClass };
             }
@@ -539,7 +539,7 @@
             const barSwing = getBarParams(avgSwing, 'swing');
 
             function getFillColor(bar) {
-                if (bar.status === 'FASCINATING') return '#ffffff';
+                if (bar.status === 'DEMONIC') return '#ffffff';
                 if (bar.status === 'GOOD') return '#2ecc71';
                 if (bar.status === 'BAD') return '#e74c3c';
                 return '#f1c40f';
@@ -584,7 +584,7 @@
             `;
 
             function generateBar(bar, label, valueDisplay) {
-                const fillClass = bar.status === 'FASCINATING' ? 'bar-fill bar-fill-fascinating' : 'bar-fill';
+                const fillClass = bar.status === 'DEMONIC' ? 'bar-fill bar-fill-demonic' : 'bar-fill';
                 return `
                     <div class="stat-bar-item">
                         <div class="stat-label">${label}</div>
@@ -602,13 +602,13 @@
                     <div class="rating-block">
                         <div class="main-rating">Rating: <span style="color: ${ratingColor}">${avgRating.toFixed(2)}</span></div>
                         <div class="elite-rating">Elite Rating: <span style="color: ${eliteRatingColor}">${eliteRating.toFixed(2)}</span></div>
-                        <div class="wingman-rating">Wingman Rating:
+                        <div class="wingman-rating">
                             <input type="checkbox" id="wmRevealToggle" class="wm-toggle-input">
                             <label for="wmRevealToggle" class="wm-toggle-label" title="Показать/скрыть Wingman Rating">
                                 <i class="fa-solid fa-chevron-up wm-icon-collapsed"></i>
                                 <i class="fa-solid fa-minus wm-icon-expanded"></i>
                             </label>
-                            <span class="wm-value" style="color: ${wingmanRatingColor}">${wingmanDisplay}</span>
+                            <span class="wm-value">Wingman Rating: <span style="color: ${wingmanRatingColor}">${wingmanDisplay}</span></span>
                         </div>
                     </div>
                     <div class="stats-grid" style="margin-top: 2vh;">

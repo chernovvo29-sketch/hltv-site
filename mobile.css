@@ -4,6 +4,10 @@
 
 @media (max-width: 768px) {
 
+    *, *::before, *::after {
+        box-sizing: border-box;
+    }
+
     html, body {
         overflow-x: hidden;
         width: 100%;
@@ -212,13 +216,16 @@
 
     /* ---------- Win streak / winrate блоки ---------- */
     .stats-blocks {
-        gap: 8px;
+        gap: 3vw;
+        margin-left: 4vw;
+        margin-right: 4vw;
+        width: calc(100% - 8vw);
     }
     .stat-block {
-        padding: 2vh 4vw;
+        padding: 3vw 2vw;
         min-width: 0;
         width: auto;
-        flex: 1;
+        flex: 1 1 0;
     }
     .stat-label {
         font-size: 10px;
@@ -236,29 +243,41 @@
         padding: 1.4vh 3vw;
     }
     .match-item {
-        gap: 1.5vw;
-        padding: 1.2vh 0;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 46px minmax(0, 1fr);
+        grid-template-areas:
+            "doctors score opponent"
+            "date    date  button";
+        align-items: center;
+        row-gap: 1.8vw;
+        column-gap: 2vw;
+        padding: 3vw 0;
         width: calc(100% - 8vw);
         margin-left: 4vw;
         margin-right: 4vw;
-        flex-wrap: nowrap;
     }
     .match-date {
-        flex: 0 0 auto;
-        width: auto;
+        grid-area: date;
+        justify-self: start;
         font-size: 10px;
         white-space: nowrap;
     }
     .match-team-doctors {
+        grid-area: doctors;
+        justify-self: stretch;
+        justify-content: flex-end;
         width: auto;
-        flex: 1 1 auto;
         min-width: 0;
+        overflow: hidden;
         gap: 1.5vw;
     }
     .match-team-opponent {
+        grid-area: opponent;
+        justify-self: stretch;
+        justify-content: flex-start;
         width: auto;
-        flex: 1 1 auto;
         min-width: 0;
+        overflow: hidden;
         gap: 1.5vw;
     }
     .match-team-logo {
@@ -274,19 +293,19 @@
         min-width: 0;
     }
     .match-score {
-        flex: 0 0 auto;
-        width: auto;
-        font-size: 12px;
-        margin: 0 1vw;
+        grid-area: score;
+        justify-self: center;
+        font-size: 13px;
         white-space: nowrap;
     }
     .match-detail-btn {
+        grid-area: button;
+        justify-self: end;
         margin-left: 0;
         width: auto;
         height: auto;
-        padding: 6px 8px;
+        padding: 6px 10px;
         font-size: 10px;
-        flex: 0 0 auto;
     }
     .load-more-btn {
         padding: 1.2vh 5vw;
