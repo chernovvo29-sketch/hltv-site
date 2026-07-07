@@ -8,13 +8,25 @@
         box-sizing: border-box;
     }
 
+    /* overflow-x НЕ ставим на html/body — на iOS Safari это ломает
+       position:fixed (шапка начинает скроллиться вместе со страницей).
+       Горизонтальный скролл вместо этого гасится на .page-scroll-area
+       и на контейнерах страниц (.player-container/.coach-container). */
     html, body {
+        width: 100%;
+        max-width: 100%;
+    }
+    .page-scroll-area {
         overflow-x: hidden;
         width: 100%;
         max-width: 100%;
     }
 
     /* ---------- Шапка: HLTV-лого + переключатель темы ---------- */
+    .hltv, .theme-toggle {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+    }
     .hltv {
         top: 10px;
         left: 12px;
@@ -197,18 +209,19 @@
     .roster-row .col-time {
         margin-left: 0;
     }
-    .avatar-wrapper {
+    .col-player {
+        gap: 2.5vw;
+    }
+    .roster-avatar {
         width: 34px;
         height: 34px;
     }
     .player-flag {
-        bottom: 10px;
-        right: -8px;
-        width: 14px;
+        width: 13px;
     }
     .player-nick {
         font-size: 12px;
-        margin-left: 8px;
+        margin-left: 0;
     }
     .col-maps {
         margin-left: 0;
@@ -496,6 +509,7 @@
     /* ==================== MATCH.HTML (Lite + Full) ==================== */
     .lite-version, .full-version {
         padding: 4vw;
+        overflow-x: hidden;
     }
     .lite-match-stats-container, .full-match-stats-container {
         max-width: 100%;
@@ -577,6 +591,7 @@
         max-width: 94vw;
         margin-top: 60px;
         gap: 2.5vh;
+        overflow-x: hidden;
     }
     .player-card-left, .coach-card-left {
         flex-direction: column;

@@ -74,6 +74,7 @@
         <span>HLTV</span>
     </div>
 
+    <div class="page-scroll-area">
     <!-- КАРТОЧКА 1: Состав игроков -->
     <div class="card card-roster">
         <div class="roster">
@@ -166,76 +167,7 @@
                 <div class="col-maps">Maps played</div>
                 <div class="col-rating">Rating</div>
             </div>
-
-            <!-- dark_sasi -->
-            <div class="roster-row">
-                <div class="col-player">
-                    <div class="avatar-wrapper">
-                        <img class="roster-avatar" src="photos/player1.jpg" alt="dark_sasi">
-                        <img class="player-flag" src="photos/russia-flag.png" alt="Russia">
-                    </div>
-                    <span class="player-nick">dark_sasi</span>
-                </div>
-                <div class="col-time">0.5 year</div>
-                <div class="col-maps">209</div>
-                <div class="col-rating">3.0</div>
-            </div>
-
-            <!-- map1ks -->
-            <div class="roster-row">
-                <div class="col-player">
-                    <div class="avatar-wrapper">
-                        <img class="roster-avatar" src="photos/player2.jpg" alt="map1ks">
-                        <img class="player-flag" src="photos/russia-flag.png" alt="Russia">
-                    </div>
-                    <span class="player-nick">map1ks</span>
-                </div>
-                <div class="col-time">0.5 year</div>
-                <div class="col-maps">139</div>
-                <div class="col-rating">0.83</div>
-            </div>
-
-            <!-- D1amp0 -->
-            <div class="roster-row">
-                <div class="col-player">
-                    <div class="avatar-wrapper">
-                        <img class="roster-avatar" src="photos/player4.jpg" alt="D1amp0">
-                        <img class="player-flag" src="photos/russia-flag.png" alt="Russia">
-                    </div>
-                    <span class="player-nick">D1amp0</span>
-                </div>
-                <div class="col-time">0.5 year</div>
-                <div class="col-maps">147</div>
-                <div class="col-rating">1.20</div>
-            </div>
-
-            <!-- Dew1erMode -->
-            <div class="roster-row">
-                <div class="col-player">
-                    <div class="avatar-wrapper">
-                        <img class="roster-avatar" src="photos/player3.jpg" alt="Dew1erMode">
-                        <img class="player-flag" src="photos/russia-flag.png" alt="Russia">
-                    </div>
-                    <span class="player-nick">Dew1erMode</span>
-                </div>
-                <div class="col-time">0.5 year</div>
-                <div class="col-maps">142</div>
-                <div class="col-rating">1.45</div>
-            </div>
-
-            <!-- lightwork -->
-            <div class="roster-row">
-                <div class="col-player">
-                    <div class="avatar-wrapper">
-                        <img class="roster-avatar" src="photos/player5.jpg" alt="lightwork">
-                        <img class="player-flag" src="photos/russia-flag.png" alt="Russia">
-                    </div>
-                    <span class="player-nick">lightwork</span>
-                </div>
-                <div class="col-time">0.5 year</div>
-                <div class="col-maps">162</div>
-                <div class="col-rating">0.94</div>
-            </div>
+            <div id="rosterRows"></div>
         </div>
 
         <div id="info" class="tab-content"></div>
@@ -244,6 +176,7 @@
 
         <!-- Вкладка STATS -->
         <div id="stats" class="tab-content"></div>
+    </div>
     </div>
 
     <script src="script.js"></script>

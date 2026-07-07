@@ -33,6 +33,34 @@ if (toggle) {
     });
 }
 
+const ROSTER_PLAYERS = [
+    { nick: 'dark_sasi', avatar: 'photos/player1.jpg' },
+    { nick: 'map1ks', avatar: 'photos/player2.jpg' },
+    { nick: 'Dew1erMode', avatar: 'photos/player3.jpg' },
+    { nick: 'D1amp0', avatar: 'photos/player4.jpg' },
+    { nick: 'lightwork', avatar: 'photos/player5.jpg' }
+];
+
+function renderRosterRows() {
+    const container = document.getElementById('rosterRows');
+    if (!container) return;
+
+    container.innerHTML = ROSTER_PLAYERS.map(p => `
+        <div class="roster-row">
+            <div class="col-player">
+                <img class="roster-avatar" src="${p.avatar}" alt="${p.nick}">
+                <img class="player-flag" src="photos/russia-flag.png" alt="Russia">
+                <span class="player-nick">${p.nick}</span>
+            </div>
+            <div class="col-time">—</div>
+            <div class="col-maps">0</div>
+            <div class="col-rating">0.00</div>
+        </div>
+    `).join('');
+}
+
+renderRosterRows();
+
 const tabBtns = document.querySelectorAll('.tab-btn');
 const tabContents = document.querySelectorAll('.tab-content');
 

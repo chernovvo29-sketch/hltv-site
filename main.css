@@ -323,30 +323,23 @@ html, body {
     display: flex;
     align-items: center;
 }
-.avatar-wrapper {
-    position: relative;
+.roster-avatar {
     width: 3.5vw;
     height: 3.5vw;
-    display: inline-block;
-}
-.roster-avatar {
-    width: 100%;
-    height: 100%;
-    transition: transform 0.2s ease; 
+    flex: 0 0 auto;
+    transition: transform 0.2s ease;
 }
 .roster-avatar:hover {
     transform: scale(1.1);
 }
 .player-flag {
-    position: absolute;
-    bottom: 1.2vw;
-    right: -2.1vw;
-    width: 1.47vw;
+    width: 1.3vw;
     height: auto;
+    flex: 0 0 auto;
 }
 .player-nick {
     font-size: 1.1vw;
-    margin-left: 1.7vw;
+    margin-left: 0.2vw;
     font-weight: bold;
     white-space: nowrap;
 }
