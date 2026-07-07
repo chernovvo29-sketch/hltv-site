@@ -401,6 +401,7 @@
             .full-stats-table { font-size: 0.85vw; }
         }
     </style>
+    <link rel="stylesheet" href="mobile.css">
 </head>
 <body>
 
@@ -452,9 +453,9 @@
         return top;
     }
     function liteGetPlayerAvatar(nick, teamName) {
-        const map = { 'dark_sasi':'player1.jpg', 'map1ks':'player2.jpg', 'D1amp0':'player4.jpg', 'Dew1erMode':'player3.jpg', 'lightwork':'player5.jpg' };
+        const map = { 'dark_sasi':'photos/player1.jpg', 'map1ks':'photos/player2.jpg', 'D1amp0':'photos/player4.jpg', 'Dew1erMode':'photos/player3.jpg', 'lightwork':'photos/player5.jpg' };
         if (map[nick]) return map[nick];
-        return (teamName === 'Doctors') ? 'team-doctors.jpg' : 'opponent-logo.jpg';
+        return (teamName === 'Doctors') ? 'photos/team-doctors.jpg' : 'photos/opponent-logo.jpg';
     }
     function liteGetPlayerTeam(player, data) {
         if (data.playersDoctors.some(p => p.nick === player.nick)) return 'Doctors';
@@ -503,9 +504,9 @@
             const leftHtml = `
                 <div class="lite-tournament-header"><div class="lite-tournament-name">${tournament}</div><div class="lite-match-date">${formattedDate}</div></div>
                 <div class="lite-teams-score-row">
-                    <div class="lite-team-score-block"><img class="lite-team-logo-small" src="team-doctors.jpg"><div class="lite-team-name-large">Doctors</div><div class="lite-team-score-large ${doctorsWin?'lite-score-win':'lite-score-lose'}">${data.teamDoctorsScore}</div></div>
+                    <div class="lite-team-score-block"><img class="lite-team-logo-small" src="photos/team-doctors.jpg"><div class="lite-team-name-large">Doctors</div><div class="lite-team-score-large ${doctorsWin?'lite-score-win':'lite-score-lose'}">${data.teamDoctorsScore}</div></div>
                     <div class="lite-map-block"><div class="lite-map-name-large">${mapName}</div><div class="lite-map-mini"><img src="${miniMapUrl}" onerror="this.style.display='none'"></div></div>
-                    <div class="lite-team-score-block"><img class="lite-team-logo-small" src="opponent-logo.jpg"><div class="lite-team-name-large">${data.opponent||'?'}</div><div class="lite-team-score-large ${opponentWin?'lite-score-win':'lite-score-lose'}">${data.teamOpponentScore}</div></div>
+                    <div class="lite-team-score-block"><img class="lite-team-logo-small" src="photos/opponent-logo.jpg"><div class="lite-team-name-large">${data.opponent||'?'}</div><div class="lite-team-score-large ${opponentWin?'lite-score-win':'lite-score-lose'}">${data.teamOpponentScore}</div></div>
                 </div>
                 <div class="lite-breakdown-row"><div class="lite-breakdown-item"><span class="lite-breakdown-label">Breakdown:</span> (${firstBracket}) (${secondBracket})</div></div>
                 <div class="lite-team-rating-row"><span>Team Rating:</span> <span>${doctorsTeamRating}</span> <span>${opponentTeamRating}</span></div>
@@ -525,9 +526,9 @@
                 const link = isDoctor ? `player-stats.html?nick=${encodeURIComponent(topKills.nick)}` : '#';
                 rightHtml += `<div class="lite-top-player-item">`;
                 if (isDoctor) {
-                    rightHtml += `<a href="${link}"><img class="lite-top-player-avatar" src="${avatarSrc}" onerror="this.src='opponent-logo.jpg'"></a>`;
+                    rightHtml += `<a href="${link}"><img class="lite-top-player-avatar" src="${avatarSrc}" onerror="this.src='photos/opponent-logo.jpg'"></a>`;
                 } else {
-                    rightHtml += `<img class="lite-top-player-avatar" src="${avatarSrc}" onerror="this.src='opponent-logo.jpg'">`;
+                    rightHtml += `<img class="lite-top-player-avatar" src="${avatarSrc}" onerror="this.src='photos/opponent-logo.jpg'">`;
                 }
                 rightHtml += `<div class="lite-top-player-info"><div class="lite-top-player-stat">Most kills: ${topKills.kills}</div>`;
                 if (isDoctor) {
@@ -544,9 +545,9 @@
                 const link = isDoctor ? `player-stats.html?nick=${encodeURIComponent(topAssists.nick)}` : '#';
                 rightHtml += `<div class="lite-top-player-item">`;
                 if (isDoctor) {
-                    rightHtml += `<a href="${link}"><img class="lite-top-player-avatar" src="${avatarSrc}" onerror="this.src='opponent-logo.jpg'"></a>`;
+                    rightHtml += `<a href="${link}"><img class="lite-top-player-avatar" src="${avatarSrc}" onerror="this.src='photos/opponent-logo.jpg'"></a>`;
                 } else {
-                    rightHtml += `<img class="lite-top-player-avatar" src="${avatarSrc}" onerror="this.src='opponent-logo.jpg'">`;
+                    rightHtml += `<img class="lite-top-player-avatar" src="${avatarSrc}" onerror="this.src='photos/opponent-logo.jpg'">`;
                 }
                 rightHtml += `<div class="lite-top-player-info"><div class="lite-top-player-stat">Most assists: ${topAssists.assists}</div>`;
                 if (isDoctor) {
@@ -563,9 +564,9 @@
                 const link = isDoctor ? `player-stats.html?nick=${encodeURIComponent(topRating.nick)}` : '#';
                 rightHtml += `<div class="lite-top-player-item">`;
                 if (isDoctor) {
-                    rightHtml += `<a href="${link}"><img class="lite-top-player-avatar" src="${avatarSrc}" onerror="this.src='opponent-logo.jpg'"></a>`;
+                    rightHtml += `<a href="${link}"><img class="lite-top-player-avatar" src="${avatarSrc}" onerror="this.src='photos/opponent-logo.jpg'"></a>`;
                 } else {
-                    rightHtml += `<img class="lite-top-player-avatar" src="${avatarSrc}" onerror="this.src='opponent-logo.jpg'">`;
+                    rightHtml += `<img class="lite-top-player-avatar" src="${avatarSrc}" onerror="this.src='photos/opponent-logo.jpg'">`;
                 }
                 rightHtml += `<div class="lite-top-player-info"><div class="lite-top-player-stat">Best rating: ${topRating.rating}</div>`;
                 if (isDoctor) {
@@ -593,8 +594,8 @@
                 html += `</tbody></table>`;
                 return html;
             }
-            document.getElementById('liteTableDoctors').innerHTML = renderLiteTable(doctorsSorted, 'Doctors', 'team-doctors.jpg');
-            document.getElementById('liteTableOpponent').innerHTML = renderLiteTable(opponentSorted, data.opponent||'Opponent', 'opponent-logo.jpg');
+            document.getElementById('liteTableDoctors').innerHTML = renderLiteTable(doctorsSorted, 'Doctors', 'photos/team-doctors.jpg');
+            document.getElementById('liteTableOpponent').innerHTML = renderLiteTable(opponentSorted, data.opponent||'Opponent', 'photos/opponent-logo.jpg');
 
             document.querySelector('.lite-version').style.backgroundImage = `url('maps/background_${mapSlug}.jpg')`;
             document.querySelector('.lite-version').style.backgroundColor = '#1a1d2b';
@@ -628,9 +629,9 @@
         return top;
     }
     function fullGetPlayerAvatar(nick, teamName) {
-        const map = { 'dark_sasi':'player1.jpg', 'map1ks':'player2.jpg', 'D1amp0':'player4.jpg', 'Dew1erMode':'player3.jpg', 'lightwork':'player5.jpg' };
+        const map = { 'dark_sasi':'photos/player1.jpg', 'map1ks':'photos/player2.jpg', 'D1amp0':'photos/player4.jpg', 'Dew1erMode':'photos/player3.jpg', 'lightwork':'photos/player5.jpg' };
         if (map[nick]) return map[nick];
-        return (teamName === 'Doctors') ? 'team-doctors.jpg' : 'opponent-logo.jpg';
+        return (teamName === 'Doctors') ? 'photos/team-doctors.jpg' : 'photos/opponent-logo.jpg';
     }
     function fullGetPlayerTeam(player, data) {
         if (data.playersDoctors.some(p => p.nick === player.nick)) return 'Doctors';
@@ -679,9 +680,9 @@
             const leftHtml = `
                 <div class="full-tournament-header"><div class="full-tournament-name">${tournament}</div><div class="full-match-date">${formattedDate}</div></div>
                 <div class="full-teams-score-row">
-                    <div class="full-team-score-block"><img class="full-team-logo-small" src="team-doctors.jpg"><div class="full-team-name-large">Doctors</div><div class="full-team-score-large ${doctorsWin?'full-score-win':'full-score-lose'}">${data.teamDoctorsScore}</div></div>
+                    <div class="full-team-score-block"><img class="full-team-logo-small" src="photos/team-doctors.jpg"><div class="full-team-name-large">Doctors</div><div class="full-team-score-large ${doctorsWin?'full-score-win':'full-score-lose'}">${data.teamDoctorsScore}</div></div>
                     <div class="full-map-block"><div class="full-map-name-large">${mapName}</div><div class="full-map-mini"><img src="${miniMapUrl}" onerror="this.style.display='none'"></div></div>
-                    <div class="full-team-score-block"><img class="full-team-logo-small" src="opponent-logo.jpg"><div class="full-team-name-large">${data.opponent||'?'}</div><div class="full-team-score-large ${opponentWin?'full-score-win':'full-score-lose'}">${data.teamOpponentScore}</div></div>
+                    <div class="full-team-score-block"><img class="full-team-logo-small" src="photos/opponent-logo.jpg"><div class="full-team-name-large">${data.opponent||'?'}</div><div class="full-team-score-large ${opponentWin?'full-score-win':'full-score-lose'}">${data.teamOpponentScore}</div></div>
                 </div>
                 <div class="full-breakdown-row"><div class="full-breakdown-item"><span class="full-breakdown-label">Breakdown: </span> (${firstBracket}) (${secondBracket})</div></div>
                 <div class="full-team-rating-row"><span>Team Rating:</span> <span>${doctorsTeamRating}</span> <span>${opponentTeamRating}</span></div>
@@ -702,9 +703,9 @@
                 const link = isDoctor ? `player-stats.html?nick=${encodeURIComponent(topKills.nick)}` : '#';
                 rightHtml += `<div class="full-top-player-item">`;
                 if (isDoctor) {
-                    rightHtml += `<a href="${link}"><img class="full-top-player-avatar" src="${avatarSrc}" onerror="this.src='opponent-logo.jpg'"></a>`;
+                    rightHtml += `<a href="${link}"><img class="full-top-player-avatar" src="${avatarSrc}" onerror="this.src='photos/opponent-logo.jpg'"></a>`;
                 } else {
-                    rightHtml += `<img class="full-top-player-avatar" src="${avatarSrc}" onerror="this.src='opponent-logo.jpg'">`;
+                    rightHtml += `<img class="full-top-player-avatar" src="${avatarSrc}" onerror="this.src='photos/opponent-logo.jpg'">`;
                 }
                 rightHtml += `<div class="full-top-player-info"><div class="full-top-player-stat">Most kills: ${topKills.kills}</div>`;
                 if (isDoctor) {
@@ -721,9 +722,9 @@
                 const link = isDoctor ? `player-stats.html?nick=${encodeURIComponent(topDamage.nick)}` : '#';
                 rightHtml += `<div class="full-top-player-item">`;
                 if (isDoctor) {
-                    rightHtml += `<a href="${link}"><img class="full-top-player-avatar" src="${avatarSrc}" onerror="this.src='opponent-logo.jpg'"></a>`;
+                    rightHtml += `<a href="${link}"><img class="full-top-player-avatar" src="${avatarSrc}" onerror="this.src='photos/opponent-logo.jpg'"></a>`;
                 } else {
-                    rightHtml += `<img class="full-top-player-avatar" src="${avatarSrc}" onerror="this.src='opponent-logo.jpg'">`;
+                    rightHtml += `<img class="full-top-player-avatar" src="${avatarSrc}" onerror="this.src='photos/opponent-logo.jpg'">`;
                 }
                 rightHtml += `<div class="full-top-player-info"><div class="full-top-player-stat">Most damage: ${topDamage.adr}</div>`;
                 if (isDoctor) {
@@ -740,9 +741,9 @@
                 const link = isDoctor ? `player-stats.html?nick=${encodeURIComponent(topAssists.nick)}` : '#';
                 rightHtml += `<div class="full-top-player-item">`;
                 if (isDoctor) {
-                    rightHtml += `<a href="${link}"><img class="full-top-player-avatar" src="${avatarSrc}" onerror="this.src='opponent-logo.jpg'"></a>`;
+                    rightHtml += `<a href="${link}"><img class="full-top-player-avatar" src="${avatarSrc}" onerror="this.src='photos/opponent-logo.jpg'"></a>`;
                 } else {
-                    rightHtml += `<img class="full-top-player-avatar" src="${avatarSrc}" onerror="this.src='opponent-logo.jpg'">`;
+                    rightHtml += `<img class="full-top-player-avatar" src="${avatarSrc}" onerror="this.src='photos/opponent-logo.jpg'">`;
                 }
                 rightHtml += `<div class="full-top-player-info"><div class="full-top-player-stat">Most assists: ${topAssists.assists}</div>`;
                 if (isDoctor) {
@@ -759,9 +760,9 @@
                 const link = isDoctor ? `player-stats.html?nick=${encodeURIComponent(topRating.nick)}` : '#';
                 rightHtml += `<div class="full-top-player-item">`;
                 if (isDoctor) {
-                    rightHtml += `<a href="${link}"><img class="full-top-player-avatar" src="${avatarSrc}" onerror="this.src='opponent-logo.jpg'"></a>`;
+                    rightHtml += `<a href="${link}"><img class="full-top-player-avatar" src="${avatarSrc}" onerror="this.src='photos/opponent-logo.jpg'"></a>`;
                 } else {
-                    rightHtml += `<img class="full-top-player-avatar" src="${avatarSrc}" onerror="this.src='opponent-logo.jpg'">`;
+                    rightHtml += `<img class="full-top-player-avatar" src="${avatarSrc}" onerror="this.src='photos/opponent-logo.jpg'">`;
                 }
                 rightHtml += `<div class="full-top-player-info"><div class="full-top-player-stat">Best rating: ${topRating.rating}</div>`;
                 if (isDoctor) {
@@ -791,8 +792,8 @@
                 html += `</tbody></table>`;
                 return html;
             }
-            document.getElementById('fullTableDoctors').innerHTML = renderFullTable(doctorsSorted, 'Doctors', 'team-doctors.jpg');
-            document.getElementById('fullTableOpponent').innerHTML = renderFullTable(opponentSorted, data.opponent||'Opponent', 'opponent-logo.jpg');
+            document.getElementById('fullTableDoctors').innerHTML = renderFullTable(doctorsSorted, 'Doctors', 'photos/team-doctors.jpg');
+            document.getElementById('fullTableOpponent').innerHTML = renderFullTable(opponentSorted, data.opponent||'Opponent', 'photos/opponent-logo.jpg');
 
             document.querySelector('.full-version').style.backgroundImage = `url('maps/background_${mapSlug}.jpg')`;
             document.querySelector('.full-version').style.backgroundColor = '#1a1d2b';

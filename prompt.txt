@@ -49,7 +49,7 @@ K_D = ln(K_D_raw + 1) / ln(1.43)
 Δ = |teamDoctorsScore - teamOpponentScore|
 
 Для 5v5 Lite:
-BaseRating = 0.64*(KPR/0.70) + 0.14*K_D + 0.17*(APR/0.33) + 0.10*((1-DPR)/0.30)
+BaseRating = 0.64*(KPR/0.70) + 0.13*K_D + 0.17*(APR/0.32) + 0.10*((1-DPR)/0.30)
 MatchFactor = победитель: (1 + 0.002*Δ), проигравший: (1 - 0.002*Δ)
 TempRating = BaseRating * MatchFactor
 

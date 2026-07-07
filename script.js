@@ -199,13 +199,13 @@ if (matchesContainer) {
 
                         <div class="match-team-doctors">
                             <span class="match-team-name">Doctors</span>
-                            <img class="match-team-logo" src="team-doctors.jpg" alt="Doctors">
+                            <img class="match-team-logo" src="photos/team-doctors.jpg" alt="Doctors">
                         </div>
 
                         <div class="match-score">${match.teamDoctorsScore || 0} : ${match.teamOpponentScore || 0}</div>
 
                         <div class="match-team-opponent">
-                            <img class="match-team-logo" src="opponent-logo.jpg" alt="Opponent">
+                            <img class="match-team-logo" src="photos/opponent-logo.jpg" alt="Opponent">
                             <span class="match-team-name">${match.opponent || '?'}</span>
                         </div>
 
@@ -536,14 +536,14 @@ function updateStats() {
 
         if (mvpNick) {
             const avatarMap = {
-                'dark_sasi': 'player1.jpg',
-                'map1ks': 'player2.jpg',
-                'D1amp0': 'player4.jpg',
-                'Dew1erMode': 'player3.jpg',
-                'lightwork': 'player5.jpg'
+                'dark_sasi': 'photos/player1.jpg',
+                'map1ks': 'photos/player2.jpg',
+                'D1amp0': 'photos/player4.jpg',
+                'Dew1erMode': 'photos/player3.jpg',
+                'lightwork': 'photos/player5.jpg'
             };
 
-            const avatarSrc = avatarMap[mvpNick] || 'player1.jpg';
+            const avatarSrc = avatarMap[mvpNick] || 'photos/player1.jpg';
             const profileUrl = `player-stats.html?nick=${encodeURIComponent(mvpNick)}`;
 
             mvpHtml = `
@@ -988,7 +988,7 @@ function renderDoctorsRatingBlock(history) {
             const title = `${item.match.opponent || 'Opponent'}: ${item.before} → ${item.after} (${formatSignedNumber(item.change)})`;
 
             tapeHtml += `
-                <div title="${title.replace(/"/g, '&quot;')}" style="display:flex; flex-direction:column; align-items:center; justify-content:flex-end; min-width:0.9vw; height:3.6vw;">
+                <div class="rating-tape-item" title="${title.replace(/"/g, '&quot;')}" style="display:flex; flex-direction:column; align-items:center; justify-content:flex-end; min-width:0.9vw; height:3.6vw;">
                     <div style="width:0.55vw; height:${height}px; max-height:3.2vw; border-radius:999px; background:${color}; opacity:${isWin ? '0.95' : '0.75'}; box-shadow:0 0 0.8vw ${color}33;"></div>
                 </div>
             `;
@@ -1016,7 +1016,7 @@ function renderDoctorsRatingBlock(history) {
             const expectedPercent = Math.round(item.expected * 100);
 
             rowsHtml += `
-                <div style="display:grid; grid-template-columns:4.2vw 1fr 8.5vw; align-items:center; gap:1vw; padding:0.75vw 0; border-top:0.052vw solid rgba(255,255,255,0.08);">
+                <div class="rating-log-row" style="display:grid; grid-template-columns:4.2vw 1fr 8.5vw; align-items:center; gap:1vw; padding:0.75vw 0; border-top:0.052vw solid rgba(255,255,255,0.08);">
                     <div style="display:flex; flex-direction:column; align-items:flex-start; gap:0.25vw;">
                         <span style="font-size:0.65vw; font-weight:800; letter-spacing:0.08vw; color:${isWin ? '#2ecc71' : '#e74c3c'};">${resultText}</span>
                         <span style="font-size:1vw; font-weight:900; color:${changeColor};">${formatSignedNumber(item.change)}</span>
@@ -1052,7 +1052,7 @@ function renderDoctorsRatingBlock(history) {
     }
 
     return `
-        <div style="max-width:54vw; margin:2.5vh auto 0; text-align:left; color:#cbd5e6;">
+        <div class="elo-panel" style="max-width:54vw; margin:2.5vh auto 0; text-align:left; color:#cbd5e6;">
             <div style="padding:0;">
                 <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:1.5vw;">
                     <div>
@@ -1416,7 +1416,7 @@ async function updateInfo() {
     html += `
             </div>
 
-            <div style="position:relative; display:inline-block; width:100%; max-width:60vw; margin:0 auto;">
+            <div class="rating-chart-wrap" style="position:relative; display:inline-block; width:100%; max-width:60vw; margin:0 auto;">
                 <canvas id="ratingChart" width="800" height="700" style="width:100%; height:auto; background:transparent; border-radius:0.5vw; display:block; margin:0 auto;"></canvas>
                 <div id="chartTooltip" style="position:absolute; pointer-events:none; background:rgba(0,0,0,0.7); color:#fff; padding:0.2vw 0.5vw; border-radius:0.2vw; font-size:0.9vw; display:none; z-index:100; font-weight:bold;"></div>
             </div>

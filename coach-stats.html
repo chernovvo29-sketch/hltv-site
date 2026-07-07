@@ -268,6 +268,39 @@
             margin-bottom: 2vh;
         }
 
+        .wm-toggle-input {
+            display: none;
+        }
+
+        .wm-value {
+            display: none;
+        }
+
+        .wm-toggle-input:checked ~ .wm-value {
+            display: inline;
+        }
+
+        .wm-toggle-input:checked ~ .wm-hidden-text {
+            display: none;
+        }
+
+        .wm-hidden-text {
+            color: #888;
+            font-style: italic;
+            font-weight: normal;
+        }
+
+        .wm-toggle-label {
+            cursor: pointer;
+            margin-left: 0.5vw;
+            opacity: 0.55;
+            transition: opacity 0.2s ease;
+        }
+
+        .wm-toggle-label:hover {
+            opacity: 1;
+        }
+
         .stats-grid {
             display: flex;
             flex-direction: column;
@@ -354,6 +387,7 @@
             margin-left: 5.88vw;
         }
     </style>
+    <link rel="stylesheet" href="mobile.css">
 </head>
 
 <body class="dark">
@@ -366,7 +400,7 @@
     </div>
 
     <div class="hltv">
-        <img src="hltv-pic.jpg" alt="logo" class="hltv-img">
+        <img src="photos/hltv-pic.jpg" alt="logo" class="hltv-img">
         <span>HLTV</span>
     </div>
 
@@ -924,7 +958,7 @@
                         <div>
                             <div class="coach-nick">adski_profi</div>
                             <div class="coach-fullname">
-                                <img src="russia-flag.png" class="coach-flag-img" alt="Russia">
+                                <img src="photos/russia-flag.png" class="coach-flag-img" alt="Russia">
                                 Mikhail Bortsov
                             </div>
                         </div>
@@ -1005,7 +1039,7 @@
 
                 recentMatchesHtml += `
                     <div class="recent-match-item ${winClass}" data-match-file="${match.fileName}">
-                        <img class="match-opponent-logo" src="opponent-logo.jpg" alt="opponent">
+                        <img class="match-opponent-logo" src="photos/opponent-logo.jpg" alt="opponent">
 
                         <div class="match-info">
                             <div class="match-opponent-name">vs ${match.opponent || '?'}</div>
@@ -1059,7 +1093,11 @@
                             Elite Rating: ${eliteDisplay}
                         </div>
                         <div class="wingman-rating">
-                            Wingman Rating: ${wingmanDisplay}
+                            Wingman Rating:
+                            <input type="checkbox" id="wmRevealToggle" class="wm-toggle-input">
+                            <span class="wm-hidden-text">Hidden</span>
+                            <span class="wm-value">${wingmanDisplay}</span>
+                            <label for="wmRevealToggle" class="wm-toggle-label" title="Показать Wingman Rating"><i class="fa-solid fa-eye"></i></label>
                         </div>
                     </div>
 

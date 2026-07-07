@@ -98,6 +98,32 @@
             font-weight: bold;
             margin-top: 0.5vh; /* небольшой отступ сверху */
         }
+        .wm-toggle-input {
+            display: none;
+        }
+        .wm-value {
+            display: none;
+        }
+        .wm-toggle-input:checked ~ .wm-value {
+            display: inline;
+        }
+        .wm-toggle-input:checked ~ .wm-hidden-text {
+            display: none;
+        }
+        .wm-hidden-text {
+            color: #888;
+            font-style: italic;
+            font-weight: normal;
+        }
+        .wm-toggle-label {
+            cursor: pointer;
+            margin-left: 0.5vw;
+            opacity: 0.55;
+            transition: opacity 0.2s ease;
+        }
+        .wm-toggle-label:hover {
+            opacity: 1;
+        }
         .stats-grid {
             display: flex;
             flex-direction: column;
@@ -188,6 +214,7 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="mobile.css">
 </head>
 <body>
     <div class="theme-toggle">
@@ -198,7 +225,7 @@
         </label>
     </div>
     <div class="hltv">
-        <img src="hltv-pic.jpg" alt="logo" class="hltv-img">
+        <img src="photos/hltv-pic.jpg" alt="logo" class="hltv-img">
         <span>HLTV</span>
     </div>
 
@@ -325,13 +352,13 @@
             const age = profile.birthDate ? calculateAge(profile.birthDate) : '?';
 
             const avatarMap = {
-                'dark_sasi': 'player1.jpg',
-                'map1ks': 'player2.jpg',
-                'D1amp0': 'player4.jpg',
-                'Dew1erMode': 'player3.jpg',
-                'lightwork': 'player5.jpg'
+                'dark_sasi': 'photos/player1.jpg',
+                'map1ks': 'photos/player2.jpg',
+                'D1amp0': 'photos/player4.jpg',
+                'Dew1erMode': 'photos/player3.jpg',
+                'lightwork': 'photos/player5.jpg'
             };
-            const avatarSrc = avatarMap[nick] || 'player1.jpg';
+            const avatarSrc = avatarMap[nick] || 'photos/player1.jpg';
 
             // 5v5 метрики
             let totalKills = 0, totalDeaths = 0, totalAssists = 0, totalRounds = 0;
@@ -506,7 +533,7 @@
                         <div>
                             <div class="player-nick">${nick}</div>
                             <div class="player-fullname">
-                                <img src="russia-flag.png" class="player-flag-img" alt="Russia">
+                                <img src="photos/russia-flag.png" class="player-flag-img" alt="Russia">
                                 ${profile.fullname}
                             </div>
                         </div>
@@ -546,7 +573,12 @@
                     <div class="rating-block">
                         <div class="main-rating">Rating: <span style="color: ${ratingColor}">${avgRating.toFixed(2)}</span></div>
                         <div class="elite-rating">Elite Rating: <span style="color: ${eliteRatingColor}">${eliteRating.toFixed(2)}</span></div>
-                        <div class="wingman-rating">Wingman Rating: <span style="color: ${wingmanRatingColor}">${wingmanDisplay}</span></div>
+                        <div class="wingman-rating">Wingman Rating:
+                            <input type="checkbox" id="wmRevealToggle" class="wm-toggle-input">
+                            <span class="wm-hidden-text">Hidden</span>
+                            <span class="wm-value" style="color: ${wingmanRatingColor}">${wingmanDisplay}</span>
+                            <label for="wmRevealToggle" class="wm-toggle-label" title="Показать Wingman Rating"><i class="fa-solid fa-eye"></i></label>
+                        </div>
                     </div>
                     <div class="stats-grid" style="margin-top: 2vh;">
                         <div class="stats-row">

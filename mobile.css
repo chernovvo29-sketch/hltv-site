@@ -1,0 +1,602 @@
+/* ==================== МОБИЛЬНАЯ ВЕРСИЯ ====================
+   Всё завёрнуто в один media query. Ничего в этом файле не
+   применяется выше 768px, поэтому десктоп не затрагивается. */
+
+@media (max-width: 768px) {
+
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* ---------- Шапка: HLTV-лого + переключатель темы ---------- */
+    .hltv {
+        top: 10px;
+        left: 12px;
+        gap: 6px;
+    }
+    .hltv-img {
+        width: 28px;
+    }
+    .hltv span {
+        font-size: 22px;
+        transform: none;
+    }
+
+    .theme-toggle {
+        top: 10px;
+        right: 12px;
+    }
+    .slider {
+        width: 46px;
+        height: 25px;
+        border-radius: 25px;
+    }
+    .slider::before {
+        width: 19px;
+        height: 19px;
+        left: 3px;
+        bottom: 3px;
+    }
+    .theme-toggle input:checked + .slider::before {
+        transform: translateX(21px);
+    }
+    .slider i {
+        font-size: 11px;
+    }
+    .slider .fa-moon { left: 5px; }
+    .slider .fa-sun { right: 5px; }
+
+    /* ---------- Общая карточка (main.css .card) ---------- */
+    .card {
+        margin-left: 4vw;
+        margin-right: 4vw;
+        width: auto;
+        max-width: 92vw;
+    }
+    .card-roster {
+        margin-top: 64px;
+    }
+
+    /* ---------- Ростер игроков (верхняя карточка) ---------- */
+    .players {
+        gap: 3vw;
+    }
+    .player-card {
+        width: 19vw;
+        gap: 4px;
+    }
+    .avatar {
+        width: 15vw;
+        height: 15vw;
+    }
+    .nickname {
+        font-size: 11px;
+    }
+
+    /* ---------- Карточка команды Doctors ---------- */
+    .team-doctors {
+        margin-left: 4vw;
+        gap: 3vw;
+        max-width: calc(100% - 8vw);
+    }
+    .team-logo {
+        width: 14vw;
+        max-height: 14vw;
+    }
+    .team-name {
+        font-size: 20px;
+        transform: none;
+    }
+    .russia {
+        gap: 6px;
+    }
+    .russia-text {
+        font-size: 13px;
+    }
+    .flag-img {
+        width: 18px;
+        max-height: 14px;
+    }
+    .player-age, .coach {
+        margin-left: 4vw;
+        margin-right: 4vw;
+        font-size: 12px;
+    }
+
+    /* ---------- Вкладки ---------- */
+    .tabs {
+        margin-left: 4vw;
+        width: calc(100% - 8vw);
+    }
+    .tab-btn {
+        font-size: 12px;
+        padding: 8px 12px;
+    }
+
+    /* ---------- Events ---------- */
+    .event-item {
+        margin-left: 4vw;
+        width: calc(100% - 8vw);
+        padding: 3vw;
+        border-radius: 8px;
+    }
+    .event-logo {
+        width: 12vw;
+        max-height: 12vw;
+    }
+    .event-name {
+        font-size: 14px;
+    }
+    .event-date {
+        font-size: 11px;
+    }
+
+    /* ---------- Achievements ---------- */
+    #achievements {
+        margin-left: 4vw;
+    }
+    .achievements-header {
+        gap: 8vw;
+        font-size: 12px;
+    }
+    .achievement-item {
+        gap: 4vw;
+    }
+    .achievement-placement {
+        margin-left: 0;
+        font-size: 14px;
+    }
+    .achievement-tournament {
+        margin-left: 2vw;
+        font-size: 14px;
+    }
+
+    /* ---------- Roster (таблица игроков) ---------- */
+    #roster {
+        margin-left: 3vw;
+        margin-right: 3vw;
+    }
+    .roster-header, .roster-row {
+        margin-left: 0;
+        padding-right: 0;
+    }
+    .roster-header {
+        font-size: 10px;
+        margin-bottom: 12px;
+        grid-template-columns: 2.2fr 1fr 0.8fr 0.9fr;
+    }
+    .roster-header .col-maps,
+    .roster-header .col-time,
+    .roster-header .col-player,
+    .roster-header .col-rating {
+        margin-left: 0;
+    }
+    .col-time, .col-maps, .col-rating, .col-player {
+        font-size: 12px;
+    }
+    .roster-row {
+        padding: 8px;
+        border-radius: 8px;
+    }
+    .roster-row .col-time {
+        margin-left: 0;
+    }
+    .avatar-wrapper {
+        width: 34px;
+        height: 34px;
+    }
+    .player-flag {
+        bottom: 10px;
+        right: -8px;
+        width: 14px;
+    }
+    .player-nick {
+        font-size: 12px;
+        margin-left: 8px;
+    }
+    .col-maps {
+        margin-left: 0;
+    }
+
+    /* ---------- Win streak / winrate блоки ---------- */
+    .stats-blocks {
+        gap: 8px;
+    }
+    .stat-block {
+        padding: 2vh 4vw;
+        min-width: 0;
+        width: auto;
+        flex: 1;
+    }
+    .stat-label {
+        font-size: 10px;
+    }
+    .stat-value {
+        font-size: 18px;
+    }
+
+    /* ---------- Matches ---------- */
+    .tournament-header {
+        font-size: 13px;
+        width: calc(100% - 8vw);
+        margin-left: 4vw;
+        margin-right: 4vw;
+        padding: 1.4vh 3vw;
+    }
+    .match-item {
+        gap: 2.5vw;
+        padding: 1.2vh 0;
+        width: calc(100% - 8vw);
+        margin-left: 4vw;
+        margin-right: 4vw;
+    }
+    .match-date {
+        width: 15vw;
+        font-size: 10px;
+    }
+    .match-team-doctors {
+        width: auto;
+        gap: 1.5vw;
+    }
+    .match-team-opponent {
+        width: auto;
+        flex: 1;
+        gap: 1.5vw;
+    }
+    .match-team-logo {
+        width: 22px;
+        height: 22px;
+    }
+    .match-team-name {
+        font-size: 11px;
+    }
+    .match-score {
+        width: auto;
+        font-size: 12px;
+        margin: 0 2vw;
+    }
+    .match-detail-btn {
+        margin-left: 0;
+        width: auto;
+        height: auto;
+        padding: 6px 10px;
+        font-size: 11px;
+        flex: 0 0 auto;
+    }
+    .load-more-btn {
+        padding: 1.2vh 5vw;
+        font-size: 12px;
+    }
+
+    /* ---------- Stats: распределение карт ---------- */
+    .stats-distribution {
+        margin-left: 4vw;
+        margin-right: 4vw;
+    }
+    .stats-distribution-header {
+        font-size: 15px;
+    }
+    .stats-distribution-bars {
+        max-width: 100%;
+    }
+    .stats-distribution-label {
+        width: 16vw;
+        font-size: 11px;
+    }
+    .stats-distribution-count {
+        width: 7vw;
+        font-size: 11px;
+    }
+
+    /* ---------- Stats: карточки карт ---------- */
+    .stats-map-card {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 4vw;
+        gap: 3vw;
+    }
+    .stats-map-left {
+        margin-left: 0;
+    }
+    .stats-map-name {
+        font-size: 18px;
+    }
+    .stats-map-stats {
+        font-size: 13px;
+    }
+    .stats-map-right {
+        margin-right: 0;
+    }
+    .stats-donut-title {
+        font-size: 14px;
+    }
+    .stats-donut-canvas {
+        width: 140px !important;
+        height: 140px !important;
+    }
+    .stats-donut-center {
+        font-size: 13px;
+    }
+    .mvp-avatar {
+        width: 24px;
+        height: 24px;
+    }
+    .mvp-nick, .mvp-rating {
+        font-size: 11px;
+    }
+
+    /* ---------- Info tab: график рейтинга (см. rating-chart-wrap класс в script.js) ---------- */
+    .rating-chart-wrap {
+        max-width: 100% !important;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    .rating-chart-wrap canvas#ratingChart {
+        width: 640px !important;
+        min-width: 640px;
+        height: auto !important;
+    }
+    .legend-item {
+        font-size: 11px !important;
+        gap: 4px !important;
+    }
+
+    /* ---------- Info tab: ELO-панель (см. elo-panel класс в script.js) ---------- */
+    .elo-panel {
+        max-width: 100% !important;
+        padding: 0 2vw;
+    }
+    .elo-panel > div > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) {
+        font-size: 10px !important;
+    }
+    .elo-panel > div > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) {
+        font-size: 34px !important;
+    }
+    .elo-panel > div > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(2) {
+        font-size: 13px !important;
+    }
+    .elo-panel > div > div:nth-child(1) > div:nth-child(2) {
+        font-size: 10px !important;
+        max-width: 42vw !important;
+    }
+    .elo-panel > div > div:nth-child(2) > div:nth-child(1) > div {
+        font-size: 10px !important;
+    }
+    .elo-panel > div > div:nth-child(3) > div:nth-child(1) {
+        font-size: 10px !important;
+    }
+    .rating-tape-item {
+        min-width: 12px !important;
+        height: 56px !important;
+    }
+    .rating-tape-item > div {
+        width: 8px !important;
+    }
+    .rating-log-row {
+        grid-template-columns: 46px 1fr 68px !important;
+        gap: 10px !important;
+    }
+    .rating-log-row > div:first-child span:first-child {
+        font-size: 10px !important;
+    }
+    .rating-log-row > div:first-child span:nth-child(2) {
+        font-size: 14px !important;
+    }
+    .rating-log-row > div:nth-child(2) > div:nth-child(1) {
+        font-size: 12px !important;
+    }
+    .rating-log-row > div:nth-child(2) > div:nth-child(2) {
+        font-size: 10px !important;
+    }
+    .rating-log-row > div:nth-child(2) > div:nth-child(3) {
+        font-size: 10px !important;
+        line-height: 1.4 !important;
+    }
+    .rating-log-row > div:nth-child(3) > div:nth-child(1) {
+        font-size: 13px !important;
+    }
+    .rating-log-row > div:nth-child(3) > div:nth-child(2) {
+        font-size: 10px !important;
+    }
+
+    /* ==================== MATCH.HTML (Lite + Full) ==================== */
+    .lite-version, .full-version {
+        padding: 4vw;
+    }
+    .lite-match-stats-container, .full-match-stats-container {
+        max-width: 100%;
+    }
+    .lite-top-panels, .full-top-panels {
+        flex-direction: column;
+        gap: 3vw;
+    }
+    .lite-left-panel, .full-left-panel,
+    .lite-right-panel, .full-right-panel {
+        padding: 3vw;
+    }
+    .lite-tournament-name, .full-tournament-name {
+        font-size: 15px;
+    }
+    .lite-match-date, .full-match-date {
+        font-size: 11px;
+    }
+    .lite-team-logo-small, .full-team-logo-small {
+        width: 34px;
+    }
+    .lite-team-name-large, .full-team-name-large {
+        font-size: 12px;
+    }
+    .lite-team-score-large, .full-team-score-large {
+        font-size: 20px;
+    }
+    .lite-map-name-large, .full-map-name-large {
+        font-size: 14px;
+    }
+    .lite-map-mini img, .full-map-mini img {
+        width: 22vw;
+    }
+    .lite-breakdown-row, .full-breakdown-row,
+    .lite-team-rating-row, .full-team-rating-row {
+        font-size: 12px;
+    }
+    .lite-top-player-item, .full-top-player-item {
+        gap: 3vw;
+        padding: 2.4vh 3vw;
+    }
+    .lite-top-player-avatar, .full-top-player-avatar {
+        width: 32px;
+        height: 32px;
+    }
+    .lite-top-player-info, .full-top-player-info {
+        font-size: 11px;
+    }
+    .lite-top-player-stat, .full-top-player-stat {
+        font-size: 12px;
+    }
+    .lite-team-table h3, .full-team-table h3 {
+        font-size: 13px;
+        gap: 2.5vw;
+    }
+    .lite-team-table h3 img, .full-team-table h3 img {
+        width: 28px;
+    }
+    .lite-stats-table, .full-stats-table {
+        font-size: 11px !important;
+        table-layout: auto !important;
+        width: auto;
+        min-width: 100%;
+    }
+    .lite-stats-table th, .lite-stats-table td,
+    .full-stats-table th, .full-stats-table td {
+        padding: 1.4vh 2vw;
+        white-space: nowrap;
+    }
+    .lite-stats-table td:first-child, .full-stats-table td:first-child {
+        padding-left: 3vw !important;
+    }
+    .lite-back-link, .full-back-link {
+        font-size: 13px;
+    }
+
+    /* ==================== PLAYER-STATS.HTML + COACH-STATS.HTML ==================== */
+    .player-container, .coach-container {
+        max-width: 94vw;
+        margin-top: 60px;
+        gap: 2.5vh;
+    }
+    .player-card-left, .coach-card-left {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 5vw;
+        gap: 3vw;
+    }
+    .player-avatar {
+        width: 96px;
+        max-height: 96px;
+    }
+    .coach-avatar {
+        width: 96px !important;
+        height: 96px !important;
+        min-width: 96px !important;
+        max-width: 96px !important;
+        min-height: 96px !important;
+        max-height: 96px !important;
+        flex: 0 0 96px !important;
+    }
+    .player-info-area, .coach-info-area {
+        width: 100%;
+        align-items: center;
+    }
+    .player-nick, .coach-nick {
+        font-size: 20px;
+    }
+    .player-fullname, .coach-fullname {
+        font-size: 13px;
+        justify-content: center;
+    }
+    .player-flag-img, .coach-flag-img {
+        width: 16px;
+    }
+    .player-details, .coach-details {
+        width: 100%;
+    }
+    .player-info-row, .coach-info-row {
+        font-size: 12px;
+    }
+    .player-stats-right, .coach-two-columns {
+        padding: 5vw;
+    }
+    .coach-two-columns {
+        flex-direction: column;
+        gap: 3vh;
+    }
+    .rating-block {
+        align-items: center;
+        width: 100%;
+    }
+    .main-rating, .elite-rating, .wingman-rating {
+        font-size: 15px;
+    }
+    .wm-toggle-label {
+        font-size: 14px;
+    }
+    .stats-row {
+        gap: 3vw;
+    }
+    .stat-label {
+        font-size: 10px;
+    }
+    .bar-value {
+        font-size: 13px;
+    }
+    .bar-status {
+        font-size: 10px;
+    }
+    .coach-stats-col {
+        gap: 1.5vh;
+    }
+    .coach-stat-block {
+        padding: 3vw;
+    }
+    .coach-stat-label {
+        font-size: 11px;
+    }
+    .coach-stat-value {
+        font-size: 20px;
+    }
+    .coach-stat-sub {
+        font-size: 10px;
+    }
+    .recent-header {
+        font-size: 15px;
+    }
+    .recent-match-item {
+        gap: 3vw;
+        padding: 3vw;
+    }
+    .match-opponent-logo {
+        width: 32px !important;
+        height: 32px !important;
+        min-width: 32px !important;
+        max-width: 32px !important;
+        min-height: 32px !important;
+        max-height: 32px !important;
+        flex: 0 0 32px !important;
+    }
+    .match-opponent-name {
+        font-size: 13px;
+    }
+    .match-tournament {
+        font-size: 10px;
+    }
+    .coach-container .tabs {
+        margin-left: 0;
+    }
+    .coach-container .card {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
