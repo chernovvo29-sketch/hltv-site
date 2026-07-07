@@ -866,17 +866,17 @@ async function loadNews() {
         }
 
         let html = `
-            <div style="display:flex; flex-wrap:wrap; gap:3vw; padding:1vw 8vw; margin-top: 4vh; margin-bottom: 2vh">
+            <div class="news-grid" style="display:flex; flex-wrap:wrap; gap:3vw; padding:1vw 8vw; margin-top: 4vh; margin-bottom: 2vh">
         `;
 
         for (const article of data.articles) {
             html += `
-                <div onclick="window.location.href='news/${article.file}'" style="cursor:pointer; background-color:rgba(0,0,0,0.2); border-radius:0.5vw; overflow:hidden; flex:0 0 calc(50% - 4vw); max-width:calc(50% - 3vw); transition:transform 0.2s; min-width:23vw;">
+                <div class="news-card" onclick="window.location.href='news/${article.file}'" style="cursor:pointer; background-color:rgba(0,0,0,0.2); border-radius:0.5vw; overflow:hidden; flex:0 0 calc(50% - 4vw); max-width:calc(50% - 3vw); transition:transform 0.2s; min-width:23vw;">
                     <img src="news/${article.image}" alt="${article.title}" style="width:100%; height:auto; display:block;" onerror="this.style.display='none'">
                     <div style="padding:0.7vw;">
-                        <div style="font-weight:bold; font-size:0.9vw; margin-bottom:0.3vh;">${article.title}</div>
-                        <div style="font-size:0.7vw; color:#8899bb; margin-bottom:0.5vh;">${article.date}</div>
-                        <div style="font-size:0.75vw; color:#cbd5e6;">${article.summary}</div>
+                        <div class="news-card-title" style="font-weight:bold; font-size:0.9vw; margin-bottom:0.3vh;">${article.title}</div>
+                        <div class="news-card-date" style="font-size:0.7vw; color:#8899bb; margin-bottom:0.5vh;">${article.date}</div>
+                        <div class="news-card-summary" style="font-size:0.75vw; color:#cbd5e6;">${article.summary}</div>
                     </div>
                 </div>
             `;

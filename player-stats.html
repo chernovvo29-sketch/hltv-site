@@ -97,6 +97,9 @@
             font-size: 1.2vw;
             font-weight: bold;
             margin-top: 0.5vh; /* небольшой отступ сверху */
+            display: flex;
+            align-items: center;
+            gap: 0.6vw;
         }
         .wm-toggle-input {
             display: none;
@@ -107,22 +110,29 @@
         .wm-toggle-input:checked ~ .wm-value {
             display: inline;
         }
-        .wm-toggle-input:checked ~ .wm-hidden-text {
-            display: none;
-        }
-        .wm-hidden-text {
-            color: #888;
-            font-style: italic;
-            font-weight: normal;
-        }
         .wm-toggle-label {
             cursor: pointer;
-            margin-left: 0.5vw;
-            opacity: 0.55;
-            transition: opacity 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.5vw;
+            height: 1.5vw;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.12);
+            font-size: 0.65vw;
+            transition: background-color 0.2s ease;
         }
         .wm-toggle-label:hover {
-            opacity: 1;
+            background-color: rgba(255, 255, 255, 0.28);
+        }
+        .wm-icon-expanded {
+            display: none;
+        }
+        .wm-toggle-input:checked ~ .wm-toggle-label .wm-icon-collapsed {
+            display: none;
+        }
+        .wm-toggle-input:checked ~ .wm-toggle-label .wm-icon-expanded {
+            display: inline;
         }
         .stats-grid {
             display: flex;
@@ -180,9 +190,22 @@
             display: block;
             text-align: center;
         }
+        .bar-status .status-fascinating {
+            display: block;
+            text-align: right;
+            padding-right: 16.7%;
+        }
         .status-good { color: #2ecc71; }
         .status-bad { color: #e74c3c; }
         .status-ok { color: #f1c40f; }
+        .status-fascinating {
+            color: #ffffff;
+            font-weight: 900;
+            text-shadow: 0 0 6px rgba(255, 255, 255, 0.9), 0 0 12px rgba(255, 255, 255, 0.5);
+        }
+        .bar-fill-fascinating {
+            box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.9), 0 0 3px rgba(255, 255, 255, 1) inset;
+        }
         .current-team-link {
             color: #d1cfca;
             text-decoration: none;
@@ -501,6 +524,10 @@
                     }
                 }
                 percent = Math.min(100, Math.max(0, percent));
+                if (percent >= 100) {
+                    status = 'FASCINATING';
+                    statusClass = 'status-fascinating';
+                }
                 return { percent, status, statusClass };
             }
 
@@ -512,6 +539,7 @@
             const barSwing = getBarParams(avgSwing, 'swing');
 
             function getFillColor(bar) {
+                if (bar.status === 'FASCINATING') return '#ffffff';
                 if (bar.status === 'GOOD') return '#2ecc71';
                 if (bar.status === 'BAD') return '#e74c3c';
                 return '#f1c40f';
@@ -556,10 +584,11 @@
             `;
 
             function generateBar(bar, label, valueDisplay) {
+                const fillClass = bar.status === 'FASCINATING' ? 'bar-fill bar-fill-fascinating' : 'bar-fill';
                 return `
                     <div class="stat-bar-item">
                         <div class="stat-label">${label}</div>
-                        <div class="bar-container"><div class="bar-fill" style="width: ${bar.percent}%; background-color: ${getFillColor(bar)};"></div></div>
+                        <div class="bar-container"><div class="${fillClass}" style="width: ${bar.percent}%; background-color: ${getFillColor(bar)};"></div></div>
                         <div class="bar-value">${valueDisplay}</div>
                         <div class="bar-status">
                             <span class="${bar.statusClass}">${getStatusLabelText(bar)}</span>
@@ -575,9 +604,11 @@
                         <div class="elite-rating">Elite Rating: <span style="color: ${eliteRatingColor}">${eliteRating.toFixed(2)}</span></div>
                         <div class="wingman-rating">Wingman Rating:
                             <input type="checkbox" id="wmRevealToggle" class="wm-toggle-input">
-                            <span class="wm-hidden-text">Hidden</span>
+                            <label for="wmRevealToggle" class="wm-toggle-label" title="Показать/скрыть Wingman Rating">
+                                <i class="fa-solid fa-chevron-up wm-icon-collapsed"></i>
+                                <i class="fa-solid fa-minus wm-icon-expanded"></i>
+                            </label>
                             <span class="wm-value" style="color: ${wingmanRatingColor}">${wingmanDisplay}</span>
-                            <label for="wmRevealToggle" class="wm-toggle-label" title="Показать Wingman Rating"><i class="fa-solid fa-eye"></i></label>
                         </div>
                     </div>
                     <div class="stats-grid" style="margin-top: 2vh;">
