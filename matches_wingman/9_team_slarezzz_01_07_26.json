@@ -22,7 +22,7 @@
       "hs_percent": null,
       "multikills": {"2k":0,"3k":0,"4k":0,"5k":0},
       "round_swing": null,
-      "rating": 1.75
+      "rating": 1.44
     },
     {
       "nick": "D1amp0",
@@ -33,7 +33,7 @@
       "hs_percent": null,
       "multikills": {"2k":0,"3k":0,"4k":0,"5k":0},
       "round_swing": null,
-      "rating": 0.63
+      "rating": 0.65
     }
   ],
   "playersOpponent": [
@@ -46,7 +46,7 @@
       "hs_percent": null,
       "multikills": {"2k":0,"3k":0,"4k":0,"5k":0},
       "round_swing": null,
-      "rating": 0.83
+      "rating": 0.94
     },
     {
       "nick": "Eryt",
@@ -57,7 +57,7 @@
       "hs_percent": null,
       "multikills": {"2k":0,"3k":0,"4k":0,"5k":0},
       "round_swing": null,
-      "rating": 0.86
+      "rating": 0.97
     }
   ]
 }

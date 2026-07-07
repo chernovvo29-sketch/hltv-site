@@ -22,7 +22,7 @@
       "hs_percent": null,
       "multikills": {"2k": 0, "3k": 0, "4k": 0, "5k": 0},
       "round_swing": null,
-      "rating": 1.19
+      "rating": 1.20
     },
     {
       "nick": "Dew1erMode",
@@ -33,7 +33,7 @@
       "hs_percent": null,
       "multikills": {"2k": 0, "3k": 0, "4k": 0, "5k": 0},
       "round_swing": null,
-      "rating": 0.62
+      "rating": 0.60
     }
   ],
   "playersOpponent": [
@@ -46,7 +46,7 @@
       "hs_percent": null,
       "multikills": {"2k": 0, "3k": 0, "4k": 0, "5k": 0},
       "round_swing": null,
-      "rating": 1.38
+      "rating": 1.39
     },
     {
       "nick": "-lokyy-",
@@ -57,7 +57,7 @@
       "hs_percent": null,
       "multikills": {"2k": 0, "3k": 0, "4k": 0, "5k": 0},
       "round_swing": null,
-      "rating": 0.81
+      "rating": 0.82
     }
   ]
 }

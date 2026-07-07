@@ -23,7 +23,7 @@
       "hs_percent": 56.7,
       "multikills": {"2k": 4, "3k": 4, "4k": 1, "5k": 0},
       "round_swing": 19.35,
-      "rating": 2.87
+      "rating": 2.92
     },
     {
       "nick": "D1amp0",
@@ -34,7 +34,7 @@
       "hs_percent": 50.0,
       "multikills": {"2k": 2, "3k": 1, "4k": 0, "5k": 0},
       "round_swing": 3.44,
-      "rating": 1.52
+      "rating": 1.40
     },
     {
       "nick": "lightwork",
@@ -45,7 +45,7 @@
       "hs_percent": 66.7,
       "multikills": {"2k": 3, "3k": 0, "4k": 0, "5k": 0},
       "round_swing": 6.38,
-      "rating": 1.32
+      "rating": 1.15
     },
     {
       "nick": "Dew1erMode",
@@ -56,7 +56,7 @@
       "hs_percent": 66.7,
       "multikills": {"2k": 1, "3k": 1, "4k": 0, "5k": 0},
       "round_swing": 3.03,
-      "rating": 1.23
+      "rating": 1.17
     },
     {
       "nick": "map1ks",
@@ -67,7 +67,7 @@
       "hs_percent": 62.5,
       "multikills": {"2k": 1, "3k": 1, "4k": 0, "5k": 0},
       "round_swing": -1.03,
-      "rating": 0.85
+      "rating": 0.83
     }
   ],
   "playersOpponent": [
@@ -80,7 +80,7 @@
       "hs_percent": 50.0,
       "multikills": {"2k": 2, "3k": 0, "4k": 0, "5k": 0},
       "round_swing": -4.77,
-      "rating": 0.60
+      "rating": 0.61
     },
     {
       "nick": "REIVER_",
@@ -91,7 +91,7 @@
       "hs_percent": 0.0,
       "multikills": {"2k": 3, "3k": 0, "4k": 0, "5k": 0},
       "round_swing": -5.30,
-      "rating": 0.63
+      "rating": 0.71
     },
     {
       "nick": "kaktus0512",
@@ -102,7 +102,7 @@
       "hs_percent": 25.0,
       "multikills": {"2k": 0, "3k": 0, "4k": 0, "5k": 0},
       "round_swing": -6.49,
-      "rating": 0.43
+      "rating": 0.48
     },
     {
       "nick": "gsot",
@@ -113,7 +113,7 @@
       "hs_percent": 66.7,
       "multikills": {"2k": 2, "3k": 0, "4k": 0, "5k": 0},
       "round_swing": -7.07,
-      "rating": 0.27
+      "rating": 0.36
     },
     {
       "nick": "S_EVE_R",
@@ -124,7 +124,7 @@
       "hs_percent": 12.5,
       "multikills": {"2k": 0, "3k": 0, "4k": 0, "5k": 0},
       "round_swing": -7.53,
-      "rating": 0.27
+      "rating": 0.38
     }
   ]
 }

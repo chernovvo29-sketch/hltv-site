@@ -23,7 +23,7 @@
       "hs_percent": null,
       "multikills": {"2k": 0, "3k": 0, "4k": 0, "5k": 0},
       "round_swing": null,
-      "rating": 0.40
+      "rating": 0.39
     },
     {
       "nick": "dark_sasi",
@@ -34,7 +34,7 @@
       "hs_percent": null,
       "multikills": {"2k": 0, "3k": 0, "4k": 0, "5k": 0},
       "round_swing": null,
-      "rating": 0.82
+      "rating": 0.83
     },
     {
       "nick": "map1ks",
@@ -56,7 +56,7 @@
       "hs_percent": null,
       "multikills": {"2k": 0, "3k": 0, "4k": 0, "5k": 0},
       "round_swing": null,
-      "rating": 0.99
+      "rating": 0.98
     },
     {
       "nick": "D1amp0",
@@ -67,7 +67,7 @@
       "hs_percent": null,
       "multikills": {"2k": 0, "3k": 0, "4k": 0, "5k": 0},
       "round_swing": null,
-      "rating": 0.79
+      "rating": 0.80
     }
   ],
   "playersOpponent": [
@@ -80,7 +80,7 @@
       "hs_percent": null,
       "multikills": {"2k": 0, "3k": 0, "4k": 0, "5k": 0},
       "round_swing": null,
-      "rating": 1.25
+      "rating": 1.27
     },
     {
       "nick": "Halal",
@@ -91,7 +91,7 @@
       "hs_percent": null,
       "multikills": {"2k": 0, "3k": 0, "4k": 0, "5k": 0},
       "round_swing": null,
-      "rating": 0.98
+      "rating": 0.96
     },
     {
       "nick": "ツンデレTP",
@@ -102,7 +102,7 @@
       "hs_percent": null,
       "multikills": {"2k": 0, "3k": 0, "4k": 0, "5k": 0},
       "round_swing": null,
-      "rating": 1.21
+      "rating": 1.20
     },
     {
       "nick": "52",
@@ -113,7 +113,7 @@
       "hs_percent": null,
       "multikills": {"2k": 0, "3k": 0, "4k": 0, "5k": 0},
       "round_swing": null,
-      "rating": 0.99
+      "rating": 0.97
     },
     {
       "nick": "Orya",
@@ -124,7 +124,7 @@
       "hs_percent": null,
       "multikills": {"2k": 0, "3k": 0, "4k": 0, "5k": 0},
       "round_swing": null,
-      "rating": 1.35
+      "rating": 1.38
     }
   ]
 }

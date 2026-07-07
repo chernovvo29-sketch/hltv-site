@@ -27,7 +27,7 @@
         "5k": 0
       },
       "round_swing": null,
-      "rating": 0.62
+      "rating": 0.59
     },
     {
       "nick": "dark_sasi",
@@ -43,7 +43,7 @@
         "5k": 0
       },
       "round_swing": null,
-      "rating": 2.12
+      "rating": 2.18
     }
   ],
   "playersOpponent": [
@@ -61,7 +61,7 @@
         "5k": 0
       },
       "round_swing": null,
-      "rating": 0.4
+      "rating": 0.38
     },
     {
       "nick": "G0G",
@@ -77,7 +77,7 @@
         "5k": 0
       },
       "round_swing": null,
-      "rating": 0.86
+      "rating": 0.85
     }
   ]
 }

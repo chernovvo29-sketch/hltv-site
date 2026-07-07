@@ -27,7 +27,7 @@
         "5k": 0
       },
       "round_swing": null,
-      "rating": 1.39
+      "rating": 1.38
     },
     {
       "nick": "adski_profi",
@@ -43,7 +43,7 @@
         "5k": 0
       },
       "round_swing": null,
-      "rating": 0.67
+      "rating": 0.66
     }
   ],
   "playersOpponent": [
@@ -61,7 +61,7 @@
         "5k": 0
       },
       "round_swing": null,
-      "rating": 1.1
+      "rating": 1.10
     },
     {
       "nick": "justkaba",
@@ -77,7 +77,7 @@
         "5k": 0
       },
       "round_swing": null,
-      "rating": 0.84
+      "rating": 0.86
     }
   ]
 }

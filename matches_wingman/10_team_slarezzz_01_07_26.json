@@ -33,7 +33,7 @@
       "hs_percent": null,
       "multikills": {"2k":0,"3k":0,"4k":0,"5k":0},
       "round_swing": null,
-      "rating": 1.24
+      "rating": 1.16
     }
   ],
   "playersOpponent": [
@@ -46,7 +46,7 @@
       "hs_percent": null,
       "multikills": {"2k":0,"3k":0,"4k":0,"5k":0},
       "round_swing": null,
-      "rating": 0.51
+      "rating": 0.53
     },
     {
       "nick": "Eryt",
@@ -57,7 +57,7 @@
       "hs_percent": null,
       "multikills": {"2k":0,"3k":0,"4k":0,"5k":0},
       "round_swing": null,
-      "rating": 1.12
+      "rating": 1.18
     }
   ]
 }

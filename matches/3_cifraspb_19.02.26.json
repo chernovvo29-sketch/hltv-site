@@ -23,7 +23,7 @@
       "hs_percent": null,
       "multikills": {"2k": 0, "3k": 0, "4k": 0, "5k": 0},
       "round_swing": null,
-      "rating": 1.68
+      "rating": 1.72
     },
     {
       "nick": "D1amp0",
@@ -34,7 +34,7 @@
       "hs_percent": null,
       "multikills": {"2k": 0, "3k": 0, "4k": 0, "5k": 0},
       "round_swing": null,
-      "rating": 1.30
+      "rating": 1.44
     },
     {
       "nick": "map1ks",
@@ -45,7 +45,7 @@
       "hs_percent": null,
       "multikills": {"2k": 0, "3k": 0, "4k": 0, "5k": 0},
       "round_swing": null,
-      "rating": 1.08
+      "rating": 0.95
     },
     {
       "nick": "dark_sasi",
@@ -56,7 +56,7 @@
       "hs_percent": null,
       "multikills": {"2k": 0, "3k": 0, "4k": 0, "5k": 0},
       "round_swing": null,
-      "rating": 2.47
+      "rating": 2.37
     },
     {
       "nick": "lightwork",
@@ -67,7 +67,7 @@
       "hs_percent": null,
       "multikills": {"2k": 0, "3k": 0, "4k": 0, "5k": 0},
       "round_swing": null,
-      "rating": 1.15
+      "rating": 1.09
     }
   ],
   "playersOpponent": [
@@ -80,7 +80,7 @@
       "hs_percent": null,
       "multikills": {"2k": 0, "3k": 0, "4k": 0, "5k": 0},
       "round_swing": null,
-      "rating": 0.97
+      "rating": 1.04
     },
     {
       "nick": "MC_GRIBADA",
@@ -91,7 +91,7 @@
       "hs_percent": null,
       "multikills": {"2k": 0, "3k": 0, "4k": 0, "5k": 0},
       "round_swing": null,
-      "rating": 0.75
+      "rating": 0.80
     },
     {
       "nick": "EDEN_IVY",
@@ -113,7 +113,7 @@
       "hs_percent": null,
       "multikills": {"2k": 0, "3k": 0, "4k": 0, "5k": 0},
       "round_swing": null,
-      "rating": 0.42
+      "rating": 0.40
     },
     {
       "nick": "Eschposchmak",

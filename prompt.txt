@@ -49,23 +49,23 @@ K_D = ln(K_D_raw + 1) / ln(1.43)
 Δ = |teamDoctorsScore - teamOpponentScore|
 
 Для 5v5 Lite:
-BaseRating = 0.63*(KPR/0.70) + 0.09*K_D + 0.17*(APR/0.32) + 0.10*((1-DPR)/0.30)
+BaseRating = 0.64*(KPR/0.70) + 0.14*K_D + 0.17*(APR/0.33) + 0.10*((1-DPR)/0.30)
 MatchFactor = победитель: (1 + 0.002*Δ), проигравший: (1 - 0.002*Δ)
 TempRating = BaseRating * MatchFactor
 
 для Wingman::
-BaseRating = 0.63*(KPR/0.70) + 0.09*K_D + 0.25*(APR/0.32) + 0.02*((1-DPR)/0.30)
+BaseRating = 0.58*(KPR/0.70) + 0.16*K_D + 0.25*(APR/0.32) + 0.02*((1-DPR)/0.30)
 MatchFactor = победитель: (1 + 0.001*Δ), проигравший: (1 - 0.001*Δ)
 TempRating = BaseRating * MatchFactor
 
 Для 5v5 Full:
 MK_score = (2k*1.0 + 3k*2.5 + 4k*5.9 + 5k*15.3) / Rounds
-Impact = 0.31*(KPR/0.70) + 0.08*K_D + 0.15*(APR/0.32) + 0.09*((1-DPR)/0.30) + 0.29*(ADR/85) + 0.03*(HS%/50) + 0.08*(MK_score/0.45)
-SwingComponent = max(-0.35, min(0.45, round_swing / 18))
+Impact = 0.32*(KPR/0.70) + 0.10*K_D + 0.15*(APR/0.32) + 0.09*((1-DPR)/0.30) + 0.29*(ADR/85) + 0.03*(HS%/50) + 0.09*(MK_score/0.45)
+SwingComponent = max(-0.2, min(0.44, round_swing / 23.7))
 RawRating = 0.65*Impact + 0.45*SwingComponent
 SurvivalBonus = 0.003*Δ (только для победителей)
 MatchFactor = победитель: (1 + 0.002*Δ), проигравший: (1 - 0.002*Δ)
-TempRating = (RawRating + SurvivalBonus*0.05) * MatchFactor
+TempRating = (RawRating + SurvivalBonus*0.1) * MatchFactor
 
 Нормализация (для всех режимов):
 mean_temp = (сумма TempRating всех игроков) / (количество игроков: 10 для 5v5, 4 для Wingman)
