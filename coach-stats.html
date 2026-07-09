@@ -786,6 +786,7 @@
 
             function getRatingColorStyle(rating) {
                 if (rating === null) return '';
+                rating = Math.round(rating * 100) / 100;
                 if (rating >= 1.50) return '#4096e0';
                 if (rating >= 1.25) return '#31b605';
                 if (rating >= 1.05) return '#88cc44';

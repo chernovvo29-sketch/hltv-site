@@ -1,12 +1,20 @@
 {
   "articles": [
     {
+      "id": 2,
+      "title": "Wingman Friendly Cybersport 2026 Cup: Doctors' forfeit gambit and the DBV grudge match",
+      "date": "2026-07-10",
+      "summary": "Doctors threw a bracket match on purpose for a shot at revenge on DBV — then blew a 2-0 final lead against YSM anyway.",
+      "image": "article2/grand-final-recap.jpg",
+      "file": "article2/index.html"
+    },
+    {
       "id": 1,
       "title": "sazhinfed joins Doctors as a young prospect",
       "date": "2026-06-17",
       "summary": "The 18-year-old rifler signs with Doctors' academy roster, already matching the team's all-time FACEIT rating record.",
-      "image": "sazhinfed.png",
-      "file": "article_1.html"
+      "image": "article1/sazhinfed.png",
+      "file": "article1/index.html"
     }
   ]
 }

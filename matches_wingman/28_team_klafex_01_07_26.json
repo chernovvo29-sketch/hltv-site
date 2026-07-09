@@ -1,0 +1,83 @@
+{
+  "version": "Lite",
+  "date": "01.07.26",
+  "tournament": "Wingman Friendly Cybersport 2026 Cup",
+  "threat": "Ordinary",
+  "opponent": "YSM",
+  "map": "Mirage",
+  "teamDoctorsScore": 9,
+  "teamOpponentScore": 5,
+  "scoreCtDoctors": null,
+  "scoreTDoctors": null,
+  "lostCtDoctors": null,
+  "lostTDoctors": null,
+  "started_site": null,
+  "playersDoctors": [
+    {
+      "nick": "D1amp0",
+      "kills": 11,
+      "deaths": 7,
+      "assists": 1,
+      "adr": null,
+      "hs_percent": null,
+      "multikills": {
+        "2k": 0,
+        "3k": 0,
+        "4k": 0,
+        "5k": 0
+      },
+      "round_swing": null,
+      "rating": 1.12
+    },
+    {
+      "nick": "Dew1erMode",
+      "kills": 10,
+      "deaths": 9,
+      "assists": 3,
+      "adr": null,
+      "hs_percent": null,
+      "multikills": {
+        "2k": 0,
+        "3k": 0,
+        "4k": 0,
+        "5k": 0
+      },
+      "round_swing": null,
+      "rating": 1.08
+    }
+  ],
+  "playersOpponent": [
+    {
+      "nick": "klafex",
+      "kills": 8,
+      "deaths": 10,
+      "assists": 3,
+      "adr": null,
+      "hs_percent": null,
+      "multikills": {
+        "2k": 0,
+        "3k": 0,
+        "4k": 0,
+        "5k": 0
+      },
+      "round_swing": null,
+      "rating": 0.88
+    },
+    {
+      "nick": "J0NI",
+      "kills": 8,
+      "deaths": 11,
+      "assists": 4,
+      "adr": null,
+      "hs_percent": null,
+      "multikills": {
+        "2k": 0,
+        "3k": 0,
+        "4k": 0,
+        "5k": 0
+      },
+      "round_swing": null,
+      "rating": 0.92
+    }
+  ]
+}
