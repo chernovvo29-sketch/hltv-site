@@ -193,7 +193,7 @@
         .bar-status .status-demonic {
             display: block;
             text-align: right;
-            padding-right: 16.7%;
+            padding-right: 5%;
         }
         .status-good { color: #2ecc71; }
         .status-bad { color: #e74c3c; }
@@ -205,6 +205,19 @@
         }
         .bar-fill-demonic {
             box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.9), 0 0 3px rgba(255, 255, 255, 1) inset;
+        }
+        .bar-status .status-mythic-bad {
+            display: block;
+            text-align: left;
+            padding-left: 5%;
+        }
+        .status-mythic-bad {
+            color: #ff2b4d;
+            font-weight: 900;
+            text-shadow: 0 0 6px rgba(255, 43, 77, 0.9), 0 0 12px rgba(255, 43, 77, 0.5);
+        }
+        .bar-fill-mythic-bad {
+            box-shadow: 0 0 10px 2px rgba(255, 43, 77, 0.9), 0 0 3px rgba(255, 43, 77, 1) inset;
         }
         .current-team-link {
             color: #d1cfca;
@@ -459,8 +472,8 @@
                     invert: false 
                 },
                 hs:  { 
-                    avg: 51,   minMult: 0.7, maxMult: 1.3, 
-                    goodMult: 1.15, badMult: 0.85,
+                    avg: 51,   minMult: 0.75, maxMult: 1.15, 
+                    goodMult: 1.125, badMult: 0.9,
                     invert: false 
                 },
                 swing: { 
@@ -468,6 +481,15 @@
                     good: 1.25, bad: -1.25,
                     invert: false 
                 }
+            };
+
+            const extremeNames = {
+                kpr:   { high: 'donk',     low: 'Aleksib' },
+                dpr:   { high: 'Jame',     low: 'karrigan' },
+                apr:   { high: 'Aleksib',  low: 'device' },
+                adr:   { high: 'donk',     low: 'karrigan' },
+                hs:    { high: 'kyousuke', low: 'zont1x' },
+                swing: { high: 'ZywOo',    low: 'karrigan' }
             };
 
             function getBarParams(value, metric) {
@@ -525,11 +547,18 @@
                     }
                 }
                 percent = Math.min(100, Math.max(0, percent));
+
+                let label = status;
                 if (percent >= 100) {
                     status = 'DEMONIC';
                     statusClass = 'status-demonic';
+                    label = extremeNames[metric].high;
+                } else if (percent <= 0) {
+                    status = 'MYTHIC_BAD';
+                    statusClass = 'status-mythic-bad';
+                    label = extremeNames[metric].low;
                 }
-                return { percent, status, statusClass };
+                return { percent, status, statusClass, label };
             }
 
             const barKpr = getBarParams(kpr, 'kpr');
@@ -541,13 +570,14 @@
 
             function getFillColor(bar) {
                 if (bar.status === 'DEMONIC') return '#ffffff';
+                if (bar.status === 'MYTHIC_BAD') return '#ff2b4d';
                 if (bar.status === 'GOOD') return '#2ecc71';
                 if (bar.status === 'BAD') return '#e74c3c';
                 return '#f1c40f';
             }
 
             function getStatusLabelText(bar) {
-                return bar.status;
+                return bar.label;
             }
 
             const ratingColor = getRatingColorStyle(avgRating);
@@ -585,7 +615,8 @@
             `;
 
             function generateBar(bar, label, valueDisplay) {
-                const fillClass = bar.status === 'DEMONIC' ? 'bar-fill bar-fill-demonic' : 'bar-fill';
+                const fillClass = bar.status === 'DEMONIC' ? 'bar-fill bar-fill-demonic'
+                    : (bar.status === 'MYTHIC_BAD' ? 'bar-fill bar-fill-mythic-bad' : 'bar-fill');
                 return `
                     <div class="stat-bar-item">
                         <div class="stat-label">${label}</div>
