@@ -330,6 +330,32 @@
             position: relative;
         }
 
+        .quick-facts {
+            margin-top: 5.5vh;
+            padding-top: 2vh;
+        }
+
+        .quick-fact-row {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 0.4vw;
+            margin-bottom: 1vh;
+            font-size: 0.9vw;
+        }
+
+        .quick-fact-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .quick-fact-label {
+            color: #aaa;
+        }
+
+        .quick-fact-value {
+            font-weight: bold;
+        }
+
         .stat-label {
             font-size: 0.8vw;
             margin-bottom: 0.5vh;
@@ -761,6 +787,7 @@
             let totalAdr = 0;
             let totalHs = 0;
             let totalSwing = 0;
+            let totalMk2 = 0, totalMk3 = 0, totalMk4 = 0, totalMk5 = 0;
 
             const fullCount = fullMatches.length;
 
@@ -768,12 +795,38 @@
                 totalAdr += item.player.adr || 0;
                 totalHs += item.player.hs_percent || 0;
                 totalSwing += item.player.round_swing || 0;
+                const mk = item.player.multikills || {};
+                totalMk2 += mk['2k'] || 0;
+                totalMk3 += mk['3k'] || 0;
+                totalMk4 += mk['4k'] || 0;
+                totalMk5 += mk['5k'] || 0;
             }
 
             const hasFull = fullCount > 0;
             const avgAdr = hasFull ? totalAdr / fullCount : null;
             const avgHs = hasFull ? totalHs / fullCount : null;
             const avgSwing = hasFull ? totalSwing / fullCount : null;
+
+            const kd = totalKills / Math.max(totalDeaths, 1);
+
+            function calculateFirepower() {
+                if (hasFull) {
+                    const mkRate = (totalMk2 * 1.0 + totalMk3 * 2.1 + totalMk4 * 3.9 + totalMk5 * 9.3) / fullCount;
+                    const kprSub = Math.min(157, 57 * Math.pow(kpr / 0.69, 5.5));
+                    const hsSub  = Math.min(140, 50 * Math.pow(avgHs / 50.0, 4));
+                    const adrSub = Math.min(130, 63 * Math.pow(avgAdr / 75.0, 2));
+                    const kdSub  = Math.min(141, 48 * Math.pow(kd / 1.01, 4));
+                    const mkSub  = Math.min(130, 46.1 * Math.pow(mkRate / 5.0, 2.8));
+                    const raw = 0.20 * hsSub + 0.20 * kdSub + 0.20 * kprSub + 0.15 * adrSub + 0.25 * mkSub;
+                    return Math.min(100, raw);
+                } else {
+                    const kprSub = Math.min(130, 49 * Math.pow(kpr / 0.69, 2.5));
+                    const kdSub  = Math.min(130, 49 * Math.pow(kd / 1.01, 2.5));
+                    const raw = 0.6 * kprSub + 0.4 * kdSub;
+                    return Math.min(100, raw);
+                }
+            }
+            const firepower = matchesPlayed ? calculateFirepower() : null;
 
             const eliteMatches = allPlayerMatches.filter(item => item.match.threat === 'Elite');
             const hasElite = eliteMatches.length > 0;
@@ -1175,6 +1228,15 @@
                             ${generateBarWithNS(true, dpr, 'DPR', (v) => v.toFixed(2))}
                             ${generateBarWithNS(true, apr, 'APR', (v) => v.toFixed(2))}
                         </div>
+                    </div>
+
+                    <div class="quick-facts">
+                        <div class="quick-fact-row"><span class="quick-fact-label">Maps played:</span><span class="quick-fact-value">${matchesPlayed}</span></div>
+                        <div class="quick-fact-row"><span class="quick-fact-label">Kills:</span><span class="quick-fact-value">${totalKills}</span></div>
+                        <div class="quick-fact-row"><span class="quick-fact-label">Deaths:</span><span class="quick-fact-value">${totalDeaths}</span></div>
+                        <div class="quick-fact-row"><span class="quick-fact-label">Assists:</span><span class="quick-fact-value">${totalAssists}</span></div>
+                        <div class="quick-fact-row"><span class="quick-fact-label">K/D:</span><span class="quick-fact-value">${kd.toFixed(2)}</span></div>
+                        <div class="quick-fact-row"><span class="quick-fact-label">Firepower:</span><span class="quick-fact-value">${firepower !== null ? Math.round(firepower) : 'N/S'}</span></div>
                     </div>
                 `;
             }

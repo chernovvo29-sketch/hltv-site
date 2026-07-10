@@ -4,6 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Статистика игрока | Team Doctors</title>
+
+    <style>
+        html.preload-dark {
+            background-color: #1a1d2b;
+        }
+
+        html.preload-light {
+            background-color: #8ecafb;
+        }
+
+        html.theme-loading body {
+            visibility: hidden;
+        }
+    </style>
+
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('theme');
+            const theme = savedTheme === 'dark' ? 'dark' : 'light';
+
+            document.documentElement.classList.add('theme-loading');
+            document.documentElement.classList.add('preload-' + theme);
+        })();
+    </script>
+
     <link rel="stylesheet" href="theme.css">
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -149,6 +174,27 @@
             text-align: center;
             position: relative;
         }
+        .quick-facts {
+            margin-top: 5.5vh;
+            padding-top: 2vh;
+        }
+        .quick-fact-row {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 0.4vw;
+            margin-bottom: 1vh;
+            font-size: 0.9vw;
+        }
+        .quick-fact-row:last-child {
+            margin-bottom: 0;
+        }
+        .quick-fact-label {
+            color: #aaa;
+        }
+        .quick-fact-value {
+            font-weight: bold;
+        }
         .stat-label {
             font-size: 0.8vw;
             margin-bottom: 0.5vh;
@@ -253,6 +299,18 @@
     <link rel="stylesheet" href="mobile.css">
 </head>
 <body>
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('theme');
+            const theme = savedTheme === 'dark' ? 'dark' : 'light';
+
+            document.body.classList.remove('dark', 'light');
+            document.body.classList.add(theme);
+
+            document.documentElement.classList.remove('theme-loading');
+        })();
+    </script>
+
     <div class="theme-toggle">
         <input type="checkbox" id="themeSwitch">
         <label for="themeSwitch" class="slider">
@@ -380,7 +438,7 @@
             const playerProfiles = {
                 'dark_sasi':   { fullname: 'Alexander Zubarev', birthDate: new Date(2007, 10, 9) },
                 'Dew1erMode':  { fullname: 'Vadim Chernov', birthDate: new Date(2007, 8, 30) },
-                'map1ks':      { fullname: 'Maxim', birthDate: new Date(2007, 9, 17) },
+                'map1ks':      { fullname: 'Maxim Pisun', birthDate: new Date(2007, 9, 17) },
                 'D1amp0':      { fullname: 'Dmitriy Galihin', birthDate: new Date(2007, 7, 24) },
                 'lightwork':   { fullname: 'Andrey Moscovich', birthDate: new Date(2007, 8, 23) }
             };
@@ -413,15 +471,43 @@
             apr = parseFloat(apr.toFixed(3));
 
             let totalAdr = 0, totalHs = 0, totalSwing = 0;
+            let totalMk2 = 0, totalMk3 = 0, totalMk4 = 0, totalMk5 = 0;
             let fullCount = fullMatches.length;
             for (const item of fullMatches) {
                 totalAdr += item.player.adr || 0;
                 totalHs += item.player.hs_percent || 0;
                 totalSwing += item.player.round_swing || 0;
+                const mk = item.player.multikills || {};
+                totalMk2 += mk['2k'] || 0;
+                totalMk3 += mk['3k'] || 0;
+                totalMk4 += mk['4k'] || 0;
+                totalMk5 += mk['5k'] || 0;
             }
             const avgAdr = fullCount ? (totalAdr / fullCount) : 0;
             const avgHs = fullCount ? (totalHs / fullCount) : 0;
             const avgSwing = fullCount ? (totalSwing / fullCount) : 0;
+
+            // Firepower
+            const kd = totalKills / Math.max(totalDeaths, 1);
+
+            function calculateFirepower() {
+                if (fullCount > 0) {
+                    const mkRate = (totalMk2 * 1.0 + totalMk3 * 2.1 + totalMk4 * 3.9 + totalMk5 * 9.3) / fullCount;
+                    const kprSub = Math.min(157, 57 * Math.pow(kpr / 0.69, 5.5));
+                    const hsSub  = Math.min(140, 50 * Math.pow(avgHs / 50.0, 4));
+                    const adrSub = Math.min(130, 63 * Math.pow(avgAdr / 75.0, 2));
+                    const kdSub  = Math.min(141, 48 * Math.pow(kd / 1.01, 4));
+                    const mkSub  = Math.min(130, 46.1 * Math.pow(mkRate / 5.0, 2.8));
+                    const raw = 0.20 * hsSub + 0.20 * kdSub + 0.20 * kprSub + 0.15 * adrSub + 0.25 * mkSub;
+                    return Math.min(100, raw);
+                } else {
+                    const kprSub = Math.min(130, 49 * Math.pow(kpr / 0.69, 2.5));
+                    const kdSub  = Math.min(130, 49 * Math.pow(kd / 1.01, 2.5));
+                    const raw = 0.6 * kprSub + 0.4 * kdSub;
+                    return Math.min(100, raw);
+                }
+            }
+            const firepower = matchesPlayed ? calculateFirepower() : null;
 
             const eliteMatches = allPlayerMatches.filter(item => item.match.threat === 'Elite');
             let totalEliteRating = 0;
@@ -654,6 +740,14 @@
                             ${generateBar(barDpr, 'DPR', dpr.toFixed(2))}
                             ${generateBar(barApr, 'APR', apr.toFixed(2))}
                         </div>
+                    </div>
+                    <div class="quick-facts">
+                        <div class="quick-fact-row"><span class="quick-fact-label">Maps played:</span><span class="quick-fact-value">${matchesPlayed}</span></div>
+                        <div class="quick-fact-row"><span class="quick-fact-label">Kills:</span><span class="quick-fact-value">${totalKills}</span></div>
+                        <div class="quick-fact-row"><span class="quick-fact-label">Deaths:</span><span class="quick-fact-value">${totalDeaths}</span></div>
+                        <div class="quick-fact-row"><span class="quick-fact-label">Assists:</span><span class="quick-fact-value">${totalAssists}</span></div>
+                        <div class="quick-fact-row"><span class="quick-fact-label">K/D:</span><span class="quick-fact-value">${kd.toFixed(2)}</span></div>
+                        <div class="quick-fact-row"><span class="quick-fact-label">Firepower:</span><span class="quick-fact-value">${firepower !== null ? Math.round(firepower) : 'N/S'}</span></div>
                     </div>
                 </div>
             `;
