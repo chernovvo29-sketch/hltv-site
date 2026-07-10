@@ -205,23 +205,36 @@
     .roster-row {
         padding: 8px;
         border-radius: 8px;
+        align-items: center;
     }
     .roster-row .col-time {
         margin-left: 0;
     }
     .col-player {
         gap: 2.5vw;
+        align-items: center;
     }
     .roster-avatar {
         width: 34px;
         height: 34px;
+        min-width: 34px;
+        border-radius: 4px;
+        object-fit: cover;
+        flex: 0 0 auto;
     }
     .player-flag {
         width: 13px;
+        flex: 0 0 auto;
     }
-    .player-nick {
-        font-size: 12px;
+    /* Скоуп важен: .player-nick также используется на player-stats.html
+       для огромного заголовка профиля (см. ниже) — без #roster этот
+       селектор той же специфичности перебивался бы им по порядку в файле. */
+    #roster .player-nick {
+        font-size: 12px !important;
         margin-left: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
     .col-maps {
         margin-left: 0;
@@ -255,16 +268,19 @@
         margin-right: 4vw;
         padding: 1.4vh 3vw;
     }
+    /* Всё, кроме даты, — строго в одну строку: доктора | счёт | соперник | кнопка.
+       Отступы между блоками управляются ТОЛЬКО column-gap сетки, поэтому
+       слева и справа от счёта они гарантированно одинаковые. */
     .match-item {
         display: grid;
-        grid-template-columns: minmax(0, 1fr) 46px minmax(0, 1fr);
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto;
         grid-template-areas:
-            "doctors score opponent"
-            "date    date  button";
+            "date     date  date      date"
+            "doctors  score opponent  button";
         align-items: center;
-        row-gap: 1.8vw;
-        column-gap: 2vw;
-        padding: 3vw 0;
+        row-gap: 1vw;
+        column-gap: 1.5vw;
+        padding: 2.5vw 0;
         width: calc(100% - 8vw);
         margin-left: 4vw;
         margin-right: 4vw;
@@ -272,8 +288,9 @@
     .match-date {
         grid-area: date;
         justify-self: start;
-        font-size: 10px;
+        font-size: 9px;
         white-space: nowrap;
+        opacity: 0.75;
     }
     .match-team-doctors {
         grid-area: doctors;
@@ -282,7 +299,7 @@
         width: auto;
         min-width: 0;
         overflow: hidden;
-        gap: 1.5vw;
+        gap: 1vw;
     }
     .match-team-opponent {
         grid-area: opponent;
@@ -291,24 +308,25 @@
         width: auto;
         min-width: 0;
         overflow: hidden;
-        gap: 1.5vw;
+        gap: 1vw;
     }
     .match-team-logo {
         flex: 0 0 auto;
-        width: 20px;
-        height: 20px;
+        width: 16px;
+        height: 16px;
     }
     .match-team-name {
-        font-size: 10px;
+        font-size: 9px;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
         min-width: 0;
+        flex: 0 1 auto;
     }
     .match-score {
         grid-area: score;
         justify-self: center;
-        font-size: 13px;
+        font-size: 12px;
         white-space: nowrap;
     }
     .match-detail-btn {
@@ -317,8 +335,9 @@
         margin-left: 0;
         width: auto;
         height: auto;
-        padding: 6px 10px;
-        font-size: 10px;
+        padding: 5px 8px;
+        font-size: 9px;
+        white-space: nowrap;
     }
     .load-more-btn {
         padding: 1.2vh 5vw;
@@ -617,7 +636,7 @@
         width: 100%;
         align-items: center;
     }
-    .player-nick, .coach-nick {
+    .player-info-area .player-nick, .coach-info-area .coach-nick {
         font-size: 20px;
     }
     .player-fullname, .coach-fullname {
@@ -668,6 +687,15 @@
     }
     .bar-status {
         font-size: 10px;
+    }
+    .quick-facts {
+        margin-top: 5vw;
+        padding-top: 4vw;
+    }
+    .quick-fact-row {
+        font-size: 13px;
+        gap: 1.5vw;
+        margin-bottom: 2vw;
     }
     .coach-stats-col {
         gap: 1.5vh;
